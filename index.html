@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Shoe POS System</title>
+
+    <!--    fontIcons-->
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.3.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+    <link rel='stylesheet'
+          href='https://cdn-uicons.flaticon.com/2.3.0/uicons-thin-straight/css/uicons-thin-straight.css'>
+    <link rel='stylesheet'
+          href='https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet'
+          href='https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+
+    <!--    bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!--    fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <!--    styles-->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body>
+
+<header>
+    <nav id="navBar" class="container">
+        <a class="logo-wrapper" href="">
+            <img class="logo-img" src="assets/images/icons/sneakers-converse-shoe-shoes-footwear.svg"
+                 alt="Hello Shoe Logo">
+            <span class="logo-name">Hello Shoe</span>
+        </a>
+
+        <ul id="nav-btn-set" class="row justify-content-md-center">
+            <li id="admin-panel-nav-btn" class="col col-11">
+                <i class="fi fi-rs-user-key"></i> Admin Panel
+            </li>
+            <li id="sales-nav-btn" class="col col-11">
+                <i class="fi fi-rr-cart-shopping-fast"></i> Sales
+            </li>
+            <li id="items-nav-btn" class="col col-11">
+                <i class="fi fi-rr-boot-heeled"></i> Items
+            </li>
+            <li id="customers-nav-btn" class="col col-11">
+                <i class="fi fi-rs-review"></i> Customers
+            </li>
+            <li id="suppliers-nav-btn" class="col col-11">
+                <i class="fi fi-rr-truck-box"></i> Suppliers
+            </li>
+            <li id="employees-nav-btn" class="col col-11">
+                <i class="fi fi-rs-employees"></i> Employees
+            </li>
+            <li id="resupply-nav-btn" class="col col-11">
+                <i class="fi fi-rr-restock"></i> Resupply
+            </li>
+            <li id="refund-nav-btn" class="col col-11">
+                <i class="fi fi-rr-refund-alt"></i> Refund
+            </li>
+
+            <button id="user-btn" class="user-btn col col-10">
+                <div class="user-profile-pic">DM</div>
+                <span class="user-name">Dasun Madawa</span>
+            </button>
+
+            <button id="log-out-btn" class="user-btn col col-10">
+                <i class="fi fi-rs-sign-out-alt"></i>
+                <span class="">Log Out</span>
+            </button>
+
+        </ul>
+
+    </nav>
+
+</header>
+<main>
+
+    <section id="sale-sec" class="sale-sec">
+        <div class="body-wrapper">
+            <div id="body-header-wrapper" class="body-header-wrapper">
+                <div id="search-bar-wrapper" class="search-bar-wrapper row">
+                    <i class="fi fi-rr-search"></i>
+                    <input type="text" id="sale-search-field" class="sale-search-field col col-10"
+                           placeholder="Search products...">
+
+                    <div id="filter-btn" class="dropdown filter-btn">
+                        <i class="fi fi-rr-sort-alt" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">Price</li>
+                            <li class="dropdown-item">Name</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div id="filter-btn-set-wrapper" class="filter-btn-set-wrapper">
+                    <div id="all-btn" class="dropdown sort-btn">
+                        <div data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>All</span>
+                            <i class="fi fi-rr-angle-small-down"></i>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">All</li>
+                            <li class="dropdown-item">Shoes</li>
+                            <li class="dropdown-item">Accessories</li>
+                        </ul>
+                    </div>
+
+                    <div id="gender-btn" class="dropdown sort-btn">
+                        <div data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>Gender</span>
+                            <i class="fi fi-rr-angle-small-down"></i>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">All</li>
+                            <li class="dropdown-item">Male</li>
+                            <li class="dropdown-item">Female</li>
+                        </ul>
+                    </div>
+
+                    <div id="occasion-btn" class="dropdown sort-btn">
+                        <div data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>Occasion</span>
+                            <i class="fi fi-rr-angle-small-down"></i>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">All</li>
+                            <li class="dropdown-item">Formal</li>
+                            <li class="dropdown-item">Casual</li>
+                            <li class="dropdown-item">Industrial</li>
+                            <li class="dropdown-item">Sport</li>
+                        </ul>
+                    </div>
+
+                    <div id="verities-btn" class="dropdown sort-btn">
+                        <div data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>Verities</span>
+                            <i class="fi fi-rr-angle-small-down"></i>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">All</li>
+                            <li class="dropdown-item">Heel</li>
+                            <li class="dropdown-item">Flats</li>
+                            <li class="dropdown-item">Wedges</li>
+                            <li class="dropdown-item">Flip Flops</li>
+                            <li class="dropdown-item">Sandals</li>
+                            <li class="dropdown-item">Shoes</li>
+                            <li class="dropdown-item">Slippers</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div id="body-item-wrapper" class="body-item-wrapper">
+                <div class="sale-item-card">
+                    <div class="sale-item-img"></div>
+                    <div class="sale-item-body">
+                        <h4 class="sale-item-name">Nike X OFF-White</h4>
+                        <h4 class="sale-item-id">FSM00001</h4>
+                        <div class="sale-item-category-set">
+                            <span>#Men</span>
+                            <span>#Casual</span>
+                            <span>#Shoes</span>
+                        </div>
+
+                        <div class="size-set-wrapper">
+                            <span>Size</span>
+
+                            <span class="sale-item-size">5</span>
+                            <span class="sale-item-size">6</span>
+                            <span class="sale-item-size">7</span>
+                            <span class="sale-item-size">8</span>
+                            <span class="sale-item-size">9</span>
+                            <span class="sale-item-size">10</span>
+                            <span class="sale-item-size">11</span>
+
+                        </div>
+
+                        <div class="colour-set-wrapper">
+                            <span>Colour</span>
+
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+
+                        </div>
+
+                        <div class="sale-item-price">5850 LKR</div>
+
+                        <div class="add-to-cart-btn">Add to cart</div>
+                    </div>
+                </div>
+                <div class="sale-item-card">
+                    <div class="sale-item-img"></div>
+                    <div class="sale-item-body">
+                        <h4 class="sale-item-name">Nike X OFF-White</h4>
+                        <h4 class="sale-item-id">FSM00001</h4>
+                        <div class="sale-item-category-set">
+                            <span>#Men</span>
+                            <span>#Casual</span>
+                            <span>#Shoes</span>
+                        </div>
+
+                        <div class="size-set-wrapper">
+                            <span>Size</span>
+
+                            <span class="sale-item-size">5</span>
+                            <span class="sale-item-size">6</span>
+                            <span class="sale-item-size">7</span>
+                            <span class="sale-item-size">8</span>
+                            <span class="sale-item-size">9</span>
+                            <span class="sale-item-size">10</span>
+                            <span class="sale-item-size">11</span>
+
+                        </div>
+
+                        <div class="colour-set-wrapper">
+                            <span>Colour</span>
+
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+
+                        </div>
+
+                        <div class="sale-item-price">5850 LKR</div>
+
+                        <div class="add-to-cart-btn">Add to cart</div>
+                    </div>
+                </div>
+                <div class="sale-item-card">
+                    <div class="sale-item-img"></div>
+                    <div class="sale-item-body">
+                        <h4 class="sale-item-name">Nike X OFF-White</h4>
+                        <h4 class="sale-item-id">FSM00001</h4>
+                        <div class="sale-item-category-set">
+                            <span>#Men</span>
+                            <span>#Casual</span>
+                            <span>#Shoes</span>
+                        </div>
+
+                        <div class="size-set-wrapper">
+                            <span>Size</span>
+
+                            <span class="sale-item-size">5</span>
+                            <span class="sale-item-size">6</span>
+                            <span class="sale-item-size">7</span>
+                            <span class="sale-item-size">8</span>
+                            <span class="sale-item-size">9</span>
+                            <span class="sale-item-size">10</span>
+                            <span class="sale-item-size">11</span>
+
+                        </div>
+
+                        <div class="colour-set-wrapper">
+                            <span>Colour</span>
+
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+
+                        </div>
+
+                        <div class="sale-item-price">5850 LKR</div>
+
+                        <div class="add-to-cart-btn">Add to cart</div>
+                    </div>
+                </div>
+                <div class="sale-item-card">
+                    <div class="sale-item-img"></div>
+                    <div class="sale-item-body">
+                        <h4 class="sale-item-name">Nike X OFF-White</h4>
+                        <h4 class="sale-item-id">FSM00001</h4>
+                        <div class="sale-item-category-set">
+                            <span>#Men</span>
+                            <span>#Casual</span>
+                            <span>#Shoes</span>
+                        </div>
+
+                        <div class="size-set-wrapper">
+                            <span>Size</span>
+
+                            <span class="sale-item-size">5</span>
+                            <span class="sale-item-size">6</span>
+                            <span class="sale-item-size">7</span>
+                            <span class="sale-item-size">8</span>
+                            <span class="sale-item-size">9</span>
+                            <span class="sale-item-size">10</span>
+                            <span class="sale-item-size">11</span>
+
+                        </div>
+
+                        <div class="colour-set-wrapper">
+                            <span>Colour</span>
+
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+
+                        </div>
+
+                        <div class="sale-item-price">5850 LKR</div>
+
+                        <div class="add-to-cart-btn">Add to cart</div>
+                    </div>
+                </div>
+                <div class="sale-item-card">
+                    <div class="sale-item-img"></div>
+                    <div class="sale-item-body">
+                        <h4 class="sale-item-name">Nike X OFF-White</h4>
+                        <h4 class="sale-item-id">FSM00001</h4>
+                        <div class="sale-item-category-set">
+                            <span>#Men</span>
+                            <span>#Casual</span>
+                            <span>#Shoes</span>
+                        </div>
+
+                        <div class="size-set-wrapper">
+                            <span>Size</span>
+
+                            <span class="sale-item-size">5</span>
+                            <span class="sale-item-size">6</span>
+                            <span class="sale-item-size">7</span>
+                            <span class="sale-item-size">8</span>
+                            <span class="sale-item-size">9</span>
+                            <span class="sale-item-size">10</span>
+                            <span class="sale-item-size">11</span>
+
+                        </div>
+
+                        <div class="colour-set-wrapper">
+                            <span>Colour</span>
+
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+
+                        </div>
+
+                        <div class="sale-item-price">5850 LKR</div>
+
+                        <div class="add-to-cart-btn">Add to cart</div>
+                    </div>
+                </div>
+                <div class="sale-item-card">
+                    <div class="sale-item-img"></div>
+                    <div class="sale-item-body">
+                        <h4 class="sale-item-name">Nike X OFF-White</h4>
+                        <h4 class="sale-item-id">FSM00001</h4>
+                        <div class="sale-item-category-set">
+                            <span>#Men</span>
+                            <span>#Casual</span>
+                            <span>#Shoes</span>
+                        </div>
+
+                        <div class="size-set-wrapper">
+                            <span>Size</span>
+
+                            <span class="sale-item-size">5</span>
+                            <span class="sale-item-size">6</span>
+                            <span class="sale-item-size">7</span>
+                            <span class="sale-item-size">8</span>
+                            <span class="sale-item-size">9</span>
+                            <span class="sale-item-size">10</span>
+                            <span class="sale-item-size">11</span>
+
+                        </div>
+
+                        <div class="colour-set-wrapper">
+                            <span>Colour</span>
+
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+
+                        </div>
+
+                        <div class="sale-item-price">5850 LKR</div>
+
+                        <div class="add-to-cart-btn">Add to cart</div>
+                    </div>
+                </div>
+                <div class="sale-item-card">
+                    <div class="sale-item-img"></div>
+                    <div class="sale-item-body">
+                        <h4 class="sale-item-name">Nike X OFF-White</h4>
+                        <h4 class="sale-item-id">FSM00001</h4>
+                        <div class="sale-item-category-set">
+                            <span>#Men</span>
+                            <span>#Casual</span>
+                            <span>#Shoes</span>
+                        </div>
+
+                        <div class="size-set-wrapper">
+                            <span>Size</span>
+
+                            <span class="sale-item-size">5</span>
+                            <span class="sale-item-size">6</span>
+                            <span class="sale-item-size">7</span>
+                            <span class="sale-item-size">8</span>
+                            <span class="sale-item-size">9</span>
+                            <span class="sale-item-size">10</span>
+                            <span class="sale-item-size">11</span>
+
+                        </div>
+
+                        <div class="colour-set-wrapper">
+                            <span>Colour</span>
+
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+
+                        </div>
+
+                        <div class="sale-item-price">5850 LKR</div>
+
+                        <div class="add-to-cart-btn">Add to cart</div>
+                    </div>
+                </div>
+                <div class="sale-item-card">
+                    <div class="sale-item-img"></div>
+                    <div class="sale-item-body">
+                        <h4 class="sale-item-name">Nike X OFF-White</h4>
+                        <h4 class="sale-item-id">FSM00001</h4>
+                        <div class="sale-item-category-set">
+                            <span>#Men</span>
+                            <span>#Casual</span>
+                            <span>#Shoes</span>
+                        </div>
+
+                        <div class="size-set-wrapper">
+                            <span>Size</span>
+
+                            <span class="sale-item-size">5</span>
+                            <span class="sale-item-size">6</span>
+                            <span class="sale-item-size">7</span>
+                            <span class="sale-item-size">8</span>
+                            <span class="sale-item-size">9</span>
+                            <span class="sale-item-size">10</span>
+                            <span class="sale-item-size">11</span>
+
+                        </div>
+
+                        <div class="colour-set-wrapper">
+                            <span>Colour</span>
+
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+
+                        </div>
+
+                        <div class="sale-item-price">5850 LKR</div>
+
+                        <div class="add-to-cart-btn">Add to cart</div>
+                    </div>
+                </div>
+                <div class="sale-item-card">
+                    <div class="sale-item-img"></div>
+                    <div class="sale-item-body">
+                        <h4 class="sale-item-name">Nike X OFF-White</h4>
+                        <h4 class="sale-item-id">FSM00001</h4>
+                        <div class="sale-item-category-set">
+                            <span>#Men</span>
+                            <span>#Casual</span>
+                            <span>#Shoes</span>
+                        </div>
+
+                        <div class="size-set-wrapper">
+                            <span>Size</span>
+
+                            <span class="sale-item-size">5</span>
+                            <span class="sale-item-size">6</span>
+                            <span class="sale-item-size">7</span>
+                            <span class="sale-item-size">8</span>
+                            <span class="sale-item-size">9</span>
+                            <span class="sale-item-size">10</span>
+                            <span class="sale-item-size">11</span>
+
+                        </div>
+
+                        <div class="colour-set-wrapper">
+                            <span>Colour</span>
+
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+
+                        </div>
+
+                        <div class="sale-item-price">5850 LKR</div>
+
+                        <div class="add-to-cart-btn">Add to cart</div>
+                    </div>
+                </div>
+                <div class="sale-item-card">
+                    <div class="sale-item-img"></div>
+                    <div class="sale-item-body">
+                        <h4 class="sale-item-name">Nike X OFF-White</h4>
+                        <h4 class="sale-item-id">FSM00001</h4>
+                        <div class="sale-item-category-set">
+                            <span>#Men</span>
+                            <span>#Casual</span>
+                            <span>#Shoes</span>
+                        </div>
+
+                        <div class="size-set-wrapper">
+                            <span>Size</span>
+
+                            <span class="sale-item-size">5</span>
+                            <span class="sale-item-size">6</span>
+                            <span class="sale-item-size">7</span>
+                            <span class="sale-item-size">8</span>
+                            <span class="sale-item-size">9</span>
+                            <span class="sale-item-size">10</span>
+                            <span class="sale-item-size">11</span>
+
+                        </div>
+
+                        <div class="colour-set-wrapper">
+                            <span>Colour</span>
+
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+
+                        </div>
+
+                        <div class="sale-item-price">5850 LKR</div>
+
+                        <div class="add-to-cart-btn">Add to cart</div>
+                    </div>
+                </div>
+                <div class="sale-item-card">
+                    <div class="sale-item-img"></div>
+                    <div class="sale-item-body">
+                        <h4 class="sale-item-name">Nike X OFF-White</h4>
+                        <h4 class="sale-item-id">FSM00001</h4>
+                        <div class="sale-item-category-set">
+                            <span>#Men</span>
+                            <span>#Casual</span>
+                            <span>#Shoes</span>
+                        </div>
+
+                        <div class="size-set-wrapper">
+                            <span>Size</span>
+
+                            <span class="sale-item-size">5</span>
+                            <span class="sale-item-size">6</span>
+                            <span class="sale-item-size">7</span>
+                            <span class="sale-item-size">8</span>
+                            <span class="sale-item-size">9</span>
+                            <span class="sale-item-size">10</span>
+                            <span class="sale-item-size">11</span>
+
+                        </div>
+
+                        <div class="colour-set-wrapper">
+                            <span>Colour</span>
+
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+
+                        </div>
+
+                        <div class="sale-item-price">5850 LKR</div>
+
+                        <div class="add-to-cart-btn">Add to cart</div>
+                    </div>
+                </div>
+                <div class="sale-item-card">
+                    <div class="sale-item-img"></div>
+                    <div class="sale-item-body">
+                        <h4 class="sale-item-name">Nike X OFF-White</h4>
+                        <h4 class="sale-item-id">FSM00001</h4>
+                        <div class="sale-item-category-set">
+                            <span>#Men</span>
+                            <span>#Casual</span>
+                            <span>#Shoes</span>
+                        </div>
+
+                        <div class="size-set-wrapper">
+                            <span>Size</span>
+
+                            <span class="sale-item-size">5</span>
+                            <span class="sale-item-size">6</span>
+                            <span class="sale-item-size">7</span>
+                            <span class="sale-item-size">8</span>
+                            <span class="sale-item-size">9</span>
+                            <span class="sale-item-size">10</span>
+                            <span class="sale-item-size">11</span>
+
+                        </div>
+
+                        <div class="colour-set-wrapper">
+                            <span>Colour</span>
+
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+                            <div class="sale-item-colour"></div>
+
+                        </div>
+
+                        <div class="sale-item-price">5850 LKR</div>
+
+                        <div class="add-to-cart-btn">Add to cart</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="order-history-body-wrapper" class="order-history-body-wrapper">
+                <table class="table sale-history-tbl">
+                    <thead>
+                    <tr>
+                        <th scope="col">Order Id</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>O001</td>
+                        <td>15 795 LKR</td>
+                        <td>3</td>
+                        <td>2023-10-10</td>
+                    </tr>
+                    <tr>
+                        <td>O002</td>
+                        <td>15 795 LKR</td>
+                        <td>5</td>
+                        <td>2023-08-15</td>
+                    </tr>
+                    <tr>
+                        <td>O003</td>
+                        <td>15 795 LKR</td>
+                        <td>1</td>
+                        <td>2023-11-16</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="side-bar-wrapper">
+            <div id="side-bar-header-wrapper" class="">
+                <span class="side-bar-header">Current Order <i class="fi fi-rr-circle-xmark"></i></span>
+                <span id="sale-order-id" class="sale-order-id">O001</span>
+                <div class="sale-line"></div>
+
+                <div id="sale-history-btn" class="sale-history-btn"><i class="fi fi-rr-time-past"></i></div>
+            </div>
+
+            <div id="item-customer-toggle-set" class="item-customer-toggle-set">
+                <div id="item-toggle-btn" class="toggle-btn-1">Item Details</div>
+                <div id="customer-toggle-btn" class="toggle-btn-2">Customer Details</div>
+            </div>
+
+            <div id="side-bar-body" class="side-bar-body">
+                <div class="item-cart-wrapper">
+                    <div class="cart-item">
+                        <div class="cart-item-img"></div>
+                        <div class="cart-item-body-wrapper">
+                            <h4 class="cart-item-name">Nike X OFF-White</h4>
+                            <div class="size">10</div>
+                            <div class="colour">
+                                <div></div>
+                            </div>
+                            <div class="price-single">5850 LKR</div>
+                            <h4 class="cart-item-code">FSM00001</h4>
+                            <div class="qty-adjuster-wrapper">
+                                <i class="fi fi-rr-minus"></i>
+                                1
+                                <i class="fi fi-rr-plus"></i>
+                            </div>
+                            <div class="price-all">5850 LKR</div>
+                        </div>
+                    </div>
+
+                    <div class="cart-item">
+                        <div class="cart-item-img"></div>
+                        <div class="cart-item-body-wrapper">
+                            <h4 class="cart-item-name">Nike X OFF-White</h4>
+                            <div class="size">10</div>
+                            <div class="colour">
+                                <div></div>
+                            </div>
+                            <div class="price-single">5850 LKR</div>
+                            <h4 class="cart-item-code">FSM00001</h4>
+                            <div class="qty-adjuster-wrapper">
+                                <i class="fi fi-rr-minus"></i>
+                                1
+                                <i class="fi fi-rr-plus"></i>
+                            </div>
+                            <div class="price-all">5850 LKR</div>
+                        </div>
+                    </div>
+
+                    <div class="cart-item">
+                        <div class="cart-item-img"></div>
+                        <div class="cart-item-body-wrapper">
+                            <h4 class="cart-item-name">Nike X OFF-White</h4>
+                            <div class="size">10</div>
+                            <div class="colour">
+                                <div></div>
+                            </div>
+                            <div class="price-single">5850 LKR</div>
+                            <h4 class="cart-item-code">FSM00001</h4>
+                            <div class="qty-adjuster-wrapper">
+                                <i class="fi fi-rr-minus"></i>
+                                1
+                                <i class="fi fi-rr-plus"></i>
+                            </div>
+                            <div class="price-all">5850 LKR</div>
+                        </div>
+                    </div>
+
+                    <div class="cart-item">
+                        <div class="cart-item-img"></div>
+                        <div class="cart-item-body-wrapper">
+                            <h4 class="cart-item-name">Nike X OFF-White</h4>
+                            <div class="size">10</div>
+                            <div class="colour">
+                                <div></div>
+                            </div>
+                            <div class="price-single">5850 LKR</div>
+                            <h4 class="cart-item-code">FSM00001</h4>
+                            <div class="qty-adjuster-wrapper">
+                                <i class="fi fi-rr-minus"></i>
+                                1
+                                <i class="fi fi-rr-plus"></i>
+                            </div>
+                            <div class="price-all">5850 LKR</div>
+                        </div>
+                    </div>
+
+                    <div class="cart-item">
+                        <div class="cart-item-img"></div>
+                        <div class="cart-item-body-wrapper">
+                            <h4 class="cart-item-name">Nike X OFF-White</h4>
+                            <div class="size">10</div>
+                            <div class="colour">
+                                <div></div>
+                            </div>
+                            <div class="price-single">5850 LKR</div>
+                            <h4 class="cart-item-code">FSM00001</h4>
+                            <div class="qty-adjuster-wrapper">
+                                <i class="fi fi-rr-minus"></i>
+                                1
+                                <i class="fi fi-rr-plus"></i>
+                            </div>
+                            <div class="price-all">5850 LKR</div>
+                        </div>
+                    </div>
+
+                    <div class="cart-item">
+                        <div class="cart-item-img"></div>
+                        <div class="cart-item-body-wrapper">
+                            <h4 class="cart-item-name">Nike X OFF-White</h4>
+                            <div class="size">10</div>
+                            <div class="colour">
+                                <div></div>
+                            </div>
+                            <div class="price-single">5850 LKR</div>
+                            <h4 class="cart-item-code">FSM00001</h4>
+                            <div class="qty-adjuster-wrapper">
+                                <i class="fi fi-rr-minus"></i>
+                                1
+                                <i class="fi fi-rr-plus"></i>
+                            </div>
+                            <div class="price-all">5850 LKR</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="total-wrapper">
+                    <h4 class="sub-total">Sub Total</h4>
+                    <h4 class="discount">Discount(10%)</h4>
+                    <div class="line"></div>
+                    <h4 class="total-amount">Total Amount</h4>
+
+                    <h4 class="sub-total-value">17 550 LKR</h4>
+                    <h4 class="discount-value">1 755 LKR</h4>
+                    <h4 class="total-amount-value">15 795 LKR</h4>
+
+                </div>
+            </div>
+
+            <div id="customer-details-wrapper" class="customer-details-wrapper">
+                <input type="text" id="customer-name-or-loyal-id" class="customer-name-or-loyal-id"
+                       placeholder="Customer Name Or Loyalty Card ID"><br>
+
+                <div class="total-wrapper customer-details">
+                    <h4 class="c-name">Customer Name</h4>
+                    <h4 class="c-join-date">Join Date</h4>
+                    <h4 class="c-level">Level</h4>
+                    <h4 class="c-total-points">Total Points</h4>
+                    <h4 class="c-contacts">Contact No.</h4>
+                    <h4 class="c-last-purchase-date">Last Purchase Date</h4>
+
+                    <h4 class="c-name-value">Dasun Madawa</h4>
+                    <h4 class="c-join-date-value">2023-11-06</h4>
+                    <h4 class="c-level-value">Gold</h4>
+                    <h4 class="c-total-points-value">210</h4>
+                    <h4 class="c-contacts-value">0776547864</h4>
+                    <h4 class="c-last-purchase-date-value">2023-10-18</h4>
+                </div>
+
+                <div id="added-points" class="added-points">
+                    <h4>Added points from this order</h4>
+                    <h4>21</h4>
+                </div>
+
+                <div id="add-customer" class="add-customer">
+                    <i class="fi fi-rs-user-add"></i>
+                </div>
+
+            </div>
+
+            <div id="place-order-wrapper">
+                <div class="payment-method-wrapper">
+                    <div class="cash-payment">
+                        <i id="cash-payment" class="fi fi-rr-money-bill-wave"></i>
+                        Cash
+                    </div>
+
+                    <div class="card-payment">
+                        <i id="card-payment" class="fi fi-rr-credit-card"></i>
+                        Card
+                    </div>
+                </div>
+
+                <button id="place-order-btn" class="place-order-btn">
+                    Place Order
+                </button>
+            </div>
+        </div>
+
+
+    </section>
+
+    <section id="item-sec" class="sale-sec">
+        <div class="item-body-wrapper order-history-body-wrapper">
+            <div id="body-header-wrapper-item" class="body-header-wrapper">
+                <div id="search-bar-wrapper-item" class="search-bar-wrapper row">
+                    <i class="fi fi-rr-search"></i>
+                    <input type="text" id="item-search-field" class="sale-search-field col col-10"
+                           placeholder="Search products...">
+
+                    <div id="filter-btn-item" class="dropdown filter-btn">
+                        <i class="fi fi-rr-sort-alt" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">Price</li>
+                            <li class="dropdown-item">Name</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div id="filter-btn-set-wrapper-item" class="filter-btn-set-wrapper">
+                    <div id="all-btn-item" class="dropdown sort-btn">
+                        <div data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>All</span>
+                            <i class="fi fi-rr-angle-small-down"></i>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">All</li>
+                            <li class="dropdown-item">Shoes</li>
+                            <li class="dropdown-item">Accessories</li>
+                        </ul>
+                    </div>
+
+                    <div id="gender-btn-item" class="dropdown sort-btn">
+                        <div data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>Gender</span>
+                            <i class="fi fi-rr-angle-small-down"></i>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">All</li>
+                            <li class="dropdown-item">Male</li>
+                            <li class="dropdown-item">Female</li>
+                        </ul>
+                    </div>
+
+                    <div id="occasion-btn-item" class="dropdown sort-btn">
+                        <div data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>Occasion</span>
+                            <i class="fi fi-rr-angle-small-down"></i>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">All</li>
+                            <li class="dropdown-item">Formal</li>
+                            <li class="dropdown-item">Casual</li>
+                            <li class="dropdown-item">Industrial</li>
+                            <li class="dropdown-item">Sport</li>
+                        </ul>
+                    </div>
+
+                    <div id="verities-btn-item" class="dropdown sort-btn">
+                        <div data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>Verities</span>
+                            <i class="fi fi-rr-angle-small-down"></i>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item">All</li>
+                            <li class="dropdown-item">Heel</li>
+                            <li class="dropdown-item">Flats</li>
+                            <li class="dropdown-item">Wedges</li>
+                            <li class="dropdown-item">Flip Flops</li>
+                            <li class="dropdown-item">Sandals</li>
+                            <li class="dropdown-item">Shoes</li>
+                            <li class="dropdown-item">Slippers</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="item-table-wrapper">
+                <table class="table table-hover item-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Item Code</th>
+                        <th scope="col">Item Description</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Price Buy</th>
+                        <th scope="col">Price Sale</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>FSM00001</td>
+                        <td>Nike X OFF-White</td>
+                        <td>Sport</td>
+                        <td>12 545 LKR</td>
+                        <td>15 795 LKR</td>
+                    </tr>
+                    <tr>
+                        <td>FSM00001</td>
+                        <td>Nike X OFF-White</td>
+                        <td>Sport</td>
+                        <td>12 545 LKR</td>
+                        <td>15 795 LKR</td>
+                    </tr>
+                    <tr>
+                        <td>FSM00001</td>
+                        <td>Nike X OFF-White</td>
+                        <td>Sport</td>
+                        <td>12 545 LKR</td>
+                        <td>15 795 LKR</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="side-bar-wrapper">
+            <div class="side-bar-header-wrapper">
+                <span class="side-bar-header">Current Order <i class="fi fi-rr-circle-xmark"></i></span>
+                <span class="sale-order-id">FMS0001</span>
+                <div class="sale-line"></div>
+
+            </div>
+
+            <div class="item-customer-toggle-set">
+                <div class="toggle-btn-1">Item Details</div>
+                <div class="toggle-btn-2">Stock Details</div>
+            </div>
+
+        </div>
+
+    </section>
+</main>
+
+<!--    <i class="fi fi-rs-user-key"></i>-->
+<!--    <i class="fi fi-rr-cart-shopping-fast"></i>-->
+<!--    <i class="fi fi-rr-boot-heeled"></i>-->
+<!--    <i class="fi fi-rs-review"></i>-->
+<!--    <i class="fi fi-rr-truck-box"></i>-->
+<!--    <i class="fi fi-rs-employees"></i>-->
+<!--    <i class="fi fi-rr-restock"></i>-->
+<!--    <i class="fi fi-rr-refund-alt"></i>-->
+<!--    <i class="fi fi-rs-sign-out-alt"></i>-->
+<!--    <i class="fi fi-rr-circle-xmark"></i>-->
+
+<script src="assets/lib/jquery.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+<script src="assets/js/script.js"></script>
+
+</body>
+</html>
