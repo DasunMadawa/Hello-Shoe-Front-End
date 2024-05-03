@@ -1,0 +1,217 @@
+/*---------------------------------------- item sec */
+.item-body-wrapper {
+    padding: 228px 47px 0 47px;
+    border-radius: 0;
+    background-color: var(--background-grey);
+
+}
+
+.item-table-wrapper {
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: 15px;
+
+}
+
+.item-table > tbody > tr {
+    cursor: pointer;
+
+}
+
+.item-view-form > div > label {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--letters-grey);
+
+}
+
+.item-view-form > div > input {
+    /*width: 100%;*/
+    /*height: 50px;*/
+    border-radius: 10px;
+    border: 1px solid var(--border-grey);
+    background-color: var(--hr-grey);
+    cursor: var(--black);
+    /*padding: 0 20px;*/
+    /*margin-top: 25px;*/
+
+}
+
+#carouselExampleIndicators {
+    border-radius: 15px;
+    overflow: hidden;
+    width: 60%;
+    margin: 30px auto;
+
+}
+
+.item-stock-table {
+    overflow-y: scroll;
+}
+
+.stock-table-header {
+    font-size: 16px;
+    color: var(--letters-grey);
+    font-weight: 600;
+    margin: 15px 0;
+
+}
+
+.item-stock-table > tbody > tr > td > input {
+    width: 50%;
+
+}
+
+.item-stock-table > tbody > tr > td > i {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 20px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+}
+
+.item-stock-table > tbody > tr > td ,
+.item-stock-table > thead > tr > th ,
+.item-stock-table > tbody > tr > td > input {
+    position: relative;
+    font-size: 14px;
+    padding: 2px;
+
+}
+
+.item-stock-table > tbody > tr > td:first-child {
+    text-align: center;
+
+}
+
+/*------------------------------------------------------------ item add wrapper */
+.item-add-wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: grey;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    z-index: 2;
+
+
+}
+
+.item-form {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    border-radius: 15px;
+    background-color: var(--white);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 45px;
+
+}
+
+.item-add-form {
+    position: relative;
+    font-size: 0;
+    margin-bottom: 50px;
+    /*border: 1px solid black;*/
+
+}
+
+.item-add-form > div {
+    position: relative;
+    display: inline-block;
+    width: 50%;
+    padding: 0 10px;
+
+}
+
+.item-add-colour-wrapper {
+    /*border: 1px solid blue;*/
+
+}
+
+.item-add-colour-wrapper > div {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    /*border: 1px solid green;*/
+    margin: 10px;
+
+}
+
+.item-add-colour-wrapper > div > button {
+    width: 100px;
+    margin-right: 15px;
+
+}
+
+.file-chooser {
+    position: relative;
+    display: inline-block;
+    border: 1px solid var(--border-grey);
+    border-radius: 15px;
+    width: 20%;
+    height: fit-content;
+    padding: 10px 30px 10px 10px;
+    margin-right: 10px;
+
+}
+
+.file-chooser i {
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 10px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    cursor: pointer;
+
+}
+
+.file-chooser i:hover {
+    color: var(--red);
+
+}
+
+.file-chooser input {
+    margin-right: 20px;
+
+}
+
+.save-item-btn {
+    position: absolute;
+    border: unset;
+    width: 200px;
+    height: 50px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: var(--green);
+    color: var(--white);
+    left: 0;
+    right: 0;
+    bottom: 50px;
+    margin: auto;
+
+}
+
+.save-item-btn:hover {
+    background-color: var(--light-green);
+    color: var(--black);
+
+}
+
+

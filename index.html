@@ -13,6 +13,11 @@
     <link rel='stylesheet'
           href='https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-straight/css/uicons-regular-straight.css'>
 
+    <link rel='stylesheet'
+          href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet'
+          href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+
     <!--    bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
@@ -23,6 +28,9 @@
 
     <!--    styles-->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/sale_styles.css">
+    <link rel="stylesheet" href="assets/css/item_styles.css">
+    <link rel="stylesheet" href="assets/css/customer_styles.css">
 
 </head>
 <body>
@@ -76,8 +84,8 @@
     </nav>
 
 </header>
-<main>
 
+<main>
     <section id="sale-sec" class="sale-sec">
         <div class="body-wrapper">
             <div id="body-header-wrapper" class="body-header-wrapper">
@@ -153,6 +161,7 @@
                 </div>
 
             </div>
+
             <div id="body-item-wrapper" class="body-item-wrapper">
                 <div class="sale-item-card">
                     <div class="sale-item-img"></div>
@@ -613,7 +622,7 @@
 
             </div>
 
-            <div id="order-history-body-wrapper" class="order-history-body-wrapper">
+            <div id="order-history-body-wrapper" class="order-history-body-wrapper" style="display: none">
                 <table class="table sale-history-tbl">
                     <thead>
                     <tr>
@@ -794,7 +803,7 @@
                 </div>
             </div>
 
-            <div id="customer-details-wrapper" class="customer-details-wrapper">
+            <div id="customer-details-wrapper" class="customer-details-wrapper side-bar-body-2">
                 <input type="text" id="customer-name-or-loyal-id" class="customer-name-or-loyal-id"
                        placeholder="Customer Name Or Loyalty Card ID"><br>
 
@@ -847,7 +856,7 @@
 
     </section>
 
-    <section id="item-sec" class="sale-sec">
+    <section id="item-sec" class="sale-sec item-sec">
         <div class="item-body-wrapper order-history-body-wrapper">
             <div id="body-header-wrapper-item" class="body-header-wrapper">
                 <div id="search-bar-wrapper-item" class="search-bar-wrapper row">
@@ -964,7 +973,7 @@
 
         <div class="side-bar-wrapper">
             <div class="side-bar-header-wrapper">
-                <span class="side-bar-header">Current Order <i class="fi fi-rr-circle-xmark"></i></span>
+                <span class="side-bar-header">Selected Item</span>
                 <span class="sale-order-id">FMS0001</span>
                 <div class="sale-line"></div>
 
@@ -975,8 +984,399 @@
                 <div class="toggle-btn-2">Stock Details</div>
             </div>
 
+            <div class="item-details-wrapper side-bar-body">
+                <div id="carouselExampleIndicators" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="assets/images/shoes/domino-164_6wVEHfI-unsplash.jpg" class="d-block w-100"
+                                 alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/images/shoes/domino-164_6wVEHfI-unsplash.jpg" class="d-block w-100"
+                                 alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="assets/images/shoes/domino-164_6wVEHfI-unsplash.jpg" class="d-block w-100"
+                                 alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <form class="item-view-form">
+                    <div class="mb-3">
+                        <label for="item-code" class="form-label">Item Code</label>
+                        <input type="text" class="form-control" id="item-code" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="item-description" class="form-label">Item Description</label>
+                        <input type="text" class="form-control" id="item-description" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="item-category" class="form-label">Category</label>
+                        <input type="text" class="form-control" id="item-category" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="item-price-buy" class="form-label">Price Buy</label>
+                        <input type="text" class="form-control" id="item-price-buy" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="item-price-sell" class="form-label">Price Sell</label>
+                        <input type="text" class="form-control" id="item-price-sell" readonly>
+                    </div>
+                </form>
+
+                <div class="payment-method-wrapper">
+                    <div id="add-new-item-btn" class="">
+                        <i class="fi fi-rr-plus"></i>
+                    </div>
+                    <div id="update-item-btn" class="">
+                        <i class="fi fi-rr-pencil"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-bar-body-2">
+                <div class="stock-table-header">QTY Table</div>
+
+                <table id="item-stock-qty-table" class="table table-hover table-bordered item-table item-stock-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Size/Colour</th>
+                        <th scope="col">BLUE</th>
+                        <th scope="col">RED</th>
+                        <th scope="col">GREEN</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>5</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+
+                            <i style="color: green" class="fi fi-ss-check-circle"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: orange" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: red" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+
+                            <i style="color: green" class="fi fi-ss-check-circle"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: orange" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: red" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+
+                            <i style="color: green" class="fi fi-ss-check-circle"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: orange" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: red" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+
+                            <i style="color: green" class="fi fi-ss-check-circle"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: orange" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: red" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+
+                            <i style="color: green" class="fi fi-ss-check-circle"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: orange" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: red" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+
+                            <i style="color: green" class="fi fi-ss-check-circle"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: orange" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: red" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+
+                            <i style="color: green" class="fi fi-ss-check-circle"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: orange" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: red" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <div class="stock-table-header">Max QTY Table</div>
+
+                <table id="item-stock-max-qty-table"
+                       class="table table-hover table-bordered item-table item-stock-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Size/Colour</th>
+                        <th scope="col">BLUE</th>
+                        <th scope="col">RED</th>
+                        <th scope="col">GREEN</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>5</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+                <div class="payment-method-wrapper">
+                    <div class="">
+                        <i class="fi fi-rr-pencil"></i>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
+        <div id="item-add-wrapper" class="item-add-wrapper" style="display: none">
+            <div id="item-form" class="item-form">
+                <form class="item-view-form item-add-form">
+                    <div class="mb-3">
+                        <label for="item-code" class="form-label">Item Code</label>
+                        <input type="text" class="form-control" id="item-code-add">
+                    </div>
+                    <div class="mb-3">
+                        <label for="item-description" class="form-label">Item Description</label>
+                        <input type="text" class="form-control" id="item-description-add">
+                    </div>
+                    <div class="mb-3">
+                        <label for="item-category" class="form-label">Category</label>
+                        <input type="text" class="form-control" id="item-category-add">
+                    </div>
+                    <div class="mb-3">
+                        <label for="item-price-buy" class="form-label">Price Buy</label>
+                        <input type="text" class="form-control" id="item-price-buy-add">
+                    </div>
+                    <div class="mb-3">
+                        <label for="item-price-sell" class="form-label">Price Sell</label>
+                        <input type="text" class="form-control" id="item-price-sell-add">
+                    </div>
+                </form>
+
+                <div id="item-add-colour-wrapper" class="item-add-colour-wrapper">
+                    <div id="item-add-green-wrapper">
+                        <button type="button" class="btn btn-outline-success">Green</button>
+<!--                        <div class="file-chooser">-->
+<!--                            <input class="form-control" type="file" accept="image/png, image/jpeg">-->
+<!--                            <i class="fi fi-rr-circle-xmark"></i>-->
+<!--                        </div>-->
+<!--                        <div class="file-chooser">-->
+<!--                            <input class="form-control" type="file" accept="image/png, image/jpeg">-->
+<!--                            <i class="fi fi-rr-circle-xmark"></i>-->
+<!--                        </div>-->
+                    </div>
+                    <div id="item-add-blue-wrapper">
+                        <button type="button" class="btn btn-outline-primary">Blue</button>
+
+                    </div>
+                    <div id="item-add-red-wrapper">
+                        <button type="button" class="btn btn-outline-danger">Red</button>
+
+                    </div>
+                    <div id="item-add-other-wrapper">
+                        <button type="button" class="btn btn-outline-secondary">Others</button>
+
+                    </div>
+
+                    <button id="save-item-btn" class="save-item-btn">
+                        Save Item
+                    </button>
+
+                </div>
+
+                <!--                <div class="payment-method-wrapper">-->
+                <!--                    <div class="">-->
+                <!--                        <i class="fi fi-rr-plus"></i>-->
+                <!--                    </div>-->
+                <!--                    <div class="">-->
+                <!--                        <i class="fi fi-rr-pencil"></i>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+            </div>
+        </div>
+
+    </section>
+
+    <section id="customer-sec" class="sale-sec">
+        <div class="customer-body-wrapper order-history-body-wrapper">
+            <div id="body-header-wrapper-customer" class="body-header-wrapper body-header-wrapper-no-filters">
+                <div id="search-bar-wrapper-customer" class="search-bar-wrapper row">
+                    <i class="fi fi-rr-search"></i>
+                    <input type="text" id="customer-search-field" class="sale-search-field col col-10"
+                           placeholder="Search products...">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="side-bar-wrapper"></div>
     </section>
 </main>
 
