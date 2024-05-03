@@ -80,8 +80,8 @@ $("#customers-nav-btn").click(function () {
 // });
 
 $("#sale-history-btn").click(function () {
-   $("#order-history-body-wrapper").toggle();
-   $("#body-item-wrapper").toggle();
+    $("#order-history-body-wrapper").toggle();
+    $("#body-item-wrapper").toggle();
 
 });
 
@@ -92,14 +92,76 @@ $("#sale-history-btn").click(function () {
 // });
 
 $("#save-item-btn").click(function () {
-    $("#item-add-wrapper").toggle();
+
 
 });
+
+
+///////////////////////////////////////////////////////////////////////////////////
 
 $("#add-new-item-btn").click(function () {
     $("#item-add-wrapper").toggle();
+
 });
 
+$("#add-new-customer-btn").click(function () {
+    $("#customer-add-wrapper").toggle();
+
+});
+
+$("#item-form > i:first-child").click(function () {
+    $("#item-add-wrapper").toggle();
+
+})
+
+$("#customer-form > i:first-child").click(function () {
+    $("#customer-add-wrapper").toggle();
+
+})
+
 $("#customers-nav-btn").click();
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+/*$(document).ready(function(){
+    // When the button is clicked, trigger the hidden file input
+    $("#photoSelectButton").click(function() {
+        $("#photoInput").click();
+    });
+
+    // When a photo is selected, handle it
+    $("#photoInput").change(function() {
+        // Get the selected photo
+        var photo = this.files[0];
+
+        // Ensure a photo was selected
+        if (photo) {
+            // Do something with the photo, such as displaying it
+            displayPhoto(photo);
+        }
+    });
+
+    // Function to display the selected photo
+    function displayPhoto(photo) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            // Create an image element and set its source to the selected photo
+            var img = $("<img>").attr("src", e.target.result);
+
+            // Append the image to a container element
+            $("#photoContainer").empty().append(img);
+        };
+
+        // Read the selected photo as a data URL
+        reader.readAsDataURL(photo);
+    }
+});*/
+
+
+
+
+
 
 
