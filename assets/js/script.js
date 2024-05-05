@@ -44,7 +44,6 @@ function navigateSections(section) {
 // });
 
 $("#sales-nav-btn").click(function () {
-    console.log("helloooooo");
     navigateSections($("#sale-sec"));
 
 });
@@ -74,10 +73,10 @@ $("#resupply-nav-btn").click(function () {
 
 });
 
-// $("#refund-nav-btn").click(function () {
-//     navigateSections($(""));
-//
-// });
+$("#refund-nav-btn").click(function () {
+    navigateSections($("#refund-sec"));
+
+});
 
 $("#sale-history-btn").click(function () {
     $("#order-history-body-wrapper").toggle();
@@ -119,8 +118,13 @@ $("#add-new-employee-btn").click(function () {
 
 });
 
-$("#add-new-employee-btn").click(function () {
-    $("#employees-add-wrapper").toggle();
+$("#add-new-resupply-btn").click(function () {
+    $("#resupply-add-wrapper").toggle();
+
+});
+
+$("#add-new-refund-btn").click(function () {
+    $("#refund-add-wrapper").toggle();
 
 });
 
@@ -147,7 +151,17 @@ $("#employee-form > i:first-child").click(function () {
 
 });
 
-$("#resupply-nav-btn").click();
+$("#resupply-form > i:first-child").click(function () {
+    $("#resupply-add-wrapper").toggle();
+
+});
+
+$("#refund-form > i:first-child").click(function () {
+    $("#refund-add-wrapper").toggle();
+
+});
+
+$("#sales-nav-btn").click();
 
 
 /////////////////////////////////////////////////////////////////////////////////
