@@ -58,22 +58,22 @@ $("#customers-nav-btn").click(function () {
     navigateSections($("#customer-sec"));
 
 });
-//
-// $("#suppliers-nav-btn").click(function () {
-//     navigateSections($(""));
-//
-// });
-//
-// $("#employees-nav-btn").click(function () {
-//     navigateSections($(""));
-//
-// });
-//
-// $("#resupply-nav-btn").click(function () {
-//     navigateSections($(""));
-//
-// });
-//
+
+$("#suppliers-nav-btn").click(function () {
+    navigateSections($("#suppliers-sec"));
+
+});
+
+$("#employees-nav-btn").click(function () {
+    navigateSections($("#employees-sec"));
+
+});
+
+$("#resupply-nav-btn").click(function () {
+    navigateSections($("#resupply-sec"));
+
+});
+
 // $("#refund-nav-btn").click(function () {
 //     navigateSections($(""));
 //
@@ -109,17 +109,45 @@ $("#add-new-customer-btn").click(function () {
 
 });
 
+$("#add-new-supplier-btn").click(function () {
+    $("#supplier-add-wrapper").toggle();
+
+});
+
+$("#add-new-employee-btn").click(function () {
+    $("#supplier-add-wrapper").toggle();
+
+});
+
+$("#add-new-employee-btn").click(function () {
+    $("#employees-add-wrapper").toggle();
+
+});
+
+
+
+
 $("#item-form > i:first-child").click(function () {
     $("#item-add-wrapper").toggle();
 
-})
+});
 
 $("#customer-form > i:first-child").click(function () {
     $("#customer-add-wrapper").toggle();
 
-})
+});
 
-$("#customers-nav-btn").click();
+$("#supplier-form > i:first-child").click(function () {
+    $("#supplier-add-wrapper").toggle();
+
+});
+
+$("#employee-form > i:first-child").click(function () {
+    $("#employees-add-wrapper").toggle();
+
+});
+
+$("#resupply-nav-btn").click();
 
 
 /////////////////////////////////////////////////////////////////////////////////

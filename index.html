@@ -31,6 +31,9 @@
     <link rel="stylesheet" href="assets/css/sale_styles.css">
     <link rel="stylesheet" href="assets/css/item_styles.css">
     <link rel="stylesheet" href="assets/css/customer_styles.css">
+    <link rel="stylesheet" href="assets/css/suppliers_style.css">
+    <link rel="stylesheet" href="assets/css/employees_styles.css">
+    <link rel="stylesheet" href="assets/css/resupply_styles.css">
 
 </head>
 <body>
@@ -86,7 +89,7 @@
 </header>
 
 <main>
-    <section id="sale-sec" class="sale-sec">
+    <section id="sale-sec" class="section-styles">
         <div class="body-wrapper">
             <div id="body-header-wrapper" class="body-header-wrapper">
                 <div id="search-bar-wrapper" class="search-bar-wrapper row">
@@ -856,7 +859,7 @@
 
     </section>
 
-    <section id="item-sec" class="sale-sec item-sec">
+    <section id="item-sec" class="section-styles item-sec">
         <div class="item-body-wrapper order-history-body-wrapper">
             <div id="body-header-wrapper-item" class="body-header-wrapper">
                 <div id="search-bar-wrapper-item" class="search-bar-wrapper row">
@@ -1029,9 +1032,20 @@
                         <label for="item-description" class="form-label">Item Description</label>
                         <input type="text" class="form-control" id="item-description" readonly>
                     </div>
+                    <!--                    <div class="mb-3">-->
+                    <!--                        <label for="item-category" class="form-label">Category</label>-->
+                    <!--                        <input type="text" class="form-control" id="item-category" readonly>-->
+                    <!--                    </div>-->
                     <div class="mb-3">
                         <label for="item-category" class="form-label">Category</label>
-                        <input type="text" class="form-control" id="item-category" readonly>
+                        <select id="item-category" class="form-select form-select-lg mb-3"
+                                aria-label="Large select example" disabled>
+                            <!--                        <option selected hidden>Select Level</option>-->
+                            <option value="1">CASUAL</option>
+                            <option value="2">FORMAL</option>
+                            <option value="3">SPORT</option>
+                            <option value="4">INDUSTRIAL</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="item-price-buy" class="form-label">Price Buy</label>
@@ -1063,6 +1077,7 @@
                         <th scope="col">BLUE</th>
                         <th scope="col">RED</th>
                         <th scope="col">GREEN</th>
+                        <th scope="col">Other</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -1076,6 +1091,10 @@
                         <td>
                             <input type="text" class="form-control" value="10">
                             <i style="color: orange" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: red" class="fi fi-sr-triangle-warning"></i>
                         </td>
                         <td>
                             <input type="text" class="form-control" value="10">
@@ -1097,6 +1116,10 @@
                             <input type="text" class="form-control" value="10">
                             <i style="color: red" class="fi fi-sr-triangle-warning"></i>
                         </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: red" class="fi fi-sr-triangle-warning"></i>
+                        </td>
                     </tr>
                     <tr>
                         <td>7</td>
@@ -1108,6 +1131,10 @@
                         <td>
                             <input type="text" class="form-control" value="10">
                             <i style="color: orange" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: red" class="fi fi-sr-triangle-warning"></i>
                         </td>
                         <td>
                             <input type="text" class="form-control" value="10">
@@ -1129,6 +1156,10 @@
                             <input type="text" class="form-control" value="10">
                             <i style="color: red" class="fi fi-sr-triangle-warning"></i>
                         </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: red" class="fi fi-sr-triangle-warning"></i>
+                        </td>
                     </tr>
                     <tr>
                         <td>9</td>
@@ -1140,6 +1171,10 @@
                         <td>
                             <input type="text" class="form-control" value="10">
                             <i style="color: orange" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: red" class="fi fi-sr-triangle-warning"></i>
                         </td>
                         <td>
                             <input type="text" class="form-control" value="10">
@@ -1161,6 +1196,10 @@
                             <input type="text" class="form-control" value="10">
                             <i style="color: red" class="fi fi-sr-triangle-warning"></i>
                         </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: red" class="fi fi-sr-triangle-warning"></i>
+                        </td>
                     </tr>
                     <tr>
                         <td>11</td>
@@ -1172,6 +1211,10 @@
                         <td>
                             <input type="text" class="form-control" value="10">
                             <i style="color: orange" class="fi fi-sr-triangle-warning"></i>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                            <i style="color: red" class="fi fi-sr-triangle-warning"></i>
                         </td>
                         <td>
                             <input type="text" class="form-control" value="10">
@@ -1192,11 +1235,15 @@
                         <th scope="col">BLUE</th>
                         <th scope="col">RED</th>
                         <th scope="col">GREEN</th>
+                        <th scope="col">Other</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>5</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
                         <td>
                             <input type="text" class="form-control" value="10">
                         </td>
@@ -1218,9 +1265,15 @@
                         <td>
                             <input type="text" class="form-control" value="10">
                         </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
                     </tr>
                     <tr>
                         <td>7</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
                         <td>
                             <input type="text" class="form-control" value="10">
                         </td>
@@ -1242,9 +1295,15 @@
                         <td>
                             <input type="text" class="form-control" value="10">
                         </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
                     </tr>
                     <tr>
                         <td>9</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
                         <td>
                             <input type="text" class="form-control" value="10">
                         </td>
@@ -1266,9 +1325,15 @@
                         <td>
                             <input type="text" class="form-control" value="10">
                         </td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
                     </tr>
                     <tr>
                         <td>11</td>
+                        <td>
+                            <input type="text" class="form-control" value="10">
+                        </td>
                         <td>
                             <input type="text" class="form-control" value="10">
                         </td>
@@ -1304,10 +1369,24 @@
                         <label for="item-description" class="form-label">Item Description</label>
                         <input type="text" class="form-control" id="item-description-add">
                     </div>
+
+                    <!--                    <div class="mb-3">-->
+                    <!--                        <label for="item-category-add" class="form-label">Category</label>-->
+                    <!--                        <input type="text" class="form-control" id="item-category-add">-->
+                    <!--                    </div>-->
+                    <!--                    -->
                     <div class="mb-3">
-                        <label for="item-category" class="form-label">Category</label>
-                        <input type="text" class="form-control" id="item-category-add">
+                        <label for="item-category-add" class="form-label">Category</label>
+                        <select id="item-category-add" class="form-select form-select-lg mb-3"
+                                aria-label="Large select example">
+                            <option selected hidden>Select Category</option>
+                            <option value="1">CASUAL</option>
+                            <option value="2">FORMAL</option>
+                            <option value="3">SPORT</option>
+                            <option value="4">INDUSTRIAL</option>
+                        </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="item-price-buy" class="form-label">Price Buy</label>
                         <input type="text" class="form-control" id="item-price-buy-add">
@@ -1362,7 +1441,7 @@
 
     </section>
 
-    <section id="customer-sec" class="sale-sec">
+    <section id="customer-sec" class="section-styles">
         <div class="customer-body-wrapper order-history-body-wrapper">
             <div id="body-header-wrapper-customer" class="body-header-wrapper body-header-wrapper-no-filters">
                 <div id="search-bar-wrapper-customer" class="search-bar-wrapper row">
@@ -1468,10 +1547,21 @@
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" readonly>
                 </div>
+                <!--                <div class="mb-3">-->
+                <!--                    <label for="gender" class="form-label">Gender</label>-->
+                <!--                    <input type="text" class="form-control" id="gender" readonly>-->
+                <!--                </div>-->
+
                 <div class="mb-3">
                     <label for="gender" class="form-label">Gender</label>
-                    <input type="text" class="form-control" id="gender" readonly>
+                    <select id="gender" class="form-select form-select-lg mb-3" aria-label="Large select example"
+                            disabled>
+                        <!--                        <option selected hidden>Select Gender</option>-->
+                        <option value="1">MALE</option>
+                        <option value="2">FEMALE</option>
+                    </select>
                 </div>
+
                 <div class="mb-3">
                     <label for="birthday" class="form-label">Birthday</label>
                     <input type="date" class="form-control" id="birthday" readonly>
@@ -1480,10 +1570,23 @@
                     <label for="total-points" class="form-label">Total Points</label>
                     <input type="number" class="form-control" id="total-points" readonly>
                 </div>
+                <!--                <div class="mb-3">-->
+                <!--                    <label for="level" class="form-label">Level</label>-->
+                <!--                    <input type="text" class="form-control" id="level" readonly>-->
+                <!--                </div>-->
+
                 <div class="mb-3">
                     <label for="level" class="form-label">Level</label>
-                    <input type="text" class="form-control" id="level" readonly>
+                    <select id="level" class="form-select form-select-lg mb-3" aria-label="Large select example"
+                            disabled>
+                        <!--                        <option selected hidden>Select Level</option>-->
+                        <option value="1">NEW</option>
+                        <option value="2">BRONZE</option>
+                        <option value="3">SILVER</option>
+                        <option value="4">GOLD</option>
+                    </select>
                 </div>
+
                 <div class="mb-3">
                     <label for="join-date" class="form-label">Join Date</label>
                     <input type="date" class="form-control" id="join-date" readonly>
@@ -1507,6 +1610,11 @@
                 <div class="mb-3">
                     <label for="postal-code" class="form-label">Postal Code</label>
                     <input type="text" class="form-control" id="postal-code" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label for="recent-purchase" class="form-label">Recent Purchase</label>
+                    <input type="text" class="form-control" id="recent-purchase" readonly>
                 </div>
             </form>
 
@@ -1536,10 +1644,24 @@
                         <label for="email-add" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email-add">
                     </div>
+
+                    <!--                    <div class="mb-3">-->
+                    <!--                        <label for="gender-add" class="form-label">Gender</label>-->
+                    <!--                        <input type="text" class="form-control" id="gender-add">-->
+                    <!--                    </div>-->
+
                     <div class="mb-3">
                         <label for="gender-add" class="form-label">Gender</label>
-                        <input type="text" class="form-control" id="gender-add">
+                        <select id="gender-add" class="form-select form-select-lg mb-3"
+                                aria-label="Large select example">
+
+                            <option selected hidden>Select Gender</option>
+                            <option value="1">MALE</option>
+                            <option value="2">FEMALE</option>
+
+                        </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="birthday-add" class="form-label">Birthday</label>
                         <input type="date" class="form-control" id="birthday-add">
@@ -1548,10 +1670,26 @@
                         <label for="total-points-add" class="form-label">Total Points</label>
                         <input type="number" class="form-control" id="total-points-add">
                     </div>
+
+                    <!--                    <div class="mb-3">-->
+                    <!--                        <label for="level-add" class="form-label">Level</label>-->
+                    <!--                        <input type="text" class="form-control" id="level-add">-->
+                    <!--                    </div>-->
+
                     <div class="mb-3">
                         <label for="level-add" class="form-label">Level</label>
-                        <input type="text" class="form-control" id="level-add">
+                        <select id="level-add" class="form-select form-select-lg mb-3"
+                                aria-label="Large select example">
+
+                            <option selected hidden>Select Level</option>
+                            <option value="1">NEW</option>
+                            <option value="2">BRONZE</option>
+                            <option value="3">SILVER</option>
+                            <option value="4">GOLD</option>
+
+                        </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="join-date-add" class="form-label">Join Date</label>
                         <input type="date" class="form-control" id="join-date-add">
@@ -1579,7 +1717,7 @@
                 </form>
 
                 <button id="save-customer-btn" class="save-item-btn">
-                    Save Item
+                    Save Customer
                 </button>
 
                 <!--                <div class="payment-method-wrapper">-->
@@ -1594,8 +1732,761 @@
         </div>
     </section>
 
-    <section id="suppliers-sec" class="sale-sec">
+    <section id="suppliers-sec" class="section-styles">
+        <div class="customer-body-wrapper order-history-body-wrapper">
+            <div id="body-header-wrapper-supplier" class="body-header-wrapper body-header-wrapper-no-filters">
+                <div id="search-bar-wrapper-supplier" class="search-bar-wrapper row">
+                    <i class="fi fi-rr-search"></i>
+                    <input type="text" id="supplier-search-field" class="sale-search-field"
+                           placeholder="Search Supplier Names ...">
+                </div>
 
+            </div>
+
+            <div class="item-table-wrapper customer-table">
+                <table class="table table-hover item-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Supplier Name</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Country</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Dasun Madawa</td>
+                        <td>0786756472</td>
+                        <td>dasunmadawa@gmail.com</td>
+                        <td>LOCAL</td>
+                        <td>Sri Lanka</td>
+                    </tr>
+                    <tr>
+                        <td>Dasun Madawa</td>
+                        <td>0786756472</td>
+                        <td>dasunmadawa@gmail.com</td>
+                        <td>LOCAL</td>
+                        <td>Sri Lanka</td>
+                    </tr>
+                    <tr>
+                        <td>Dasun Madawa</td>
+                        <td>0786756472</td>
+                        <td>dasunmadawa@gmail.com</td>
+                        <td>LOCAL</td>
+                        <td>Sri Lanka</td>
+                    </tr>
+                    <tr>
+                        <td>Dasun Madawa</td>
+                        <td>0786756472</td>
+                        <td>dasunmadawa@gmail.com</td>
+                        <td>LOCAL</td>
+                        <td>Sri Lanka</td>
+                    </tr>
+                    <tr>
+                        <td>Dasun Madawa</td>
+                        <td>0786756472</td>
+                        <td>dasunmadawa@gmail.com</td>
+                        <td>LOCAL</td>
+                        <td>Sri Lanka</td>
+                    </tr>
+                    <tr>
+                        <td>Dasun Madawa</td>
+                        <td>0786756472</td>
+                        <td>dasunmadawa@gmail.com</td>
+                        <td>LOCAL</td>
+                        <td>Sri Lanka</td>
+                    </tr>
+                    <tr>
+                        <td>Dasun Madawa</td>
+                        <td>0786756472</td>
+                        <td>dasunmadawa@gmail.com</td>
+                        <td>LOCAL</td>
+                        <td>Sri Lanka</td>
+                    </tr>
+                    <tr>
+                        <td>Dasun Madawa</td>
+                        <td>0786756472</td>
+                        <td>dasunmadawa@gmail.com</td>
+                        <td>LOCAL</td>
+                        <td>Sri Lanka</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="supplier-add-wrapper" class="item-add-wrapper" style="display: none">
+                <div id="supplier-form" class="item-form">
+                    <i class="fi fi-rr-circle-xmark"></i>
+                    <form class="item-view-form item-add-form">
+
+                        <div class="mb-3">
+                            <label for="supplier-name-add" class="form-label">Supplier Name</label>
+                            <input type="text" class="form-control" id="supplier-name-add" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="supplier-contact-mobile-add" class="form-label">Mobile No</label>
+                            <input type="tel" class="form-control" id="supplier-contact-mobile-add" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="supplier-contact-land-add" class="form-label">Land No</label>
+                            <input type="tel" class="form-control" id="supplier-contact-land-add" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="supplier-email-add" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="supplier-email-add" readonly>
+                        </div>
+
+                        <!--                <div class="mb-3">-->
+                        <!--                    <label for="supplier-category" class="form-label">Category</label>-->
+                        <!--                    <input type="text" class="form-control" id="supplier-category" readonly>-->
+                        <!--                </div>-->
+
+                        <div class="mb-3">
+                            <label for="supplier-category-add" class="form-label">Category</label>
+                            <select id="supplier-category-add" class="form-select form-select-lg mb-3"
+                                    aria-label="Large select example" disabled>
+                                <option selected hidden>Select Category</option>
+                                <option value="1">LOCAL</option>
+                                <option value="2">INTERNATIONAL</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="supplier-country-add" class="form-label">Country</label>
+                            <input type="text" class="form-control" id="supplier-country-add" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="supplier-address-no-add" class="form-label">Address No / Name</label>
+                            <input type="text" class="form-control" id="supplier-address-no-add" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="supplier-address-lane-add" class="form-label">Address Lane</label>
+                            <input type="text" class="form-control" id="supplier-address-lane-add" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="supplier-address-city-add" class="form-label">Address City</label>
+                            <input type="text" class="form-control" id="supplier-address-city-add" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="supplier-state-add" class="form-label">State</label>
+                            <input type="text" class="form-control" id="supplier-state-add" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="supplier-postal-code-add" class="form-label">Postal Code</label>
+                            <input type="text" class="form-control" id="supplier-postal-code-add" readonly>
+                        </div>
+
+                    </form>
+
+                    <button id="save-supplier-btn" class="save-item-btn">
+                        Save Supplier
+                    </button>
+
+                    <!--                <div class="payment-method-wrapper">-->
+                    <!--                    <div class="">-->
+                    <!--                        <i class="fi fi-rr-plus"></i>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="">-->
+                    <!--                        <i class="fi fi-rr-pencil"></i>-->
+                    <!--                    </div>-->
+                    <!--                </div>-->
+                </div>
+            </div>
+
+        </div>
+
+        <div class="side-bar-wrapper">
+            <div class="side-bar-header-wrapper">
+                <span class="side-bar-header">Selected Supplier</span>
+                <span class="sale-order-id">Dasun Madawa</span>
+                <div class="sale-line"></div>
+
+            </div>
+
+            <form class="item-view-form mt-3">
+                <div class="mb-3">
+                    <label for="supplier-name" class="form-label">Supplier Name</label>
+                    <input type="text" class="form-control" id="supplier-name" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="supplier-contact-mobile" class="form-label">Mobile No</label>
+                    <input type="tel" class="form-control" id="supplier-contact-mobile" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="supplier-contact-land" class="form-label">Land No</label>
+                    <input type="tel" class="form-control" id="supplier-contact-land" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="supplier-email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="supplier-email" readonly>
+                </div>
+
+                <!--                <div class="mb-3">-->
+                <!--                    <label for="supplier-category" class="form-label">Category</label>-->
+                <!--                    <input type="text" class="form-control" id="supplier-category" readonly>-->
+                <!--                </div>-->
+
+                <div class="mb-3">
+                    <label for="supplier-category" class="form-label">Category</label>
+                    <select id="supplier-category" class="form-select form-select-lg mb-3"
+                            aria-label="Large select example" disabled>
+                        <option selected hidden>Select Category</option>
+                        <option value="1">LOCAL</option>
+                        <option value="2">INTERNATIONAL</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="supplier-country" class="form-label">Country</label>
+                    <input type="text" class="form-control" id="supplier-country" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="supplier-address-no" class="form-label">Address No / Name</label>
+                    <input type="text" class="form-control" id="supplier-address-no" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="supplier-address-lane" class="form-label">Address Lane</label>
+                    <input type="text" class="form-control" id="supplier-address-lane" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="supplier-address-city" class="form-label">Address City</label>
+                    <input type="text" class="form-control" id="supplier-address-city" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="supplier-state" class="form-label">State</label>
+                    <input type="text" class="form-control" id="supplier-state" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="supplier-postal-code" class="form-label">Postal Code</label>
+                    <input type="text" class="form-control" id="supplier-postal-code" readonly>
+                </div>
+            </form>
+
+            <div class="payment-method-wrapper">
+                <div id="add-new-supplier-btn" class="">
+                    <i class="fi fi-rr-plus"></i>
+                </div>
+                <div id="update-supplier-btn" class="">
+                    <i class="fi fi-rr-pencil"></i>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="employees-sec" class="section-styles">
+        <div class="customer-body-wrapper order-history-body-wrapper">
+            <div id="body-header-wrapper-employees" class="body-header-wrapper body-header-wrapper-no-filters">
+                <div id="search-bar-wrapper-employees" class="search-bar-wrapper row">
+                    <i class="fi fi-rr-search"></i>
+                    <input type="text" id="employees-search-field" class="sale-search-field"
+                           placeholder="Search Employee Names ...">
+                </div>
+
+            </div>
+
+            <div class="item-table-wrapper customer-table">
+                <table class="table table-hover item-table table-row-align">
+                    <thead>
+                    <tr>
+                        <th scope="col">Profile Pic</th>
+                        <th scope="col">Employee Name</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Gender</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><div class="employee-profile-pic-row"></div></td>
+                        <td>Dasun Madawa</td>
+                        <td>0786756472</td>
+                        <td>dasunmadawa@gmail.com</td>
+                        <td>MALE</td>
+                    </tr>
+                    <tr>
+                        <td><div class="employee-profile-pic-row"></div></td>
+                        <td>Dasun Madawa</td>
+                        <td>0786756472</td>
+                        <td>dasunmadawa@gmail.com</td>
+                        <td>MALE</td>
+                    </tr>
+                    <tr>
+                        <td><div class="employee-profile-pic-row"></div></td>
+                        <td>Dasun Madawa</td>
+                        <td>0786756472</td>
+                        <td>dasunmadawa@gmail.com</td>
+                        <td>MALE</td>
+                    </tr>
+                    <tr>
+                        <td><div class="employee-profile-pic-row"></div></td>
+                        <td>Dasun Madawa</td>
+                        <td>0786756472</td>
+                        <td>dasunmadawa@gmail.com</td>
+                        <td>MALE</td>
+                    </tr>
+                    <tr>
+                        <td><div class="employee-profile-pic-row"></div></td>
+                        <td>Dasun Madawa</td>
+                        <td>0786756472</td>
+                        <td>dasunmadawa@gmail.com</td>
+                        <td>MALE</td>
+                    </tr>
+                    <tr>
+                        <td><div class="employee-profile-pic-row"></div></td>
+                        <td>Dasun Madawa</td>
+                        <td>0786756472</td>
+                        <td>dasunmadawa@gmail.com</td>
+                        <td>MALE</td>
+                    </tr>
+                    <tr>
+                        <td><div class="employee-profile-pic-row"></div></td>
+                        <td>Dasun Madawa</td>
+                        <td>0786756472</td>
+                        <td>dasunmadawa@gmail.com</td>
+                        <td>MALE</td>
+                    </tr>
+                    <tr>
+                        <td><div class="employee-profile-pic-row"></div></td>
+                        <td>Dasun Madawa</td>
+                        <td>0786756472</td>
+                        <td>dasunmadawa@gmail.com</td>
+                        <td>MALE</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="side-bar-wrapper">
+            <div class="side-bar-header-wrapper">
+                <span class="side-bar-header">Selected Employee</span>
+                <span class="sale-order-id">Dasun Madawa</span>
+                <div class="sale-line"></div>
+
+            </div>
+
+            <div class="selected-img-employee"></div>
+
+            <form class="item-view-form mt-3">
+                <div class="mb-3">
+                    <label for="employee-name" class="form-label">Employee Name</label>
+                    <input type="text" class="form-control" id="employee-name" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="employee-contact" class="form-label">Contact No</label>
+                    <input type="tel" class="form-control" id="employee-contact" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="employee-email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="employee-email" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label for="employee-gender" class="form-label">Gender</label>
+                    <select id="employee-gender" class="form-select form-select-lg mb-3" aria-label="Large select example"
+                            disabled>
+                        <!--                        <option selected hidden>Select Gender</option>-->
+                        <option value="1">MALE</option>
+                        <option value="2">FEMALE</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="employee-birthday" class="form-label">Birthday</label>
+                    <input type="date" class="form-control" id="employee-birthday" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label for="access-role" class="form-label">Access Role</label>
+                    <select id="access-role" class="form-select form-select-lg mb-3" aria-label="Large select example"
+                            disabled>
+                        <!--                        <option selected hidden>Select Level</option>-->
+                        <option value="2">USER</option>
+                        <option value="1">ADMIN</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="employee-password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="employee-password" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label for="employee-join-date" class="form-label">Join Date</label>
+                    <input type="date" class="form-control" id="employee-join-date" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label for="employee-branch" class="form-label">Employee Branch</label>
+                    <input type="text" class="form-control" id="employee-branch" readonly>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="employee-status" class="form-label">Status</label>
+                    <input type="text" class="form-control" id="employee-status" readonly>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="employee-designation" class="form-label">Designation</label>
+                    <input type="text" class="form-control" id="employee-designation" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label for="address-no-employee" class="form-label">Address No / Name</label>
+                    <input type="text" class="form-control" id="address-no-employee" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="address-lane-employee" class="form-label">Address Lane</label>
+                    <input type="text" class="form-control" id="address-lane-employee" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="address-city-employee" class="form-label">Address City</label>
+                    <input type="text" class="form-control" id="address-city-employee" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="state-employee" class="form-label">State</label>
+                    <input type="text" class="form-control" id="state-employee" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="postal-code-employee" class="form-label">Postal Code</label>
+                    <input type="text" class="form-control" id="postal-code-employee" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label for="employee-emergency-contact-name" class="form-label">Emergency Contact Name</label>
+                    <input type="text" class="form-control" id="employee-emergency-contact-name" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="employee-emergency-contact" class="form-label">Emergency Contact No.</label>
+                    <input type="tel" class="form-control" id="employee-emergency-contact" readonly>
+                </div>
+            </form>
+
+            <div class="payment-method-wrapper">
+                <div id="add-new-employee-btn" class="">
+                    <i class="fi fi-rr-plus"></i>
+                </div>
+                <div id="update-employee-btn" class="">
+                    <i class="fi fi-rr-pencil"></i>
+                </div>
+            </div>
+        </div>
+
+        <div id="employees-add-wrapper" class="item-add-wrapper" style="display: none">
+            <div id="employee-form" class="item-form">
+                <i class="fi fi-rr-circle-xmark"></i>
+                <div id="employee-profile-pic-add" class="selected-img-employee employee-profile-pic-selected"></div>
+                <form class="item-view-form item-add-form employee-add-form">
+
+                    <div class="mb-3">
+                        <label for="employee-name-add" class="form-label">Employee Name</label>
+                        <input type="text" class="form-control" id="employee-name-add" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="employee-contact-add" class="form-label">Contact No</label>
+                        <input type="tel" class="form-control" id="employee-contact-add" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="employee-email-add" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="employee-email-add" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="employee-gender-add" class="form-label">Gender</label>
+                        <select id="employee-gender-add" class="form-select form-select-lg mb-3" aria-label="Large select example"
+                                disabled>
+                            <!--                        <option selected hidden>Select Gender</option>-->
+                            <option value="1">MALE</option>
+                            <option value="2">FEMALE</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="employee-birthday-add" class="form-label">Birthday</label>
+                        <input type="date" class="form-control" id="employee-birthday-add" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="access-role-add" class="form-label">Access Role</label>
+                        <select id="access-role-add" class="form-select form-select-lg mb-3" aria-label="Large select example"
+                                disabled>
+                            <!--                        <option selected hidden>Select Level</option>-->
+                            <option value="2">USER</option>
+                            <option value="1">ADMIN</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="employee-password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="employee-password-add" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="employee-join-date" class="form-label">Join Date</label>
+                        <input type="date" class="form-control" id="employee-join-date-add" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="employee-branch" class="form-label">Employee Branch</label>
+                        <input type="text" class="form-control" id="employee-branch-add" readonly>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="employee-status-add" class="form-label">Status</label>
+                        <input type="text" class="form-control" id="employee-status-add" readonly>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="employee-designation-add" class="form-label">Designation</label>
+                        <input type="text" class="form-control" id="employee-designation-add" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address-no-employee-add" class="form-label">Address No / Name</label>
+                        <input type="text" class="form-control" id="address-no-employee-add" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address-lane-employee-add" class="form-label">Address Lane</label>
+                        <input type="text" class="form-control" id="address-lane-employee-add" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address-city-employee-add" class="form-label">Address City</label>
+                        <input type="text" class="form-control" id="address-city-employee-add" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="state-employee-add" class="form-label">State</label>
+                        <input type="text" class="form-control" id="state-employee-add" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="postal-code-employee-add" class="form-label">Postal Code</label>
+                        <input type="text" class="form-control" id="postal-code-employee-add" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="employee-emergency-contact-name-add" class="form-label">Emergency Contact Name</label>
+                        <input type="text" class="form-control" id="employee-emergency-contact-name-add" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="employee-emergency-contact-add" class="form-label">Emergency Contact No.</label>
+                        <input type="tel" class="form-control" id="employee-emergency-contact-add" readonly>
+                    </div>
+
+                </form>
+
+                <button id="save-employee-btn" class="save-item-btn">
+                    Save Customer
+                </button>
+
+                <!--                <div class="payment-method-wrapper">-->
+                <!--                    <div class="">-->
+                <!--                        <i class="fi fi-rr-plus"></i>-->
+                <!--                    </div>-->
+                <!--                    <div class="">-->
+                <!--                        <i class="fi fi-rr-pencil"></i>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+            </div>
+        </div>
+
+    </section>
+
+    <section id="resupply-sec" class="section-styles">
+        <div class="customer-body-wrapper order-history-body-wrapper">
+            <div id="body-header-wrapper-resupply" class="body-header-wrapper body-header-wrapper-no-filters">
+                <div id="search-bar-wrapper-resupply" class="search-bar-wrapper row">
+                    <i class="fi fi-rr-search"></i>
+                    <input type="text" id="resupply-search-field" class="sale-search-field"
+                           placeholder="Search Resupply Dates ...">
+                </div>
+
+            </div>
+
+            <div class="item-table-wrapper customer-table">
+                <table class="table table-hover item-table table-row-align">
+                    <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Total QTY</th>
+                        <th scope="col">Total Value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>2023-10-16</td>
+                        <td>86</td>
+                        <td>524 000 LKR</td>
+                    </tr>
+                    <tr>
+                        <td>2023-10-16</td>
+                        <td>86</td>
+                        <td>524 000 LKR</td>
+                    </tr>
+                    <tr>
+                        <td>2023-10-16</td>
+                        <td>86</td>
+                        <td>524 000 LKR</td>
+                    </tr>
+                    <tr>
+                        <td>2023-10-16</td>
+                        <td>86</td>
+                        <td>524 000 LKR</td>
+                    </tr>
+                    <tr>
+                        <td>2023-10-16</td>
+                        <td>86</td>
+                        <td>524 000 LKR</td>
+                    </tr>
+                    <tr>
+                        <td>2023-10-16</td>
+                        <td>86</td>
+                        <td>524 000 LKR</td>
+                    </tr>
+                    <tr>
+                        <td>2023-10-16</td>
+                        <td>86</td>
+                        <td>524 000 LKR</td>
+                    </tr>
+                    <tr>
+                        <td>2023-10-16</td>
+                        <td>86</td>
+                        <td>524 000 LKR</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="side-bar-wrapper">
+            <div class="side-bar-header-wrapper">
+                <span class="side-bar-header">Selected Resupply</span>
+                <span class="sale-order-id">2023-10-10</span>
+                <div class="sale-line"></div>
+
+            </div>
+
+            <form class="item-view-form mt-3">
+                <div class="mb-3">
+                    <label for="resupply-date" class="form-label">Resupply Date</label>
+                    <input type="date" class="form-control" id="resupply-date" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="resupply-total-qty" class="form-label">Total Qty</label>
+                    <input type="number" class="form-control" id="resupply-total-qty" >
+                </div>
+                <div class="mb-3">
+                    <label for="resupply-total-value" class="form-label">Total Value</label>
+                    <input type="number" class="form-control" id="resupply-total-value" readonly>
+                </div>
+
+            </form>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button resupply-item-card-button" type="button" data-bs-toggle="collapse" data-bs-target="#resupply-item-card-1" aria-expanded="true" aria-controls="resupply-item-card-1">
+                        FSM00001 : Nike X OFF-White
+                    </button>
+                </h2>
+                <div id="resupply-item-card-1" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <table id="resupply-item-card-1-table"
+                               class="table table-hover table-bordered item-table item-stock-table mt-3">
+                            <thead>
+                            <tr>
+                                <th scope="col">Size/Colour</th>
+                                <th scope="col">BLUE</th>
+                                <th scope="col">RED</th>
+                                <th scope="col">GREEN</th>
+                                <th scope="col">Other</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>7</td>
+                                <td>
+                                    <input type="text" class="form-control" value="10">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" value="10">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" value="10">
+                                </td>
+                                <td>
+<!--                                    <input type="text" class="form-control" value="10">-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>
+<!--                                    <input type="text" class="form-control" value="10">-->
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" value="10">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" value="10">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" value="10">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>
+<!--                                    <input type="text" class="form-control" value="10">-->
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" value="10">
+                                </td>
+                                <td>
+<!--                                    <input type="text" class="form-control" value="10">-->
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" value="10">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>
+                                    <input type="text" class="form-control" value="10">
+                                </td>
+                                <td>
+<!--                                    <input type="text" class="form-control" value="10">-->
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" value="10">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" value="10">
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="payment-method-wrapper">
+                <div id="add-new-resupply-btn" class="">
+                    <i class="fi fi-rr-plus"></i>
+                </div>
+                <div id="update-resupply-btn" class="">
+                    <i class="fi fi-rr-pencil"></i>
+                </div>
+            </div>
+        </div>
 
     </section>
 </main>

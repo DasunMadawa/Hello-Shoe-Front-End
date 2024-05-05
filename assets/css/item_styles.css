@@ -25,13 +25,15 @@
 
 }
 
+.item-view-form > div > select ,
 .item-view-form > div > input {
     /*width: 100%;*/
-    /*height: 50px;*/
+    height: 38px;
     border-radius: 10px;
     border: 1px solid var(--border-grey);
     background-color: var(--hr-grey);
     cursor: var(--black);
+    font-size: 14px;
     /*padding: 0 20px;*/
     /*margin-top: 25px;*/
 
@@ -67,7 +69,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    right: 20px;
+    right: 12px;
     top: 0;
     bottom: 0;
     margin: auto;
@@ -98,7 +100,7 @@
     left: 0;
     background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(5px);
-    z-index: 2;
+    z-index: 3;
 
 
 }

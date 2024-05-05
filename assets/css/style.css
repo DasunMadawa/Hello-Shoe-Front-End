@@ -228,7 +228,16 @@ header {
 
 }
 
+.section-styles {
+    width: 100%;
+    /*background-color: red;*/
+    padding-left: 265px;
+    padding-right: 450px;
+    box-sizing: border-box;
+    /*margin: 0;*/
+    z-index: 2;
 
+}
 
 
 

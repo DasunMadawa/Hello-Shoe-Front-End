@@ -1,15 +1,4 @@
 /*------------------------------------------------------------- sale sec */
-.sale-sec {
-    width: 100%;
-    /*background-color: red;*/
-    padding-left: 265px;
-    padding-right: 450px;
-    box-sizing: border-box;
-    /*margin: 0;*/
-    z-index: 2;
-
-}
-
 .body-wrapper {
     /*display: inline-block;*/
     /*width: 100px;*/

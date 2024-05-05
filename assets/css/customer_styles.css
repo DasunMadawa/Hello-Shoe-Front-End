@@ -1,6 +1,6 @@
 .body-header-wrapper-no-filters input {
-    /*width: 93%;*/
-    width: 60%;
+    width: 93%;
+    /*width: 60%;*/
 
 }
 
@@ -8,6 +8,11 @@
     padding: 160px 47px 0 47px;
     border-radius: 0;
     background-color: var(--background-grey);
+
+}
+
+#save-customer-btn {
+    bottom: 20px;
 
 }
 
