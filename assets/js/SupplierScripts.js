@@ -21,6 +21,8 @@ let supplier = null;
 let supplier_table = $("#suppliers-sec .customer-table > table");
 let supplier_table_tbody = $("#suppliers-sec .customer-table > table > tbody");
 
+let selected_supplier = $("#suppliers-sec .sale-order-id");
+
 let supplier_name = $("#supplier-name");
 let supplier_category = $("#supplier-category");
 let mobile_no = $("#supplier-contact-mobile");
@@ -131,7 +133,6 @@ function loadAllSuppliers(ar) {
 $("#suppliers-nav-btn").click(function () {
     loading_div.show();
 
-    // Send GET request
     fetchAllSuppliers()
     update_btn_supplier = false;
     fieldsSetEditable(false);
@@ -155,7 +156,7 @@ function fetchAllSuppliers() {
             loading_div.hide();
             Swal.fire({
                 icon: 'error',
-                title: 'suppliers load failed',
+                title: 'Suppliers load failed',
                 text: 'Try again!'
             });
             // $('#response').text('Error: ' + error);
@@ -187,6 +188,7 @@ supplier_table_tbody.on('click', 'tr', function () {
     fetchCustomer($(this).data("supplier-id"));
     update_btn_supplier = false;
     fieldsSetEditable(false);
+    clearFields();
 
 });
 
@@ -214,6 +216,7 @@ function fetchCustomer(supplierId) {
 }
 
 function loadSupplierDetails() {
+    selected_supplier.html(supplier.supplierName);
     supplier_name.val(supplier.supplierName);
     supplier_category.val(supplier.supplierCategory);
     mobile_no.val(supplier.mobileNo);
@@ -279,7 +282,7 @@ $("#save-supplier-btn").click(function () {
 
 });
 
-// update customer
+// update employee
 $("#update-supplier-btn").click(function () {
     if (!update_btn_supplier) {
         if (supplier == null) {
@@ -421,6 +424,7 @@ function clearAddFields() {
 function clearFields() {
     $("#suppliers-sec .side-bar-wrapper input , #suppliers-sec .side-bar-wrapper select").val("");
     $("#suppliers-sec .side-bar-wrapper input , #suppliers-sec .side-bar-wrapper select").removeClass("is-valid was-validated");
+    selected_supplier.html("Not selected yet");
 
 }
 

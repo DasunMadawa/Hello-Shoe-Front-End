@@ -22,6 +22,8 @@ let customer = null;
 let customer_table = $("#customer-sec .customer-table > table");
 let customer_table_tbody = $("#customer-sec .customer-table > table > tbody");
 
+let selected_customer = $("#customer-sec .sale-order-id");
+
 let customer_name = $("#customer-name");
 let contact = $("#contact");
 let email = $("#email");
@@ -159,7 +161,6 @@ function loadAllCustomers(ar) {
 $("#customers-nav-btn").click(function () {
     loading_div.show();
 
-    // Send GET request
     fetchAllCustomers();
     update_btn = false;
     fieldsSetEditable(false);
@@ -217,11 +218,13 @@ customer_table_tbody.on('click', 'tr', function () {
 
     update_btn = false;
     fieldsSetEditable(false);
+    clearFields();
 
 });
 
 // load customer details
 function loadCustomerDetails() {
+    selected_customer.html(customer.cName);
     customer_name.val(customer.cName);
     contact.val(customer.contactNo);
     email.val(customer.email);
@@ -287,7 +290,7 @@ $("#save-customer-btn").click(function () {
                 Swal.fire({
                     icon: 'success',
                     title: 'Customer Saved',
-                    text: customer.cName
+                    text: data.cName
                 });
 
                 clearAddFields();
@@ -467,7 +470,7 @@ function clearAddFields() {
 function clearFields() {
     $("#customer-sec .side-bar-wrapper input , #customer-sec .side-bar-wrapper select").val("");
     $("#customer-sec .side-bar-wrapper input , #customer-sec .side-bar-wrapper select").removeClass("is-valid was-validated");
-
+    selected_customer.html("Not selected yet");
 }
 
 

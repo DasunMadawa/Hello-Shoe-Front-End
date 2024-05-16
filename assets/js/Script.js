@@ -301,6 +301,8 @@ export const mobile_no_reg = /^((\+94)|(0))+(\d{9})$/;
 export const email_reg = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 export const total_points_reg = /^\b(0|[1-9]\d{0,2}|1000)\b$/;
 export const postal_code_reg = /^\d{5}$/;
+// export const password_reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+export const password_reg = /^.{8,}$/;
 
 
 export let loading_div = $("#loading_div");
