@@ -114,7 +114,7 @@ $("#add-new-supplier-btn").click(function () {
 });
 
 $("#add-new-employee-btn").click(function () {
-    $("#supplier-add-wrapper").toggle();
+    $("#employees-add-wrapper").toggle();
 
 });
 
@@ -127,8 +127,6 @@ $("#add-new-refund-btn").click(function () {
     $("#refund-add-wrapper").toggle();
 
 });
-
-
 
 
 $("#item-form > i:first-child").click(function () {
@@ -161,7 +159,7 @@ $("#refund-form > i:first-child").click(function () {
 
 });
 
-$("#sales-nav-btn").click();
+$("#employees-nav-btn").click();
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -202,7 +200,110 @@ $("#sales-nav-btn").click();
 });*/
 
 
+// validations
+export function validateOnKeyPressings(input_fields, reg_list) {
+    for (let i = 0; i < input_fields.length; i++) {
+        input_fields[i].on('input', function () {
+            if (reg_list[i].test(input_fields[i].val())) {
+                $(this).addClass("is-valid was-validated");
+                $(this).removeClass("is-invalid was-validated form-control:invalid");
+            } else {
+                $(this).addClass("is-invalid was-validated form-control:invalid");
+                $(this).removeClass("is-valid was-validated form-control:valid");
 
+            }
+
+        });
+    }
+
+}
+
+// check field validation dates differences
+export function checkDateFieldsDifferences(date_field_1, date_field_2) {
+    if (new Date(date_field_1.val()) <= new Date(date_field_2.val())) {
+        date_field_2.addClass("is-valid was-validated");
+        date_field_2.removeClass("is-invalid was-validated form-control:invalid");
+        return true;
+    } else {
+        date_field_2.addClass("is-invalid was-validated form-control:invalid");
+        return false;
+    }
+
+}
+
+// check field validations selects
+export function checkSelectFields(temp_select_list) {
+    for (let i = 0; i < temp_select_list.length; i++) {
+
+        if (!temp_select_list[i].val()) {
+            temp_select_list[i].addClass("is-invalid was-validated form-control:invalid");
+            return false;
+        } else {
+            temp_select_list[i].addClass("is-valid was-validated");
+            temp_select_list[i].removeClass("is-invalid was-validated form-control:invalid");
+
+        }
+
+    }
+
+    return true;
+
+}
+
+// check field validation
+export function checkFields(temp_reg_list, temp_field_list, temp_mg_list) {
+    for (let i = 0; i < temp_field_list.length; i++) {
+        if (!temp_reg_list[i].test(temp_field_list[i].val())) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Input',
+                text: 'Fill ' + temp_mg_list[i] + " correctly !"
+            });
+            temp_field_list[i].addClass("is-invalid was-validated form-control:invalid");
+            return false;
+        }
+
+    }
+
+
+    return true;
+
+}
+
+// check field validation dates
+export function checkDateFields(temp_field_list) {
+    for (let i = 0; i < temp_field_list.length; i++) {
+        if (!temp_field_list[i].val()) {
+            temp_field_list[i].addClass("is-invalid was-validated form-control:invalid");
+            return false;
+        } else {
+            let temp_year = temp_field_list[i].val().substring(0, 4);
+
+            if (temp_year > new Date().getFullYear() || temp_year < 1900) {
+                return false;
+            }
+
+            temp_field_list[i].addClass("is-valid was-validated");
+            temp_field_list[i].removeClass("is-invalid was-validated form-control:invalid");
+
+        }
+
+    }
+
+    return true;
+
+}
+
+export const name_reg = /^[A-Za-z\s\-']{3,50}$/;
+export const address_reg = /^[A-Za-z0-9]{3,50}$/;
+export const salary_reg = /^\d+(\.\d{2})?$/;
+export const mobile_no_reg = /^((\+94)|(0))+(\d{9})$/;
+export const email_reg = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+export const total_points_reg = /^\b(0|[1-9]\d{0,2}|1000)\b$/;
+export const postal_code_reg = /^\d{5}$/;
+
+
+export let loading_div = $("#loading_div");
 
 
 
