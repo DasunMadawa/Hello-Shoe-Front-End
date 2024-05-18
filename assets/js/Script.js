@@ -159,7 +159,7 @@ $("#refund-form > i:first-child").click(function () {
 
 });
 
-$("#employees-nav-btn").click();
+$("#items-nav-btn").click();
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -296,14 +296,14 @@ export function checkDateFields(temp_field_list) {
 
 export const name_reg = /^[A-Za-z\s\-']{3,50}$/;
 export const address_reg = /^[A-Za-z0-9]{3,50}$/;
-export const salary_reg = /^\d+(\.\d{2})?$/;
+export const price_reg = /^\d{1,7}(\.\d{2})?$/;
 export const mobile_no_reg = /^((\+94)|(0))+(\d{9})$/;
 export const email_reg = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 export const total_points_reg = /^\b(0|[1-9]\d{0,2}|1000)\b$/;
 export const postal_code_reg = /^\d{5}$/;
 // export const password_reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 export const password_reg = /^.{8,}$/;
-
+export const item_code_reg = /^(F|C|I|S)(H|F|W|FF|SD|S|SL)(M|W)\d{5}$/;
 
 export let loading_div = $("#loading_div");
 

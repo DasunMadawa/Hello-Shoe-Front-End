@@ -6,7 +6,7 @@ import {
     checkFields,
     checkDateFields,
     name_reg,
-    salary_reg,
+    price_reg,
     address_reg,
     mobile_no_reg,
     email_reg,
@@ -141,7 +141,6 @@ $("#suppliers-nav-btn").click(function () {
 
 // fetch all suppliers
 function fetchAllSuppliers() {
-    // Send GET request
     $.ajax({
         url: 'http://localhost:8080/hello-shoe/api/v1/supplier',
         method: 'GET',

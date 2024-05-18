@@ -6,7 +6,7 @@ import {
     checkFields,
     checkDateFields,
     name_reg,
-    salary_reg,
+    price_reg,
     address_reg,
     mobile_no_reg,
     email_reg,
@@ -124,7 +124,7 @@ let mg_list_field_validation = [
     "emergency contact person",
     "emergency contact no"
 
-]
+];
 
 // update list
 let input_list_update = [
@@ -189,7 +189,6 @@ $("#employees-nav-btn").click(function () {
 
 // fetch all suppliers
 function fetchAllEmployees() {
-    // Send GET request
     $.ajax({
         url: 'http://localhost:8080/hello-shoe/api/v1/employee',
         method: 'GET',
@@ -278,7 +277,7 @@ function loadEmployeeDetails() {
 }
 
 // searchbar
-$("#employees-search-field").on('input' , function () {
+$("#employees-search-field").on('input', function () {
     employees_ar_search_bar = [];
 
     employees_ar.map(function (employee) {
@@ -306,8 +305,6 @@ $("#save-employee-btn").click(function () {
 
     ) {
         loading_div.show();
-
-        console.log(getAddPageFieldValues());
 
         $.ajax({
             url: `http://localhost:8080/hello-shoe/api/v1/employee`,
@@ -377,7 +374,6 @@ $("#update-employee-btn").click(function () {
             checkImageIsSelected()
         ) {
             loading_div.show();
-
             $.ajax({
                 url: `http://localhost:8080/hello-shoe/api/v1/employee/${employee.employeeId}`,
                 method: 'PUT',
@@ -397,6 +393,7 @@ $("#update-employee-btn").click(function () {
                     });
 
                     clearFields();
+                    profile_pic.css("background-image", "url('/assets/images/icons/photo-camera.png')");
 
                     fetchAllEmployees();
 
@@ -431,6 +428,42 @@ $("#update-employee-btn").click(function () {
 });
 
 function getUpdatePageFieldValues() {
+    if (typeof employee.profilePic === typeof "s") {
+        function base64ToFile(base64, filename, mimeType) {
+            // Decode base64 string to binary format
+            var byteString = atob(base64);
+            var ab = new ArrayBuffer(byteString.length);
+            var ia = new Uint8Array(ab);
+            for (var i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+
+            // Create a Blob object
+            var blob = new Blob([ab], { type: mimeType });
+
+            // Create a File object
+            var file = new File([blob], filename, { type: mimeType });
+            return file;
+
+        }
+
+        var base64String = employee.profilePic;
+        var fileName = "img.png";
+        var mimeType = "image/png";
+
+        employee.profilePic = base64ToFile(base64String , fileName , mimeType);
+        return loadUpdatePageFieldValues();
+
+
+
+    } else {
+        return loadUpdatePageFieldValues();
+
+    }
+
+}
+
+function loadUpdatePageFieldValues() {
     let employeeModel = new EmployeeModel(
         "",
         employee_name.val(),
@@ -459,8 +492,9 @@ function getUpdatePageFieldValues() {
         formData.append(key, employeeModel[key]);
     }
 
-    return formData;
+    console.log(formData.get("profilePic"));
 
+    return formData;
 
 }
 
@@ -574,7 +608,7 @@ function checkImageIsSelectedAdd() {
 
 }
 
-[access_role , access_role_add , gender , gender_add].map(function (select_field) {
+[access_role, access_role_add, gender, gender_add].map(function (select_field) {
     select_field.change(function () {
         checkSelectFields([select_field]);
     });

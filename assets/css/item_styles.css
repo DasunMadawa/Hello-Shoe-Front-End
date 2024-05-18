@@ -42,7 +42,7 @@
 #carouselExampleIndicators {
     border-radius: 15px;
     overflow: hidden;
-    width: 60%;
+    width: 100%;
     margin: 30px auto;
 
 }
@@ -138,58 +138,97 @@
 
 .item-add-colour-wrapper {
     /*border: 1px solid blue;*/
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 
 }
 
 .item-add-colour-wrapper > div {
     display: flex;
+    flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
     /*border: 1px solid green;*/
-    margin: 10px;
+    margin: 20px;
+    width: max-content;
+
 
 }
 
+/*.item-add-colour-wrapper > div > h4 {*/
+/*    padding: 0;*/
+/*    margin: 20px 0 0 0;*/
+/*    border-radius: 15px;*/
+/*    width: 100px;*/
+/*    height: 40px;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    font-weight: 600;*/
+/*    font-size: 16px;*/
+/*    border: 2px solid green;*/
+/*    color: green;*/
+
+
+/*}*/
+
 .item-add-colour-wrapper > div > button {
     width: 100px;
-    margin-right: 15px;
+    margin-top: 15px;
+    cursor: auto!important;
 
 }
 
 .file-chooser {
     position: relative;
     display: inline-block;
-    border: 1px solid var(--border-grey);
-    border-radius: 15px;
-    width: 20%;
-    height: fit-content;
-    padding: 10px 30px 10px 10px;
-    margin-right: 10px;
+    /*border: 1px solid red;*/
+    /*border: 1px solid var(--border-grey);*/
+    /*border-radius: 15px;*/
+    /*width: 20%;*/
+    /*height: fit-content;*/
+    /*padding: 10px 30px 10px 10px;*/
+    /*margin-right: 10px;*/
 
 }
 
-.file-chooser i {
-    position: absolute;
-    width: fit-content;
-    height: fit-content;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    right: 10px;
-    top: 0;
-    bottom: 0;
-    margin: auto;
+.img-holder {
+    width: 100px;
+    height: 100px;
+    /*background-color: red;*/
+    border-radius: 10px;
     cursor: pointer;
+    background-image: url("/assets/images/icons/photo-camera.png");
+    background-size: cover;
+    background-position: center;
 
 }
 
-.file-chooser i:hover {
-    color: var(--red);
+/*.file-chooser i {*/
+/*    position: absolute;*/
+/*    width: fit-content;*/
+/*    height: fit-content;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    right: 10px;*/
+/*    top: 0;*/
+/*    bottom: 0;*/
+/*    margin: auto;*/
+/*    cursor: pointer;*/
 
-}
+/*}*/
+
+/*.file-chooser i:hover {*/
+/*    color: var(--red);*/
+
+/*}*/
 
 .file-chooser input {
-    margin-right: 20px;
+    display: none;
+    /*margin-right: 20px;*/
 
 }
 

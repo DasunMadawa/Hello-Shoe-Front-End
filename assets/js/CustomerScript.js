@@ -6,7 +6,7 @@ import {
     checkFields ,
     checkDateFields ,
     name_reg ,
-    salary_reg ,
+    price_reg ,
     address_reg ,
     mobile_no_reg ,
     email_reg ,
@@ -170,7 +170,6 @@ $("#customers-nav-btn").click(function () {
 
 // fetch all customers
 function fetchAllCustomers() {
-    // Send GET request
     $.ajax({
         url: 'http://localhost:8080/hello-shoe/api/v1/customer',
         method: 'GET',

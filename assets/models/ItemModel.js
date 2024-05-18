@@ -1,19 +1,22 @@
 export class ItemModel {
     constructor(
-
+        iCode,
+        description,
+        category,
+        priceBuy,
+        priceSell,
+        supplierDTO,
+        stockList,
+        itemImageDTOList
     ) {
-        this.supplierId = supplierId;
-        this.supplierName = supplierName;
-        this.supplierCategory = supplierCategory;
-        this.mobileNo = mobileNo;
-        this.landLineNo = landLineNo;
-        this.email = email;
-        this.addressNoOrName = addressNoOrName;
-        this.addressLane = addressLane;
-        this.addressCity = addressCity;
-        this.addressState = addressState;
-        this.postalCode = postalCode;
-        this.country = country;
+        this.iCode = iCode;
+        this.description = description;
+        this.category = category;
+        this.priceBuy = priceBuy;
+        this.priceSell = priceSell;
+        this.supplierDTO = supplierDTO;
+        this.stockList = stockList;
+        this.itemImageDTOList = itemImageDTOList;
 
     }
 
