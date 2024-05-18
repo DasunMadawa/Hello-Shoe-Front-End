@@ -184,6 +184,7 @@ $("#employees-nav-btn").click(function () {
     fetchAllEmployees();
     update_btn_employee = false;
     fieldsSetEditable(false);
+    $("#employees-search-field").val("");
 
 });
 

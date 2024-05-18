@@ -136,6 +136,7 @@ $("#suppliers-nav-btn").click(function () {
     fetchAllSuppliers()
     update_btn_supplier = false;
     fieldsSetEditable(false);
+    $("#supplier-search-field").val("");
 
 });
 
