@@ -47,6 +47,16 @@
 
 }
 
+#slider-img-wrapper img {
+    cursor: pointer;
+
+}
+
+#slider-img-wrapper input {
+    display: none;
+
+}
+
 .item-stock-table {
     overflow-y: scroll;
 }
@@ -206,6 +216,12 @@
 
 }
 
+.side-bar-body .img-holder {
+    width: 180px;
+    height: 180px;
+
+}
+
 /*.file-chooser i {*/
 /*    position: absolute;*/
 /*    width: fit-content;*/
@@ -273,8 +289,46 @@
 }
 
 .item-form > i:first-child:hover {
-    color: var(--red);
+    /*color: var(--red);*/
 
 }
 
+/*---------------------------- item image wrapper */
+.item-img-wrapper {
+    display: none;
+    margin: 10px 0;
+    /*border: 1px solid red;*/
+    width: 100%;
+
+}
+
+.item-img {
+    /*border: 1px solid black;*/
+    aspect-ratio: 4/3;
+    width: 100%;
+    background-image: url("/assets/images/shoes/domino-164_6wVEHfI-unsplash.jpg");
+    background-position: center;
+    background-size: cover;
+    border-radius: 15px;
+    cursor: pointer;
+
+}
+
+.img-btn-set-wrapper {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.img-btn-set-wrapper label {
+    width: 80px;
+    /*margin: 5px;*/
+
+}
+
+#img-set{
+    display: none;
+}
 

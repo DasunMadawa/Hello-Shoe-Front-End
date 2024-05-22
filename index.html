@@ -978,7 +978,7 @@
         <div class="side-bar-wrapper">
             <div class="side-bar-header-wrapper">
                 <span class="side-bar-header">Selected Item</span>
-                <span class="sale-order-id">FMS0001</span>
+                <span class="sale-order-id"></span>
                 <div class="sale-line"></div>
 
             </div>
@@ -989,48 +989,60 @@
             </div>
 
             <div class="item-details-wrapper side-bar-body">
-                <div id="carouselExampleIndicators" class="carousel slide">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                                class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                                aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                                aria-label="Slide 3"></button>
+
+                <div id="item-img-wrapper" class="item-img-wrapper">
+                    <div class="item-img">
+
                     </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="assets/images/shoes/domino-164_6wVEHfI-unsplash.jpg" class="d-block w-100"
-                                 alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Green</h5>
-                            </div>
+                    <div class="img-btn-set-wrapper">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            <input value="GREEN" type="radio" class="btn-check" name="item-img-r-btn" id="item-img-update-GREEN" autocomplete="off">
+                            <label class="btn btn-outline-success" for="item-img-update-GREEN">Green</label>
+
+                            <input value="BLUE" type="radio" class="btn-check" name="item-img-r-btn" id="item-img-update-BLUE" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="item-img-update-BLUE">Blue</label>
+
+                            <input value="GREEN" type="radio" class="btn-check" name="item-img-r-btn" id="item-img-update-RED" autocomplete="off">
+                            <label class="btn btn-outline-danger" for="item-img-update-RED">Red</label>
+
+                            <input value="OTHER" type="radio" class="btn-check" name="item-img-r-btn" id="item-img-update-OTHER" autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="item-img-update-OTHER">Other</label>
                         </div>
-                        <div class="carousel-item">
-                            <img src="assets/images/shoes/domino-164_6wVEHfI-unsplash.jpg" class="d-block w-100"
-                                 alt="...">
+                        <div id="img-set">
+                            <input id="green-shoes-img-update" class="form-control" type="file" accept="image/png, image/jpeg">
+                            <input id="blue-shoes-img-update" class="form-control" type="file" accept="image/png, image/jpeg">
+                            <input id="red-shoes-img-update" class="form-control" type="file" accept="image/png, image/jpeg">
+                            <input id="other-shoes-img-update" class="form-control" type="file" accept="image/png, image/jpeg">
                         </div>
-                        <div class="carousel-item">
-                            <img src="assets/images/shoes/domino-164_6wVEHfI-unsplash.jpg" class="d-block w-100"
-                                 alt="...">
-                        </div>
+
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+
                 </div>
 
                 <form class="item-view-form">
                     <div class="mb-3">
                         <label for="item-code" class="form-label">Item Code</label>
-                        <input type="text" class="form-control" id="item-code" readonly>
+                        <input type="text" class="form-control" id="item-code" disabled readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="item-category" class="form-label">Category</label>
+                        <input type="text" class="form-control" id="item-category" disabled readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="item-occasion" class="form-label">Occasion</label>
+                        <input type="text" class="form-control" id="item-occasion" disabled readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="item-verities" class="form-label">Verities</label>
+                        <input type="text" class="form-control" id="item-verities" disabled readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="item-gender" class="form-label">Gender</label>
+                        <input type="text" class="form-control" id="item-gender" disabled readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="item-supplier" class="form-label">Supplier</label>
+                        <input type="text" class="form-control" id="item-supplier" disabled readonly>
                     </div>
                     <div class="mb-3">
                         <label for="item-description" class="form-label">Item Description</label>
@@ -1040,15 +1052,6 @@
                     <!--                        <label for="item-category" class="form-label">Category</label>-->
                     <!--                        <input type="text" class="form-control" id="item-category" readonly>-->
                     <!--                    </div>-->
-                    <div class="mb-3">
-                        <label for="item-category" class="form-label">Category</label>
-                        <select id="item-category" class="form-select form-select-lg mb-3"
-                                aria-label="Large select example" disabled>
-                            <option value="" selected hidden>Category</option>
-                            <option value="SHOES">SHOES</option>
-                            <option value="ACCESSORIES">ACCESSORIES</option>
-                        </select>
-                    </div>
                     <div class="mb-3">
                         <label for="item-price-buy" class="form-label">Price Buy</label>
                         <input type="text" class="form-control" id="item-price-buy" readonly>
@@ -1410,10 +1413,10 @@
                 </div>
 
                 <form class="item-view-form item-add-form">
-                    <div class="mb-3">
-                        <label for="item-code" class="form-label">Item Code</label>
-                        <input type="text" class="form-control" id="item-code-add">
-                    </div>
+<!--                    <div class="mb-3">-->
+<!--                        <label for="item-code" class="form-label">Item Code</label>-->
+<!--                        <input type="text" class="form-control" id="item-code-add">-->
+<!--                    </div>-->
                     <div class="mb-3">
                         <label for="item-description" class="form-label">Item Description</label>
                         <input type="text" class="form-control" id="item-description-add">
@@ -1425,6 +1428,18 @@
                     <!--                    </div>-->
                     <!--                    -->
                     <div class="mb-3">
+                        <label for="item-occasion-add" class="form-label">Occasion</label>
+                        <select id="item-occasion-add" class="form-select form-select-lg mb-3"
+                                aria-label="Large select example">
+                            <option value="" selected hidden>Select Occasion</option>
+                            <option value="F">FORMAL</option>
+                            <option value="C">CASUAL</option>
+                            <option value="S">SPORT</option>
+                            <option value="I">INDUSTRIAL</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="item-category-add" class="form-label">Category</label>
                         <select id="item-category-add" class="form-select form-select-lg mb-3"
                                 aria-label="Large select example">
@@ -1433,6 +1448,32 @@
                             <option value="ACCESSORIES">ACCESSORIES</option>
                         </select>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="item-verities-add" class="form-label">Verities</label>
+                        <select id="item-verities-add" class="form-select form-select-lg mb-3"
+                                aria-label="Large select example">
+                            <option value="" selected hidden>Select Verities</option>
+                            <!--                            <option value="H">Heel</option>-->
+                            <!--                            <option value="F">Flats</option>-->
+                            <!--                            <option value="W">Wedges</option>-->
+                            <!--                            <option value="FF">Flip Flops</option>-->
+                            <!--                            <option value="SD">Sandals</option>-->
+                            <!--                            <option value="S">Shoes</option>-->
+                            <!--                            <option value="SL">Slippers</option>-->
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="item-gender-add" class="form-label">Gender</label>
+                        <select id="item-gender-add" class="form-select form-select-lg mb-3"
+                                aria-label="Large select example">
+                            <option value="" selected hidden>Select Gender</option>
+                            <option value="M">MALE</option>
+                            <option value="W">FEMALE</option>
+                        </select>
+                    </div>
+
 
                     <div class="mb-3">
                         <label for="item-price-buy" class="form-label">Price Buy</label>

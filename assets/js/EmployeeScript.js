@@ -262,7 +262,7 @@ function loadEmployeeDetails() {
     gender.val(employee.gender);
     birthday.val(employee.birthday);
     access_role.val(employee.accessRole);
-    password.val(employee.password);
+    password.val(atob(employee.password));
     join_date.val(employee.joinDate);
     branch.val(employee.branch);
     status.val(employee.status);
@@ -483,7 +483,7 @@ function loadUpdatePageFieldValues() {
         address_city.val(),
         state.val(),
         postal_code.val(),
-        password.val(),
+        btoa(password.val()),
         emergency_contact_name.val(),
         emergency_contact_no.val()
     );
@@ -518,7 +518,7 @@ function getAddPageFieldValues() {
         address_city_add.val(),
         state_add.val(),
         postal_code_add.val(),
-        password_add.val(),
+        btoa(password_add.val()),
         emergency_contact_name_add.val(),
         emergency_contact_no_add.val()
     );
