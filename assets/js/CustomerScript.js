@@ -1,17 +1,17 @@
 import {CustomerModel} from "../models/CustomerModel.js";
 import {
-    validateOnKeyPressings ,
-    checkSelectFields ,
-    checkDateFieldsDifferences ,
-    checkFields ,
-    checkDateFields ,
-    name_reg ,
-    price_reg ,
-    address_reg ,
-    mobile_no_reg ,
-    email_reg ,
-    total_points_reg ,
-    postal_code_reg ,
+    validateOnKeyPressings,
+    checkSelectFields,
+    checkDateFieldsDifferences,
+    checkFields,
+    checkDateFields,
+    name_reg,
+    price_reg,
+    address_reg,
+    mobile_no_reg,
+    email_reg,
+    total_points_reg,
+    postal_code_reg,
     loading_div
 } from "./Script.js";
 
@@ -194,14 +194,14 @@ function fetchAllCustomers() {
 }
 
 // searchbar
-$("#customer-search-field").on('input' , function () {
+$("#customer-search-field").on('input', function () {
     customers_ar_searchbar = [];
 
     customers_ar.map(function (customer) {
         let customerNameTemp = customer.cName.toLowerCase();
         let searchBarVal = $("#customer-search-field").val().toLowerCase();
 
-        if (customerNameTemp.startsWith(searchBarVal + "")) {
+        if (customerNameTemp.includes(searchBarVal + "")) {
             customers_ar_searchbar.push(customer);
 
         }
@@ -213,11 +213,11 @@ $("#customer-search-field").on('input' , function () {
 
 // table select
 customer_table_tbody.on('click', 'tr', function () {
-    fetchCustomer($(this).data("customer-id"));
-
     update_btn = false;
     fieldsSetEditable(false);
-    clearFields();
+    clearFields(true);
+
+    fetchCustomer($(this).data("customer-id"));
 
 });
 
@@ -355,13 +355,14 @@ $("#update-customer-btn").click(function () {
                         text: customer.cName
                     });
 
-                    clearFields();
+                    clearFields(false);
 
                     fetchAllCustomers();
 
                     fieldsSetEditable(false);
                     update_btn = false;
-                    customer = null;
+                    $("#customer-search-field").val("");
+                    // customer = null;
                 },
                 error: function (xhr, status, error) {
                     loading_div.hide();
@@ -399,7 +400,7 @@ function fieldsSetEditable(setEditable) {
 
     } else {
         $("#customer-sec .side-bar-wrapper input").attr("readonly", "");
-        $("#customer-sec .side-bar-wrapper select").attr("disabled" , "");
+        $("#customer-sec .side-bar-wrapper select").attr("disabled", "");
 
     }
 
@@ -411,7 +412,7 @@ function fieldsSetEditable(setEditable) {
     });
 });
 
-[gender_add , gender].map(function (select_field) {
+[gender_add, gender].map(function (select_field) {
     select_field.change(function () {
         checkSelectFields([select_field]);
     });
@@ -420,7 +421,7 @@ function fieldsSetEditable(setEditable) {
 // get add page field values
 function getAddPageFieldValues() {
     return JSON.stringify(new CustomerModel(
-        "",
+            "",
             customer_name_add.val(),
             gender_add.val(),
             join_date_add.val(),
@@ -466,10 +467,13 @@ function clearAddFields() {
 
 }
 
-function clearFields() {
-    $("#customer-sec .side-bar-wrapper input , #customer-sec .side-bar-wrapper select").val("");
+function clearFields(alsoValues) {
+    if (alsoValues) {
+        $("#customer-sec .side-bar-wrapper input , #customer-sec .side-bar-wrapper select").val("");
+        selected_customer.html("Not selected yet");
+
+    }
     $("#customer-sec .side-bar-wrapper input , #customer-sec .side-bar-wrapper select").removeClass("is-valid was-validated");
-    selected_customer.html("Not selected yet");
 }
 
 

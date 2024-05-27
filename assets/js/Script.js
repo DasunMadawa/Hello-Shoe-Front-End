@@ -16,6 +16,10 @@ $(".toggle-btn-1").on("click", () => {
 
 $(".toggle-btn-1").click();
 
+export function toggleBtnClick(btn) {
+    btn.click();
+}
+
 // $("#customer-toggle-btn").click();
 function toggleBtnColorChanger(btn1, btn2) {
     btn1.css({"backgroundColor": "var(--light-green)"});

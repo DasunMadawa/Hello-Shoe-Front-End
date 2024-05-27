@@ -88,7 +88,7 @@ let mg_list_field_validation = [
     "address lane",
     "address city",
     "address state",
-    "postal_code" ,
+    "postal_code",
     "country"
 
 ]
@@ -166,14 +166,14 @@ function fetchAllSuppliers() {
 }
 
 // searchbar
-$("#supplier-search-field").on('input' , function () {
+$("#supplier-search-field").on('input', function () {
     suppliers_ar_search_bar = [];
 
     suppliers_ar.map(function (supplier) {
         let supplierNameTemp = supplier.supplierName.toLowerCase();
         let searchBarVal = $("#supplier-search-field").val().toLowerCase();
 
-        if (supplierNameTemp.startsWith(searchBarVal + "")) {
+        if (supplierNameTemp.includes(searchBarVal + "")) {
             suppliers_ar_search_bar.push(supplier);
 
         }
@@ -185,10 +185,11 @@ $("#supplier-search-field").on('input' , function () {
 
 // table select
 supplier_table_tbody.on('click', 'tr', function () {
-    fetchCustomer($(this).data("supplier-id"));
     update_btn_supplier = false;
     fieldsSetEditable(false);
-    clearFields();
+    clearFields(true);
+
+    fetchCustomer($(this).data("supplier-id"));
 
 });
 
@@ -320,13 +321,14 @@ $("#update-supplier-btn").click(function () {
                         text: supplier.cName
                     });
 
-                    clearFields();
+                    clearFields(false);
 
                     fetchAllSuppliers();
 
                     fieldsSetEditable(false);
                     update_btn_supplier = false;
-                    supplier = null;
+                    $("#supplier-search-field").val("");
+                    // supplier = null;
                 },
                 error: function (xhr, status, error) {
                     loading_div.hide();
@@ -355,7 +357,7 @@ $("#update-supplier-btn").click(function () {
 });
 
 
-[supplier_category , supplier_category_add].map(function (select_field) {
+[supplier_category, supplier_category_add].map(function (select_field) {
     select_field.change(function () {
         checkSelectFields([select_field]);
     });
@@ -364,17 +366,17 @@ $("#update-supplier-btn").click(function () {
 function getAddPageFieldValues() {
     return JSON.stringify(
         new SupplierModel(
-            "" ,
-            supplier_name_add.val() ,
-            supplier_category_add.val() ,
-            mobile_no_add.val() ,
-            landLineNo_add.val() ,
-            email_add.val() ,
-            address_no_add.val() ,
-            address_lane_add.val() ,
-            address_city_add.val() ,
-            state_add.val() ,
-            postal_code_add.val() ,
+            "",
+            supplier_name_add.val(),
+            supplier_category_add.val(),
+            mobile_no_add.val(),
+            landLineNo_add.val(),
+            email_add.val(),
+            address_no_add.val(),
+            address_lane_add.val(),
+            address_city_add.val(),
+            state_add.val(),
+            postal_code_add.val(),
             country_add.val()
         )
     );
@@ -384,17 +386,17 @@ function getAddPageFieldValues() {
 function getUpdatePageFieldValues() {
     return JSON.stringify(
         new SupplierModel(
-            "" ,
-            supplier_name.val() ,
-            supplier_category.val() ,
-            mobile_no.val() ,
-            landLineNo.val() ,
-            email.val() ,
-            address_no.val() ,
-            address_lane.val() ,
-            address_city.val() ,
-            state.val() ,
-            postal_code.val() ,
+            "",
+            supplier_name.val(),
+            supplier_category.val(),
+            mobile_no.val(),
+            landLineNo.val(),
+            email.val(),
+            address_no.val(),
+            address_lane.val(),
+            address_city.val(),
+            state.val(),
+            postal_code.val(),
             country.val()
         )
     );
@@ -408,7 +410,7 @@ function fieldsSetEditable(setEditable) {
 
     } else {
         $("#suppliers-sec .side-bar-wrapper input").attr("readonly", "");
-        $("#suppliers-sec .side-bar-wrapper select").attr("disabled" , "");
+        $("#suppliers-sec .side-bar-wrapper select").attr("disabled", "");
 
     }
 
@@ -421,10 +423,13 @@ function clearAddFields() {
 
 }
 
-function clearFields() {
-    $("#suppliers-sec .side-bar-wrapper input , #suppliers-sec .side-bar-wrapper select").val("");
+function clearFields(alsoValues) {
+    if (alsoValues) {
+        $("#suppliers-sec .side-bar-wrapper input , #suppliers-sec .side-bar-wrapper select").val("");
+        selected_supplier.html("Not selected yet");
+
+    }
     $("#suppliers-sec .side-bar-wrapper input , #suppliers-sec .side-bar-wrapper select").removeClass("is-valid was-validated");
-    selected_supplier.html("Not selected yet");
 
 }
 

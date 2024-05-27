@@ -332,3 +332,21 @@
     display: none;
 }
 
+#item-stock-qty-table,
+#item-stock-max-qty-table {
+    table-layout: fixed;
+
+}
+
+#item-stock-qty-table td ,
+#item-stock-qty-table th ,
+#item-stock-max-qty-table td ,
+#item-stock-max-qty-table th {
+    text-align: center;
+    word-wrap: break-word;
+
+}
+
+#item-stock-max-qty-table td > input {
+    width: 100%;
+}

@@ -3,6 +3,7 @@ import {SupplierModel} from "../models/SupplierModel.js";
 import {StockModel} from "../models/StockModel.js";
 import {ItemImageModel} from "../models/ItemImageModel.js";
 import {ImageHolderModel} from "../models/ImageHolderModel.js";
+import {toggleBtnClick, total_points_reg} from "./Script.js";
 import {
     validateOnKeyPressings,
     checkSelectFields,
@@ -28,6 +29,7 @@ let item = null;
 let item_image_ar = [];
 
 let update_btn_items = false;
+let update_btn_items_stock = false;
 
 let item_img_ar_update = [];
 
@@ -90,6 +92,7 @@ let expected_profit = $("#expected-profit");
 let profit_margin = $("#expected-profit-percentage");
 
 let update_btn = $("#update-item-btn");
+let update_btn_2 = $("#update-item-btn-2");
 
 let item_img_btn_set = $(".img-btn-set-wrapper label");
 let item_img = $(".item-img");
@@ -108,6 +111,14 @@ let input_list_add = [
     item_description_add,
     price_buy_add,
     price_sell_add
+
+];
+
+let input_list = [
+    // item_code_add,
+    item_description,
+    price_buy,
+    price_sell
 
 ];
 
@@ -131,18 +142,36 @@ $("#items-nav-btn").click(function () {
 });
 
 
-[supplier_add, category_add, verities_add, occasion_add, gender_add].map(function (select_field) {
+[supplier_add, verities_add, occasion_add, gender_add].map(function (select_field) {
     select_field.change(function () {
-        if ($(this).is(category_add)) {
-            setVerities(verities_add, category_add.val());
-            setOccasion(category_add.val());
-            setGender(category_add.val());
-
-        }
-
         checkSelectFields([select_field]);
+
     });
 });
+
+category_add.on('change', function () {
+    checkSelectFields([$(this)]);
+    setVerities(verities_add, category_add.val());
+    setOccasion(category_add.val());
+    setGender(category_add.val());
+
+    imageHoldersHide($(this).val());
+
+});
+
+function imageHoldersHide(category) {
+    if (category === "ACCESSORIES") {
+        $("#item-add-colour-wrapper > div").hide();
+        $("#item-add-green-wrapper").show();
+        $("#item-add-green-wrapper > button").hide();
+    } else {
+        $("#item-add-colour-wrapper > div").show();
+        $("#item-add-green-wrapper > button").show();
+
+    }
+
+}
+
 
 function setVerities(verities_select, category) {
     if (category === "SHOES") {
@@ -269,10 +298,31 @@ function loadAllItems(ar) {
 
 // table select
 item_table_tbody.on('click', 'tr', function () {
+    loading_div.show()
+    update_btn_items = false;
+    fieldsSetEditable([item_description, price_buy, price_sell], false);
+    clearFields(true);
+
     fetchItem($(this).data("item-code"));
-    // update_btn_items = false;
-    // fieldsSetEditable(false);
-    clearFields();
+
+});
+
+// searchbar
+$("#item-search-field").on('input', function () {
+    items_ar_search_bar = [];
+
+    items_ar.map(function (tempItem) {
+        let itemDesTemp = tempItem.description.toLowerCase();
+        let iCodeTemp = tempItem.iCode.toLowerCase();
+        let searchBarVal = $("#item-search-field").val().toLowerCase();
+
+        if (itemDesTemp.includes(searchBarVal + "") || iCodeTemp.includes(searchBarVal + "")) {
+            items_ar_search_bar.push(tempItem);
+
+        }
+    });
+
+    loadAllItems(items_ar_search_bar);
 
 });
 
@@ -287,7 +337,8 @@ function fetchItem(iCode) {
             item = data;
 
             loadItemDetails();
-            loadItemQtyDetails();
+            loadItemQtyDetails(item.category === "SHOES");
+            loading_div.hide();
 
         },
         error: function (xhr, status, error) {
@@ -297,6 +348,7 @@ function fetchItem(iCode) {
                 text: 'Try again!'
             });
             $('#response').text('Error: ' + error);
+            loading_div.hide();
         }
     });
 
@@ -420,6 +472,14 @@ function getGender(iCode, category) {
 }
 
 function loadItemImages() {
+    if (item.category === "SHOES") {
+        item_img_btn_set.show();
+
+    } else {
+        item_img_btn_set.hide();
+
+    }
+
     item_img_ar_update = [];
 
     item.itemImageDTOList.forEach(function (itemImage) {
@@ -470,14 +530,23 @@ function findColourOfImage(imageId) {
 }
 
 // qty table load
-function loadItemQtyDetails() {
+function loadItemQtyDetails(isShoes) {
     item_qty_table_tbody.empty();
     item_max_qty_table_tbody.empty();
     loadRows("SIZE_5", true);
 
-    ["SIZE_5", "SIZE_6", "SIZE_7", "SIZE_8", "SIZE_9", "SIZE_10", "SIZE_11"].map(function (size) {
-        loadRows(size, false);
-    });
+    if (isShoes) {
+        ["SIZE_5", "SIZE_6", "SIZE_7", "SIZE_8", "SIZE_9", "SIZE_10", "SIZE_11"].map(function (size) {
+            loadRows(size, false);
+        });
+
+    } else {
+        ["SMALL", "MEDIUM", "LARGE"].map(function (size) {
+            loadRows(size, false);
+        });
+
+    }
+
 
 }
 
@@ -489,7 +558,7 @@ function loadRows(size, setHeaders) {
 
     let tableDataList = "";
     let tableDataListMaxQty = "";
-    let tableHeaders = `<th scope="col">Size/Colour</th>`;
+    let tableHeaders = `<th scope="col">S/C</th>`;
 
     ///////////////
     if (stock_green) {
@@ -497,13 +566,13 @@ function loadRows(size, setHeaders) {
 
         tableDataList +=
             `   <td>
-                    <input data-stock =${JSON.stringify(stock_green)} type="number" class="form-control" value=${stock_green.qty} readonly>
+                    <input data-stock =${JSON.stringify(stock_green)} type="number" class="form-control" value=${stock_green.qty} min="0" max=${stock_green.maxQty} readonly>
                     ${getStatus(stock_green.status)}
                 </td>`;
 
         tableDataListMaxQty +=
             `   <td>
-                    <input data-stock =${JSON.stringify(stock_green)} type="number" class="form-control" value=${stock_green.maxQty} readonly>
+                    <input data-stock =${JSON.stringify(stock_green)} type="number" class="form-control" min=${stock_green.qty} value=${stock_green.maxQty} readonly>
                 </td>`;
     }
 
@@ -513,13 +582,13 @@ function loadRows(size, setHeaders) {
 
         tableDataList +=
             `   <td>
-                    <input data-stock =${JSON.stringify(stock_blue)} type="number" class="form-control" value=${stock_blue.qty} readonly>
+                    <input data-stock =${JSON.stringify(stock_blue)} type="number" class="form-control" value=${stock_blue.qty} min="0" max=${stock_blue.maxQty} readonly>
                     ${getStatus(stock_blue.status)}
                 </td>`;
 
         tableDataListMaxQty +=
             `   <td>
-                    <input data-stock =${JSON.stringify(stock_blue)} type="number" class="form-control" value=${stock_blue.maxQty} readonly>
+                    <input data-stock =${JSON.stringify(stock_blue)} type="number" class="form-control" min=${stock_blue.qty} value=${stock_blue.maxQty} readonly>
                 </td>`;
     }
 
@@ -529,13 +598,13 @@ function loadRows(size, setHeaders) {
 
         tableDataList +=
             `   <td>
-                    <input data-stock =${JSON.stringify(stock_red)} type="number" class="form-control" value=${stock_red.qty} readonly>
+                    <input data-stock =${JSON.stringify(stock_red)} type="number" class="form-control" value=${stock_red.qty} min="0" max=${stock_red.maxQty} readonly>
                     ${getStatus(stock_red.status)}
                 </td>`
 
         tableDataListMaxQty +=
             `   <td>
-                    <input data-stock =${JSON.stringify(stock_red)} type="number" class="form-control" value=${stock_red.maxQty} readonly>
+                    <input data-stock =${JSON.stringify(stock_red)} type="number" class="form-control" min=${stock_red.qty} value=${stock_red.maxQty} readonly>
                 </td>`;
 
     }
@@ -546,13 +615,13 @@ function loadRows(size, setHeaders) {
 
         tableDataList +=
             `   <td>
-                    <input data-stock =${JSON.stringify(stock_other)} type="number" class="form-control" value=${stock_other.qty} readonly>
+                    <input data-stock =${JSON.stringify(stock_other)} type="number" class="form-control" value=${stock_other.qty} min="0" max=${stock_other.maxQty} readonly>
                     ${getStatus(stock_other.status)}
                 </td>`
 
         tableDataListMaxQty +=
             `   <td>
-                    <input data-stock =${JSON.stringify(stock_other)} type="number" class="form-control" value=${stock_other.maxQty} readonly>
+                    <input data-stock =${JSON.stringify(stock_other)} type="number" class="form-control" min=${stock_other.qty} value=${stock_other.maxQty} readonly>
                 </td>`;
 
     }
@@ -577,6 +646,7 @@ function loadRows(size, setHeaders) {
             </tr>
             `
         );
+        return;
     }
 
     item_qty_table_tbody.append(`
@@ -732,8 +802,8 @@ $("#save-item-btn").click(function () {
                     loading_div.hide();
                     Swal.fire({
                         icon: 'error',
-                        title: 'Item save failed',
-                        text: 'Check duplicate emails !'
+                        title: 'Item save failed'
+                        // text: 'Check duplicate emails !'
                     });
                     $('#response').text('Error: ' + error);
                 }
@@ -764,20 +834,22 @@ function getAddPageFieldValues() {
     // console.log(temp_i_code);
 
 
-    let data = JSON.stringify(
-        new ItemModel(
-            temp_i_code,
-            item_description_add.val(),
+    let data = JSON.stringify(new ItemModel(
+        temp_i_code,
+        item_description_add.val(),
+        category_temp,
+        price_buy_add.val(),
+        price_sell_add.val(),
+        getSupplier(),
+        getStockList(
             category_temp,
-            price_buy_add.val(),
-            price_sell_add.val(),
-            getSupplier(),
-            getStockList(),
+            [image_green_add, image_blue_add, image_red_add, image_others_add],
             item_image_ar
-        )
-    );
+        ),
+        item_image_ar
+    ));
 
-    // console.log(data);
+    console.log(item_image_ar);
     return data;
 
 }
@@ -800,44 +872,79 @@ function getSupplier() {
 
 }
 
-function getStockList() {
-    item_image_ar = [];
+function getStockList(category, temp_img_ar, img_ar) {
+    if (category === "SHOES") {
+        img_ar.length = 0;
 
-    let temp_ar = [];
-    let temp_img_ar = [image_green_add, image_blue_add, image_red_add, image_others_add];
-    let temp_colour_ar = ["GREEN", "BLUE", "RED", "OTHER"];
+        let temp_ar = [];
+        let temp_colour_ar = ["GREEN", "BLUE", "RED", "OTHER"];
 
-    L1:for (let i = 0; i < temp_img_ar.length; i++) {
-        if (temp_img_ar[i] == null) {
-            continue L1;
+        L1:for (let i = 0; i < temp_img_ar.length; i++) {
+            if (temp_img_ar[i] == null) {
+                console.log("null");
+                continue L1;
+            }
+
+            img_ar.push(
+                new ItemImageModel(
+                    temp_colour_ar[i].charAt(0) + "",
+                    temp_img_ar[i]
+                )
+            );
+
+            // console.log(img_ar);
+            // console.log(item_image_ar);
+
+            for (let j = 5; j <= 11; j++) {
+                temp_ar.push(
+                    new StockModel(
+                        "SIZE_" + j,
+                        0,
+                        50,
+                        temp_colour_ar[i],
+                        "NOT_AVAILABLE",
+                        temp_colour_ar[i].charAt(0) + ""
+                    )
+                );
+
+            }
+
         }
 
-        item_image_ar.push(
+        return temp_ar;
+
+    } else {
+        img_ar.length = 0;
+
+        let temp_ar = [];
+        let temp_sizes = ["SMALL", "MEDIUM", "LARGE"];
+
+        img_ar.push(
             new ItemImageModel(
-                temp_colour_ar[i].charAt(0) + "",
-                temp_img_ar[i]
+                "A",
+                image_green_add
             )
         );
 
-        for (let j = 5; j <= 11; j++) {
+        for (let i = 0; i < temp_sizes.length; i++) {
             temp_ar.push(
                 new StockModel(
-                    "SIZE_" + j,
+                    temp_sizes[i],
                     0,
                     50,
-                    temp_colour_ar[i],
+                    "OTHER",
                     "NOT_AVAILABLE",
-                    temp_colour_ar[i].charAt(0) + ""
+                    "A"
                 )
             );
 
         }
 
+        return temp_ar;
+
+
     }
 
-    // console.log(item_image_ar.length);
-
-    return temp_ar;
 
 }
 
@@ -846,7 +953,7 @@ function checkImgHolders(isAddHolders) {
         return (image_green_add != null || image_blue_add != null || image_red_add != null || image_others_add != null);
 
     } else {
-        return (image_green != null || image_blue != null || image_red != null || image_others != null);
+        // return (image_green != null || image_blue != null || image_red != null || image_others != null);
 
 
     }
@@ -859,20 +966,39 @@ function clearAddFields() {
     $("#item-add-wrapper input , #item-add-wrapper select").val("");
     $("#item-add-wrapper input , #item-add-wrapper select").removeClass("is-valid was-validated");
 
+    $("#item-add-colour-wrapper > div > div > div").css("background-image", "url('/assets/images/icons/photo-camera.png')");
+
+    image_green_add = null;
+    image_blue_add = null;
+    image_red_add = null;
+    image_others_add = null;
+
+    item_image_ar = [];
+
 }
 
-function clearFields() {
-    $("#item-sec .side-bar-wrapper input , #item-sec .side-bar-wrapper select").val("");
+function clearFields(alsoValues) {
+    if (alsoValues) {
+        $("#item-sec .side-bar-wrapper input , #item-sec .side-bar-wrapper select").val("");
+        image_green = null;
+        image_blue = null;
+        image_red = null;
+        image_others = null;
+
+        // item_img_ar_update = [];
+        selected_item.html("Not selected yet");
+
+    }
+
     $("#item-sec .side-bar-wrapper input , #item-sec .side-bar-wrapper select").removeClass("is-valid was-validated");
-    selected_item.html("Not selected yet");
+
 }
 
 // img buttons action
 item_img_btn_set.on('click', function () {
-        // console.log($(this).html());
+    // console.log($(this).html());
 
-    }
-);
+});
 
 $("#item-img-update-GREEN").on('click', function () {
         let imageHolder = item_img_ar_update.find(imageHolder => imageHolder.colour === "GREEN");
@@ -948,11 +1074,11 @@ function setProfilePicFileChooserActionUpdate(fileChooser, save_file, colour) {
         var file = event.target.files[0];
 
         if (file) {
-            save_file = file;
 
             var reader = new FileReader();
             reader.onload = function (e) {
                 item_img.css('background-image', 'url(' + e.target.result + ')');
+                save_file = e.target.result;
 
                 item_img_ar_update.push(
                     new ImageHolderModel(
@@ -972,35 +1098,255 @@ function setProfilePicFileChooserActionUpdate(fileChooser, save_file, colour) {
 }
 
 item_qty_table_tbody.on('change', 'input', function () {
-    let stock = $(this).data("stock");
-    console.log(stock);
+    $(this).data("stock").qty = $(this).val();
+
+});
+
+item_max_qty_table_tbody.on('change', 'input', function () {
+    $(this).data("stock").maxQty = $(this).val();
 
 });
 
 // update
 update_btn.on('click', function () {
-    console.log("Ok");
     if (update_btn_items) {
-        setUpdatable([item_description_add, price_buy_add, price_sell_add], false);
-        update_btn_items = false;
+        if (
+            checkFields(reg_list, input_list, mg_list_field_validation)
+        ) {
+            loading_div.show();
+            item.description = item_description.val();
+            item.priceBuy = price_buy.val();
+            item.priceSell = price_sell.val();
+
+            $.ajax({
+                url: `http://localhost:8080/hello-shoe/api/v1/item/${item.iCode}`,
+                method: 'PUT',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: getUpdatePageFieldValues(),
+                success: function (data) {
+                    // item = data;
+
+                    loading_div.hide();
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Item Updated',
+                        text: data.iCode
+                    });
+
+                    clearFields(false);
+
+                    fetchAllItems();
+
+                    fieldsSetEditable([item_description_add, price_buy_add, price_sell_add], false);
+                    update_btn_items = false;
+                    $("#item-search-field").val("");
+
+                    // item = null;
+                },
+                error: function (xhr, status, error) {
+                    loading_div.hide();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Item update failed'
+                        // text: 'Check duplicate emails !'
+                    });
+
+                }
+            });
+
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Input',
+                text: 'Fill fields correctly !'
+            });
+
+        }
 
     } else {
-        setUpdatable([item_description_add, price_buy_add, price_sell_add], true);
+        if (item == null) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Select Item',
+                text: 'Select a item first !'
+            });
+            return;
+        }
+
+        fieldsSetEditable([item_description, price_buy, price_sell], true);
         update_btn_items = true;
 
     }
 
 });
 
-function setUpdatable(ar, isUpdatable) {
+let input_list_update_2 = $("#item-sec #item-stock-qty-table input , #item-sec #item-stock-max-qty-table input");
+let reg_list_update_2 = [];
+let mg_list_update_2 = [];
+
+for (let i = 0; i < input_list_update_2.length; i++) {
+    reg_list_update_2.push(total_points_reg);
+    mg_list_update_2.push("Fields");
+
+}
+
+// update 2
+update_btn_2.on('click', function () {
+    if (update_btn_items_stock) {
+        loading_div.show();
+
+        $.ajax({
+            url: `http://localhost:8080/hello-shoe/api/v1/item/qty/${item.iCode}`,
+            method: 'PUT',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: getStockValues(),
+            success: function (data) {
+                // item = data;
+
+                loading_div.hide();
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Item Updated',
+                    text: data.iCode
+                });
+
+                // clearFields(false);
+
+                fetchAllItems();
+                fetchItem(data.iCode);
+
+                // fieldsSetEditable([item_description_add, price_buy_add, price_sell_add], false);
+                $("#item-sec #item-stock-qty-table input , #item-sec #item-stock-max-qty-table input").attr("readonly" , "");
+
+                update_btn_items_stock = false;
+                $("#item-search-field").val("");
+
+                // item = null;
+            },
+            error: function (xhr, status, error) {
+                loading_div.hide();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Item update failed'
+                    // text: 'Check duplicate emails !'
+                });
+
+            }
+        });
+
+    } else {
+        if (item == null) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Select Item',
+                text: 'Select a item first !'
+            });
+            return;
+        }
+
+        // fieldsSetEditable(input_list_update_2, true);
+        $("#item-sec #item-stock-qty-table input , #item-sec #item-stock-max-qty-table input").removeAttr("readonly");
+        update_btn_items_stock = true;
+
+    }
+
+});
+
+function getStockValues() {
+    let tempItemModel = new ItemModel();
+    tempItemModel.iCode = item.iCode;
+
+    let tempStockList = [];
+
+    $("#item-sec #item-stock-qty-table input").map(function () {
+        tempStockList.push($(this).data("stock"));
+    });
+
+    tempStockList.push(new StockModel());
+
+    $("#item-sec #item-stock-max-qty-table input").map(function () {
+        tempStockList.push($(this).data("stock"));
+    });
+
+    tempItemModel.stockList = tempStockList;
+
+    return JSON.stringify(tempItemModel);
+
+}
+
+// function checkStockList() {
+//     $("#item-sec #item-stock-qty-table input , #item-sec #item-stock-max-qty-table input").map(function () {
+//         if (!total_points_reg.test($(this).val())) {
+//             $(this).addClass("is-invalid form-control:invalid");
+//         }
+//     });
+//
+// }
+
+function getUpdatePageFieldValues() {
+
+    let tempItemModel = new ItemModel();
+    tempItemModel.iCode = item.iCode;
+    tempItemModel.description = item_description.val();
+    tempItemModel.priceBuy = price_buy.val();
+    tempItemModel.priceSell = price_sell.val();
+
+    tempItemModel.stockList = [];
+    tempItemModel.itemImageDTOList = [];
+
+    if (item.category === "SHOES") {
+        console.log(item_img_ar_update.length);
+
+        for (let i = 0; i < item_img_ar_update.length; i++) {
+            if (item_img_ar_update[i].itemImageId.length === 1) {
+                for (let j = 5; j <= 11; j++) {
+                    tempItemModel.stockList.push(
+                        new StockModel(
+                            "SIZE_" + j,
+                            0,
+                            50,
+                            item_img_ar_update[i].colour,
+                            "NOT_AVAILABLE",
+                            item_img_ar_update[i].itemImageId
+                        )
+                    );
+
+                }
+
+                tempItemModel.itemImageDTOList.push(
+                    new ItemImageModel(
+                        item_img_ar_update[i].itemImageId,
+                        item_img_ar_update[i].image
+                    )
+                );
+            }
+        }
+
+    }
+
+
+    console.log(JSON.stringify(tempItemModel));
+
+    return JSON.stringify(tempItemModel);
+
+}
+
+function fieldsSetEditable(ar, isUpdatable) {
     if (isUpdatable) {
         for (let i = 0; i < ar.length; i++) {
-            ar[i].removeAttr("readOnly");
+            console.log(ar[i]);
+            ar[i].removeAttr("readonly");
+
         }
 
     } else {
         for (let i = 0; i < ar.length; i++) {
-            ar[i].attr("readOnly", "");
+            ar[i].attr("readonly", "");
+
         }
 
     }
@@ -1012,5 +1358,33 @@ setProfilePicFileChooserActionUpdate(img_green_update_file_chooser, image_green,
 setProfilePicFileChooserActionUpdate(img_blue_update_file_chooser, image_blue, "BLUE");
 setProfilePicFileChooserActionUpdate(img_red_update_file_chooser, image_red, "RED");
 setProfilePicFileChooserActionUpdate(img_others_update_file_chooser, image_others, "OTHER");
+
+$("#item-sec .toggle-btn-2").on("click", () => {
+    if (item == null) {
+        Swal.fire({
+            icon: 'info',
+            title: 'Select Item',
+            text: 'Select a item first !'
+        });
+
+        toggleBtnClick($("#item-sec .toggle-btn-1"));
+        return;
+    }
+
+    if (update_btn_items) {
+        Swal.fire({
+            icon: 'info',
+            title: 'Complete Update',
+            text: 'Complete update process first !'
+        });
+
+        toggleBtnClick($("#item-sec .toggle-btn-1"));
+    }
+
+});
+
+$("#item-sec .toggle-btn-1").on("click", () => {
+
+});
 
 

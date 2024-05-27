@@ -215,10 +215,11 @@ function fetchAllEmployees() {
 
 // table select
 employee_table_tbody.on('click', 'tr', function () {
-    fetchCustomer($(this).data("employee-id"));
     update_btn_employee = false;
     fieldsSetEditable(false);
-    clearFields();
+    clearFields(true);
+
+    fetchCustomer($(this).data("employee-id"));
 
 });
 
@@ -285,7 +286,7 @@ $("#employees-search-field").on('input', function () {
         let employeeNameTemp = employee.employeeName.toLowerCase();
         let searchBarVal = $("#employees-search-field").val().toLowerCase();
 
-        if (employeeNameTemp.startsWith(searchBarVal + "")) {
+        if (employeeNameTemp.includes(searchBarVal + "")) {
             employees_ar_search_bar.push(employee);
 
         }
@@ -393,14 +394,15 @@ $("#update-employee-btn").click(function () {
                         text: employee.cName
                     });
 
-                    clearFields();
-                    profile_pic.css("background-image", "url('/assets/images/icons/photo-camera.png')");
+                    clearFields(false);
+                    // profile_pic.css("background-image", "url('/assets/images/icons/photo-camera.png')");
 
                     fetchAllEmployees();
 
                     fieldsSetEditable(false);
                     update_btn_employee = false;
-                    employee = null;
+                    $("#supplier-search-field").val("");
+                    // employee = null;
                 },
                 error: function (xhr, status, error) {
                     loading_div.hide();
@@ -440,10 +442,10 @@ function getUpdatePageFieldValues() {
             }
 
             // Create a Blob object
-            var blob = new Blob([ab], { type: mimeType });
+            var blob = new Blob([ab], {type: mimeType});
 
             // Create a File object
-            var file = new File([blob], filename, { type: mimeType });
+            var file = new File([blob], filename, {type: mimeType});
             return file;
 
         }
@@ -452,9 +454,8 @@ function getUpdatePageFieldValues() {
         var fileName = "img.png";
         var mimeType = "image/png";
 
-        employee.profilePic = base64ToFile(base64String , fileName , mimeType);
+        employee.profilePic = base64ToFile(base64String, fileName, mimeType);
         return loadUpdatePageFieldValues();
-
 
 
     } else {
@@ -493,7 +494,7 @@ function loadUpdatePageFieldValues() {
         formData.append(key, employeeModel[key]);
     }
 
-    console.log(formData.get("profilePic"));
+    // console.log(formData.get("profilePic"));
 
     return formData;
 
@@ -622,10 +623,14 @@ function clearAddFields() {
 
 }
 
-function clearFields() {
-    $("#employees-sec .side-bar-wrapper input , #employees-sec .side-bar-wrapper select").val("");
+function clearFields(alsoValues) {
+    if (alsoValues) {
+        $("#employees-sec .side-bar-wrapper input , #employees-sec .side-bar-wrapper select").val("");
+        selected_employee.html("Not selected yet");
+
+    }
+
     $("#employees-sec .side-bar-wrapper input , #employees-sec .side-bar-wrapper select").removeClass("is-valid was-validated");
-    selected_employee.html("Not selected yet");
 
 }
 
