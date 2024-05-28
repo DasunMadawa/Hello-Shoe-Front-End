@@ -1063,7 +1063,7 @@ $("#item-img-update-OTHER").on('click', function () {
 
             loadImage(item_img_ar_update[0]);
             img_others_update_file_chooser.click();
-            console.log("not found");
+            // console.log("not found");
         }
 
     }
@@ -1139,6 +1139,7 @@ update_btn.on('click', function () {
 
                     fetchAllItems();
 
+                    fetchItem(data.iCode);
                     fieldsSetEditable([item_description_add, price_buy_add, price_sell_add], false);
                     update_btn_items = false;
                     $("#item-search-field").val("");
@@ -1220,7 +1221,7 @@ update_btn_2.on('click', function () {
                 fetchItem(data.iCode);
 
                 // fieldsSetEditable([item_description_add, price_buy_add, price_sell_add], false);
-                $("#item-sec #item-stock-qty-table input , #item-sec #item-stock-max-qty-table input").attr("readonly" , "");
+                $("#item-sec #item-stock-qty-table input , #item-sec #item-stock-max-qty-table input").attr("readonly", "");
 
                 update_btn_items_stock = false;
                 $("#item-search-field").val("");
@@ -1329,7 +1330,7 @@ function getUpdatePageFieldValues() {
     }
 
 
-    console.log(JSON.stringify(tempItemModel));
+    // console.log(JSON.stringify(tempItemModel));
 
     return JSON.stringify(tempItemModel);
 
@@ -1338,7 +1339,7 @@ function getUpdatePageFieldValues() {
 function fieldsSetEditable(ar, isUpdatable) {
     if (isUpdatable) {
         for (let i = 0; i < ar.length; i++) {
-            console.log(ar[i]);
+            // console.log(ar[i]);
             ar[i].removeAttr("readonly");
 
         }

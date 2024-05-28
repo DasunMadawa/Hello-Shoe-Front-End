@@ -163,7 +163,7 @@ $("#refund-form > i:first-child").click(function () {
 
 });
 
-$("#items-nav-btn").click();
+$("#sales-nav-btn").click();
 
 
 /////////////////////////////////////////////////////////////////////////////////

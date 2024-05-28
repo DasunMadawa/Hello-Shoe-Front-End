@@ -795,7 +795,7 @@
     display: flex;
     /*border: 1px solid blue;*/
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    /*justify-content: space-evenly;*/
 
 }
 
@@ -806,7 +806,9 @@
     height: 395px;
     background-color: var(--white);
     border-radius: 15px;
-    margin: 15px;
+    margin: 15px 8px;
+    /*margin: 15px;*/
+
 
 }
 
@@ -815,7 +817,7 @@
     border-radius: 15px 15px 0 0;
     aspect-ratio: 203/154;
     width: 100%;
-    background-image: url("/assets/images/shoes/domino-164_6wVEHfI-unsplash.jpg");
+    /*background-image: url("/assets/images/shoes/domino-164_6wVEHfI-unsplash.jpg");*/
     background-size: cover;
     background-position: center;
 
@@ -912,11 +914,11 @@
 
 }
 
-.sale-item-colour:nth-child(2):before {
+.sale-item-colour:before {
     position: absolute;
     display: inline-block;
-    content: "";
-    border: 1px solid var(--choosen-color);
+    /*content: "";*/
+    /*border: 1px solid var(--choosen-color);*/
     width: 16px;
     height: 16px;
     box-sizing: border-box;
@@ -1015,6 +1017,30 @@
 .sale-history-tbl > tbody > tr > td:first-child ,
 .item-table > tbody > tr > td:first-child {
     font-weight: 800;
+
+}
+
+.green::before {
+    border: 1px solid green;
+    content: "";
+
+}
+
+.blue::before {
+    border: 1px solid blue;
+    content: "";
+
+}
+
+.red::before {
+    border: 1px solid red;
+    content: "";
+
+}
+
+.other::before {
+    border: 1px solid grey;
+    content: "";
 
 }
 
