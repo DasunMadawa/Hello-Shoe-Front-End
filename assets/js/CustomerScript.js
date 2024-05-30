@@ -1,4 +1,5 @@
 import {CustomerModel} from "../models/CustomerModel.js";
+import {getAllCustomers} from "./SaleScript.js";
 import {
     validateOnKeyPressings,
     checkSelectFields,
@@ -294,6 +295,8 @@ $("#save-customer-btn").click(function () {
 
                 clearAddFields();
                 fetchAllCustomers();
+                getAllCustomers();
+
             },
             error: function (xhr, status, error) {
                 loading_div.hide();
@@ -358,6 +361,7 @@ $("#update-customer-btn").click(function () {
                     clearFields(false);
 
                     fetchAllCustomers();
+                    getAllCustomers();
 
                     fieldsSetEditable(false);
                     update_btn = false;

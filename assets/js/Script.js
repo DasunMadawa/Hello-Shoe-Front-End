@@ -1,16 +1,24 @@
-$(".toggle-btn-2").on("click", () => {
-    $(".side-bar-body").hide();
-    $(".side-bar-body-2").show();
+$(".toggle-btn-2").on("click", function () {
+    $(this).parents("section").find(".side-bar-body").hide();
+    $(this).parents("section").find(".side-bar-body-2").show();
 
-    toggleBtnColorChanger($(".toggle-btn-2"), $(".toggle-btn-1"));
+    // $(".side-bar-body").hide();
+    // $(".side-bar-body-2").show();
+
+    $(this)
+
+    toggleBtnColorChanger($(this), $(this).parents("section").find(".toggle-btn-1"));
 
 });
 
-$(".toggle-btn-1").on("click", () => {
-    $(".side-bar-body").show();
-    $(".side-bar-body-2").hide();
+$(".toggle-btn-1").on("click", function () {
+    $(this).parents("section").find(".side-bar-body").show();
+    $(this).parents("section").find(".side-bar-body-2").hide();
+    // $(".side-bar-body").show();
+    // $(".side-bar-body-2").hide();
 
-    toggleBtnColorChanger($(".toggle-btn-1"), $(".toggle-btn-2"));
+
+    toggleBtnColorChanger($(this), $(this).parents("section").find(".toggle-btn-2"));
 
 });
 

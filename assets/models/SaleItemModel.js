@@ -7,16 +7,27 @@ export class SaleItemModel {
         availableColourList,
         saleItemQtyHolderDTOList,
         saleItemImageHolderDTOList,
-        price
+        price,
+        category,
+        gender,
+        verities,
+        occasion
+
     ) {
         this.iCode = iCode;
-        this.category = tags;
+        this.tags = tags;
         this.description = description;
         this.availableSizeList = availableSizeList;
         this.availableColourList = availableColourList;
         this.saleItemQtyHolderDTOList = saleItemQtyHolderDTOList;
         this.saleItemImageHolderDTOList = saleItemImageHolderDTOList;
         this.price = price;
+        this.category = category;
+        this.gender = gender;
+        this.verities = verities;
+        this.occasion = occasion;
+
+        console.log(occasion);
 
     }
 

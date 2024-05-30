@@ -4,6 +4,8 @@ import {StockModel} from "../models/StockModel.js";
 import {ItemImageModel} from "../models/ItemImageModel.js";
 import {ImageHolderModel} from "../models/ImageHolderModel.js";
 import {toggleBtnClick, total_points_reg} from "./Script.js";
+import {getAllItemsSale} from "./SaleScript.js";
+
 import {
     validateOnKeyPressings,
     checkSelectFields,
@@ -797,6 +799,10 @@ $("#save-item-btn").click(function () {
 
                     clearAddFields();
                     fetchAllItems();
+
+                    getAllItemsSale();
+
+
                 },
                 error: function (xhr, status, error) {
                     loading_div.hide();
@@ -1138,6 +1144,7 @@ update_btn.on('click', function () {
                     clearFields(false);
 
                     fetchAllItems();
+                    getAllItemsSale();
 
                     fetchItem(data.iCode);
                     fieldsSetEditable([item_description_add, price_buy_add, price_sell_add], false);
@@ -1219,6 +1226,8 @@ update_btn_2.on('click', function () {
 
                 fetchAllItems();
                 fetchItem(data.iCode);
+
+                getAllItemsSale();
 
                 // fieldsSetEditable([item_description_add, price_buy_add, price_sell_add], false);
                 $("#item-sec #item-stock-qty-table input , #item-sec #item-stock-max-qty-table input").attr("readonly", "");
