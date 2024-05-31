@@ -7,7 +7,8 @@ export class SaleModel {
         points,
         saleCartDTOList,
         customerId,
-        employeeId
+        employeeId,
+        totalPrice
     ) {
         this.oId = oId;
         this.itemQty = itemQty;
@@ -17,6 +18,7 @@ export class SaleModel {
         this.saleCartDTOList = saleCartDTOList;
         this.customerId = customerId;
         this.employeeId = employeeId;
+        this.totalPrice = totalPrice;
 
 
     }

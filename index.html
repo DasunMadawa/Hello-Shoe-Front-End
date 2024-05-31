@@ -876,7 +876,8 @@
 
                     </div>
                     <form action="">
-                        <input type="number" id="sale-payment-field-1" class="mt-4 form-control customer-name-or-loyal-id"
+                        <input type="number" id="sale-payment-field-1"
+                               class="mt-4 form-control customer-name-or-loyal-id"
                                placeholder="Cash"><br>
                         <input type="text" id="sale-payment-field-2" class="form-control customer-name-or-loyal-id"
                                placeholder="Balance"><br>
@@ -3570,32 +3571,28 @@
                 </form>
                 <div class="stock-table-header">Item</div>
 
-                <div class="cart-item">
-                    <div class="cart-item-img"></div>
-                    <div class="cart-item-body-wrapper">
-                        <h4 class="cart-item-name">Nike X OFF-White</h4>
-                        <div class="size">10</div>
-                        <div class="colour">
-                            <div></div>
+                <div class="item-cart-wrapper">
+                    <div class="cart-item">
+                        <div class="cart-item-img"></div>
+                        <div class="cart-item-body-wrapper">
+                            <h4 class="cart-item-name">Nike X OFF-White</h4>
+                            <div class="size">10</div>
+                            <div class="colour">
+                                <div></div>
+                            </div>
+                            <div class="price-single">5850 LKR</div>
+                            <h4 class="cart-item-code">FSM00001</h4>
+                            <div class="qty-adjuster-wrapper">
+                                <span>1</span>
+                            </div>
+                            <div class="price-all">5850 LKR</div>
                         </div>
-                        <div class="price-single">5850 LKR</div>
-                        <h4 class="cart-item-code">FSM00001</h4>
-                        <div class="qty-adjuster-wrapper">
-                            <i class="fi fi-rr-minus"></i>
-                            1
-                            <i class="fi fi-rr-plus"></i>
-                        </div>
-                        <div class="price-all">5850 LKR</div>
                     </div>
                 </div>
-
 
                 <div class="payment-method-wrapper">
                     <div id="add-new-refund-btn" class="">
                         <i class="fi fi-rr-plus"></i>
-                    </div>
-                    <div id="update-refund-btn" class="">
-                        <i class="fi fi-rr-pencil"></i>
                     </div>
                 </div>
             </div>
@@ -3604,10 +3601,6 @@
                 <div id="refund-form" class="item-form">
                     <i class="fi fi-rr-circle-xmark"></i>
                     <form class="item-view-form item-add-form">
-                        <div class="mb-3">
-                            <label for="refund-date" class="form-label">Refund Date</label>
-                            <input type="date" class="form-control" id="refund-date-add" readonly>
-                        </div>
                         <div class="mb-3">
                             <label for="refund-sales-id" class="form-label">Sale Id</label>
                             <input type="text" class="form-control" id="refund-sales-id-add">

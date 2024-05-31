@@ -17,6 +17,7 @@ let saleItemCartList = [];
 let itemsArSearchBar = [];
 
 let selectedCustomer = null;
+let selectedSale = null;
 
 let category = "All";
 let gender = "All";
@@ -24,6 +25,9 @@ let occasion = "All";
 let verities = "All";
 
 let saleId = null;
+let saleItemListHistory = [];
+
+let itemsArSearchBarHistory = [];
 
 let total = 0;
 let points = 0;
@@ -31,6 +35,8 @@ let points = 0;
 let filterAr = [];
 
 let paymentType = null;
+
+let isHistory = false;
 
 $("#sales-nav-btn").on('click', function () {
 
@@ -143,20 +149,39 @@ export function getAllCustomers() {
 
 // searchbar
 $("#sale-search-field").on('input', function () {
-    itemsArSearchBar = [];
+    if (!isHistory) {
+        itemsArSearchBar = [];
 
-    filterAr.map(function (item) {
-        let iCodeTemp = item.iCode.toLowerCase();
-        let searchBarVal = $("#sale-search-field").val().toLowerCase();
+        filterAr.map(function (item) {
+            let iCodeTemp = item.iCode.toLowerCase();
+            let searchBarVal = $("#sale-search-field").val().toLowerCase();
 
-        if (iCodeTemp.includes(searchBarVal + "")) {
-            itemsArSearchBar.push(item);
+            if (iCodeTemp.includes(searchBarVal + "")) {
+                itemsArSearchBar.push(item);
 
-        }
+            }
 
-    });
+        });
 
-    loadItemCards(itemsArSearchBar);
+        loadItemCards(itemsArSearchBar);
+
+    } else {
+        itemsArSearchBarHistory = [];
+
+        saleList.map(function (sale) {
+            let saleId = sale.oId.toLowerCase();
+            let searchBarVal = $("#sale-search-field").val().toLowerCase();
+
+            if (saleId.includes(searchBarVal + "")) {
+                itemsArSearchBarHistory.push(sale);
+
+            }
+
+        });
+
+        loadAllSales(itemsArSearchBarHistory);
+
+    }
 
 });
 
@@ -289,7 +314,7 @@ function loadItemCards(itemList) {
             saleItemCartList.push(cartItem);
 
             // loadItemCart(cartItem, true);
-            loadItemCart();
+            loadItemCart(saleItemCartList, false);
 
         } else {
             existingItem.qty += 1;
@@ -297,11 +322,11 @@ function loadItemCards(itemList) {
 
             // console.log(saleItemCartList);
 
-            loadItemCart();
+            loadItemCart(saleItemCartList, false);
 
         }
 
-        calcTotal();
+        calcTotal(saleItemCartList);
 
         getSizes($(this).parents(".sale-item-card").find(".size-set-wrapper"), saleItem.saleItemQtyHolderDTOList, selectedColour);
 
@@ -338,8 +363,8 @@ function loadItemCards(itemList) {
             let tempArIndex = saleItemCartList.indexOf(cartItem);
             saleItemCartList.splice(tempArIndex, 1);
             // console.log(saleItemCartList);
-            loadItemCart();
-            calcTotal();
+            loadItemCart(saleItemCartList, false);
+            calcTotal(saleItemCartList);
 
         });
 
@@ -386,54 +411,7 @@ function checkQty(saleItem, selectedColour, selectedSize) {
 
 }
 
-function loadItemCart() {
-    // if (isNewItem) {
-    //     let tempSize = cartItem.size.startsWith("SIZE_") ? cartItem.size.split("_")[1] : cartItem.size.charAt(0);
-    //
-    //     let tempWrapperHTML = $("#sale-sec .item-cart-wrapper").html();
-    //
-    //     let tempBorderStyle = `1px solid ${cartItem.colour}`;
-    //
-    //     let temp_url = `url('${cartItem.image}')`;
-    //
-    //     tempWrapperHTML += `
-    //                 <div class="cart-item" data-cart-item-index=${cartItem.itemIndex}>
-    //                     <div class="cart-item-close-btn"></div>
-    //                     <div class="cart-item-img" style="background-image: ${temp_url}"></div>
-    //                     <div class="cart-item-body-wrapper">
-    //                         <h4 class="cart-item-name">${cartItem.description}</h4>
-    //                         <div class="size" style="background-color: darkgray">${tempSize}</div>
-    //                         <div class="colour" style="border: ${tempBorderStyle}">
-    //                             <div style="background-color: ${cartItem.colour}"></div>
-    //                         </div>
-    //                         <div class="price-single">${cartItem.priceSingle} LKR</div>
-    //                         <h4 class="cart-item-code">${cartItem.iCode}</h4>
-    //                         <div class="qty-adjuster-wrapper">
-    //                             <i class="fi fi-rr-minus"></i>
-    //                             <span>1</span>
-    //                             <i class="fi fi-rr-plus"></i>
-    //                         </div>
-    //                         <div class="price-all">${cartItem.priceSingle} LKR</div>
-    //                     </div>
-    //                 </div>
-    // `
-    //
-    //     $("#sale-sec .item-cart-wrapper").html(tempWrapperHTML);
-    //
-    // } else {
-    //
-    //     $("#sale-sec .item-cart-wrapper > .cart-item").map(function () {
-    //         let tempCard = getSaleCartItem($(this).data("cart-item-index"));
-    //
-    //         if (tempCard.itemIndex === cartItem.itemIndex) {
-    //             $(this).find(".qty-adjuster-wrapper > span").html(cartItem.qty);
-    //             $(this).find(".price-all").html(cartItem.priceTotal + "LKR");
-    //             return;
-    //         }
-    //
-    //     });
-    //
-    // }
+function loadItemCart(saleItemCartList, isHistoryView) {
 
     let tempWrapperHTML = "";
 
@@ -444,7 +422,9 @@ function loadItemCart() {
 
         let temp_url = `url('${cartItem.image}')`;
 
-        tempWrapperHTML += `
+        if (!isHistoryView) {
+
+            tempWrapperHTML += `
                     <div class="cart-item" data-cart-item-index=${cartItem.itemIndex}>
                         <div class="cart-item-close-btn"></div>
                         <div class="cart-item-img" style="background-image: ${temp_url}"></div>
@@ -464,7 +444,30 @@ function loadItemCart() {
                             <div class="price-all">${cartItem.priceSingle} LKR</div>
                         </div>
                     </div>
-    `
+            `
+
+        } else {
+            tempWrapperHTML += `
+                    <div class="cart-item" data-cart-item-index=${cartItem.itemIndex}>
+                        <div class="cart-item-close-btn"></div>
+                        <div class="cart-item-img" style="background-image: ${temp_url}"></div>
+                        <div class="cart-item-body-wrapper">
+                            <h4 class="cart-item-name">${cartItem.description}</h4>
+                            <div class="size" style="background-color: darkgray">${tempSize}</div>
+                            <div class="colour" style="border: ${tempBorderStyle}">
+                                <div style="background-color: ${cartItem.colour}"></div>
+                            </div>
+                            <div class="price-single">${cartItem.priceSingle} LKR</div>
+                            <h4 class="cart-item-code">${cartItem.iCode}</h4>
+                            <div class="qty-adjuster-wrapper">
+                                <span>${cartItem.qty}</span>
+                            </div>
+                            <div class="price-all">${cartItem.priceSingle} LKR</div>
+                        </div>
+                    </div>
+            `
+        }
+
     });
 
     $("#sale-sec .item-cart-wrapper").html(tempWrapperHTML);
@@ -518,7 +521,7 @@ function getColours(colourList) {
 
 }
 
-function calcTotal() {
+function calcTotal(saleItemCartList) {
     let tempTotal = 0;
 
     saleItemCartList.map(function (saleItemCart) {
@@ -553,6 +556,10 @@ $("#customer-name-or-loyal-id").on('input', function () {
 });
 
 $("#customer-name-or-loyal-id").on('focusin', function () {
+    if (isHistory) {
+        return;
+    }
+
     $("#customer-search-bar-suggestions-set").show();
 
 });
@@ -745,7 +752,7 @@ function qtyAdjusterValuesSet(cartItem) {
 
     });
 
-    calcTotal();
+    calcTotal(saleItemCartList);
 }
 
 function sortByPrice(obj1, obj2) {
@@ -927,7 +934,7 @@ function placeSale() {
             saleItemCartList = []
             selectedCustomer = null;
             paymentType = null;
-            calcTotal();
+            calcTotal(saleItemCartList);
 
             init();
 
@@ -979,7 +986,7 @@ function getSaleDetails() {
 
     }
 
-    let tempCustomerId = selectedCustomer ? selectedCustomer.cId:null;
+    let tempCustomerId = selectedCustomer ? selectedCustomer.cId : null;
 
     let saleModel = new SaleModel(
         saleId,
@@ -989,7 +996,8 @@ function getSaleDetails() {
         points,
         saleItemCartList,
         tempCustomerId,
-        "3abe405a-331f-4737-86d4-3169b9231e26"
+        "3abe405a-331f-4737-86d4-3169b9231e26",
+        total
     );
 
     // console.log(JSON.stringify(saleModel));
@@ -998,4 +1006,149 @@ function getSaleDetails() {
 
 }
 
+$("#sale-history-btn").on('click', function () {
+    if (!isHistory) {
+        clearCustomer();
+        loadItemCart([], true);
+        calcTotal([]);
+        loadAllSales(saleList);
+        isHistory = true;
+
+        $("#customer-name-or-loyal-id").attr("readOnly", "");
+
+        $("#place-order-wrapper").hide();
+        $("#filter-btn-set-wrapper").hide();
+        $("#sale-search-field").val("")
+        $("#side-bar-header-wrapper > .side-bar-header > i").hide();
+        $("#sale-order-id").text("");
+
+    } else {
+        clearCustomer();
+        loadItemCart(saleItemCartList, true);
+        calcTotal(saleItemCartList);
+        isHistory = false;
+
+        $("#customer-name-or-loyal-id").removeAttr("readOnly");
+
+        $("#place-order-wrapper").show();
+        $("#filter-btn-set-wrapper").show();
+        $("#sale-search-field").val("");
+        $("#side-bar-header-wrapper > .side-bar-header > i").show();
+
+        $("#sale-order-id").text(saleId);
+    }
+
+});
+
+function loadAllSales(ar) {
+    $("#sale-sec .sale-history-tbl > tbody").empty();
+
+    ar.map((sale) => {
+        $("#sale-sec .sale-history-tbl > tbody").append(`
+            <tr data-sale-id = ${sale.oId}>
+                <td>${sale.oId}</td>
+                <td>${sale.totalPrice}</td>
+                <td>${sale.itemQty}</td>
+                <td>${sale.date}</td>
+            </tr>
+        `);
+    });
+
+}
+
+// table select
+$("#sale-sec .sale-history-tbl > tbody").on('click', 'tr', function () {
+    loading_div.show();
+    fetchSale($(this).data("sale-id"));
+
+
+});
+
+function fetchSale(saleId) {
+    $.ajax({
+        url: `http://localhost:8080/hello-shoe/api/v1/sale/${saleId}`,
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            selectedSale = data;
+            saleItemListHistory = selectedSale.saleCartDTOList;
+
+            if (selectedSale.customerId) {
+                fetchCustomer(selectedSale.customerId);
+
+            } else {
+                fetchCustomer(null);
+
+            }
+
+            $("#sale-order-id").text(selectedSale.oId);
+
+            loadAllSaleDetails();
+            calcTotal(selectedSale.saleCartDTOList);
+
+            loading_div.hide();
+
+        },
+        error: function (xhr, status, error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Customer load failed',
+                text: 'Try again!'
+            });
+            $('#response').text('Error: ' + error);
+            loading_div.hide();
+        }
+    });
+
+}
+
+function loadAllSaleDetails() {
+    loadItemCart(saleItemListHistory, true);
+
+}
+
+function fetchCustomer(cId) {
+    if (cId === null) {
+        clearCustomer();
+        return;
+    }
+
+    $.ajax({
+        url: `http://localhost:8080/hello-shoe/api/v1/customer/${cId}`,
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            let customer = data;
+
+            $(".c-name-value").text(customer.cName);
+            $(".c-join-date-value").text(customer.joinDate);
+            $(".c-level-value").text(customer.level);
+            $(".c-total-points-value").text(customer.totalPoints);
+            $(".c-contacts-value").text(customer.contactNo);
+            $(".recent-purchase-date").text();
+
+
+        },
+        error: function (xhr, status, error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Customer load failed',
+                text: 'Try again!'
+            });
+            $('#response').text('Error: ' + error);
+        }
+    });
+
+}
+
+function clearCustomer() {
+    $("#customer-name-or-loyal-id").val("");
+    $(".c-name-value").text("");
+    $(".c-join-date-value").text("");
+    $(".c-level-value").text("");
+    $(".c-total-points-value").text("");
+    $(".c-contacts-value").text("");
+    $(".recent-purchase-date").text("");
+
+}
 

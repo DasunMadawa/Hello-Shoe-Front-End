@@ -1012,6 +1012,7 @@
 
 .sale-history-tbl > tbody > tr > td ,
 .item-table > tbody > tr > td {
+    cursor: pointer;
     font-size: 16px;
     font-weight: 400;
 
@@ -1114,4 +1115,5 @@
 #purchase-btn {
     margin-top: 5px;
 }
+
 
