@@ -1103,3 +1103,15 @@
 
 }
 
+#sale-sec #sale-payment-field-1 {
+}
+
+#sale-payment-field-2 {
+    margin-top: unset;
+}
+
+
+#purchase-btn {
+    margin-top: 5px;
+}
+

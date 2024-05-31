@@ -1,5 +1,13 @@
-import {loading_div} from "./Script.js";
+import {
+    address_reg, checkDateFields, checkDateFieldsDifferences, checkFields, checkSelectFields,
+    credit_card_digit_reg,
+    loading_div,
+    toggleBtnColorChanger,
+    validateOnKeyPressings
+} from "./Script.js";
 import {CartItemCardModel} from "../models/CartItemCardModel.js";
+import {total_points_reg, price_reg} from "./Script.js";
+import {SaleModel} from "../models/SaleModel.js";
 
 let saleList = null;
 let customerList = null;
@@ -15,18 +23,30 @@ let gender = "All";
 let occasion = "All";
 let verities = "All";
 
+let saleId = null;
+
+let total = 0;
+let points = 0;
+
 let filterAr = [];
+
+let paymentType = null;
 
 $("#sales-nav-btn").on('click', function () {
 
 });
 
 $(window).on('load', function () {
+    init();
+
+});
+
+function init() {
     getAllItemsSale();
     getAllSales();
     getAllCustomers();
 
-});
+}
 
 // fetch all items
 export function getAllItemsSale() {
@@ -69,7 +89,7 @@ function getAllSales() {
 
             saleList = data;
 
-            let saleId = saleList.length + 1;
+            saleId = saleList.length + 1;
             saleId = "O" + saleId.toString().padStart(5, "0");
 
             $("#sale-order-id").text(saleId);
@@ -263,7 +283,7 @@ function loadItemCards(itemList) {
                 saleItem.price,
                 saleItem.price,
                 selectedImage,
-                Math.floor(Math.random() * (10000 - 1 + 1)) + 1+Date.now()
+                Math.floor(Math.random() * (10000 - 1 + 1)) + 1 + Date.now()
             );
 
             saleItemCartList.push(cartItem);
@@ -316,7 +336,7 @@ function loadItemCards(itemList) {
             });
 
             let tempArIndex = saleItemCartList.indexOf(cartItem);
-            saleItemCartList.splice(tempArIndex , 1);
+            saleItemCartList.splice(tempArIndex, 1);
             // console.log(saleItemCartList);
             loadItemCart();
             calcTotal();
@@ -365,7 +385,6 @@ function checkQty(saleItem, selectedColour, selectedSize) {
     return isAvailable;
 
 }
-
 
 function loadItemCart() {
     // if (isNewItem) {
@@ -490,7 +509,7 @@ function getColours(colourList) {
     colourList.map(function (colour) {
         let tempColour = colour.toLowerCase();
 
-        var style = "background-color:" + tempColour;
+        var style = "background-color:" + (tempColour === "other" ? "grey" : colour);
 
         tempColourList += `<div class="sale-item-colour ${tempColour}" style=${style} data-item-colour=${colour}></div>`;
     });
@@ -510,6 +529,8 @@ function calcTotal() {
     $(".sub-total-value , .total-amount-value").text(tempTotal + "LKR");
     $(".added-points > h4:nth-child(2)").text((Math.floor(tempTotal / 800)));
 
+    total = tempTotal;
+    points = (Math.floor(tempTotal / 800));
 
 }
 
@@ -723,6 +744,8 @@ function qtyAdjusterValuesSet(cartItem) {
         }
 
     });
+
+    calcTotal();
 }
 
 function sortByPrice(obj1, obj2) {
@@ -789,6 +812,189 @@ function editQtyHolder(cartItem, isPlus) {
 
     });
 
+
+}
+
+// payment part
+$("#place-order-btn").on('click', function () {
+    if (!paymentType) {
+        Swal.fire({
+            icon: 'info',
+            title: 'Select Payment Type',
+            text: 'Select card or cash !'
+        });
+        return;
+    }
+
+    clearPaymentFields();
+
+    if (paymentType === "CASH") {
+        $("#sale-payment-field-1").attr('placeholder', 'Cash');
+        $("#sale-payment-field-2").attr('placeholder', 'Balance');
+
+        $("#sale-payment-field-1").removeAttr("min", "max");
+        $("#sale-payment-field-2").attr("readOnly", "");
+
+        console.log("hello")
+        validateOnKeyPressings([$("#sale-payment-field-1")], [price_reg]);
+
+    } else {
+        $("#sale-payment-field-1").attr('placeholder', 'Last 4 Digits');
+        $("#sale-payment-field-2").attr('placeholder', 'Bank Name');
+
+        $("#sale-payment-field-2").removeAttr("readOnly");
+        $("#sale-payment-field-1").attr({min: '0', max: '9999'});
+        validateOnKeyPressings([$("#sale-payment-field-1")], [credit_card_digit_reg]);
+        validateOnKeyPressings([$("#sale-payment-field-2")], [address_reg]);
+    }
+
+    $("#place-order-details-wrapper").show();
+
+});
+
+$("#sale-payment-field-1").on('input', function () {
+    if (paymentType === "CASH") {
+        $("#sale-payment-field-2").val($(this).val() - total + " LKR");
+
+    }
+
+});
+
+$("#purchase-btn").on('click', function () {
+    if (!total) {
+        Swal.fire({
+            icon: 'info',
+            title: 'No Items In Cart',
+            text: 'Add some items to cart !'
+        });
+        return;
+    }
+
+    if (paymentType === "CASH") {
+        if (checkFields([price_reg], [$("#sale-payment-field-1")], ["Cash Field"])) {
+            if (total > $("#sale-payment-field-1").val()) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Check Cash Amount',
+                    text: 'Cash amount not matched !'
+                });
+                return;
+
+            }
+            placeSale();
+
+        }
+
+    } else if (paymentType === "CARD") {
+        if (
+            checkFields([credit_card_digit_reg, address_reg],
+                [$("#sale-payment-field-1"), $("#sale-payment-field-2")],
+                ["Digits", "Bank Name"])
+
+        ) {
+            placeSale();
+
+        }
+
+    }
+
+});
+
+function placeSale() {
+    loading_div.show();
+
+    $.ajax({
+        url: `http://localhost:8080/hello-shoe/api/v1/sale`,
+        method: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: getSaleDetails(),
+        success: function (data) {
+            // customer = data;
+
+            loading_div.hide();
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Sale Placed',
+                text: data.oId
+            });
+
+            getAllCustomers();
+
+            clearPaymentFields();
+
+            saleItemCartList = []
+            selectedCustomer = null;
+            paymentType = null;
+            calcTotal();
+
+            init();
+
+            $("#place-order-details-wrapper").hide();
+
+        },
+        error: function (xhr, status, error) {
+            loading_div.hide();
+            Swal.fire({
+                icon: 'error',
+                title: 'Sale Place Failed'
+            });
+            $('#response').text('Error: ' + error);
+        }
+    });
+
+}
+
+function clearPaymentFields() {
+    $("#sale-payment-field-1 , #sale-payment-field-2").val("");
+    $("#sale-payment-field-1 , #sale-payment-field-2").removeClass("is-valid was-validated is-invalid");
+
+
+}
+
+
+$("#order-detail-form > i:first-child").on('click', function () {
+    $("#place-order-details-wrapper").hide();
+
+});
+
+$("#cash-payment").on("click", function () {
+    paymentType = "CASH";
+    toggleBtnColorChanger($(this), $("#card-payment"));
+
+});
+
+$("#card-payment").on("click", function () {
+    paymentType = "CARD";
+    toggleBtnColorChanger($(this), $("#cash-payment"));
+
+});
+
+function getSaleDetails() {
+    let tempQty = 0;
+
+    for (let i = 0; i < saleItemCartList.length; i++) {
+        tempQty += saleItemCartList[i].qty;
+
+    }
+
+    let tempCustomerId = selectedCustomer ? selectedCustomer.cId:null;
+
+    let saleModel = new SaleModel(
+        saleId,
+        tempQty,
+        Date.now(),
+        paymentType,
+        points,
+        saleItemCartList,
+        tempCustomerId,
+        "3abe405a-331f-4737-86d4-3169b9231e26"
+    );
+
+    // console.log(JSON.stringify(saleModel));
+
+    return JSON.stringify(saleModel);
 
 }
 
