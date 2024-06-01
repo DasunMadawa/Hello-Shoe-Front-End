@@ -171,7 +171,7 @@ $("#refund-form > i:first-child").click(function () {
 
 });
 
-$("#sales-nav-btn").click();
+$("#refund-nav-btn").click();
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -316,6 +316,7 @@ export const postal_code_reg = /^\d{5}$/;
 // export const password_reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 export const password_reg = /^.{8,}$/;
 export const item_code_reg = /^(F|C|I|S)(H|F|W|FF|SD|S|SL)(M|W)\d{5}$/;
+export const sale_id_reg = /^(O)\d{5}$/;
 
 export const credit_card_digit_reg = /^\d{4}$/;
 

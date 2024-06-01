@@ -333,7 +333,7 @@ function loadItemCards(itemList) {
     });
 
     // cart item close btn
-    $(".item-cart-wrapper").on('click', '.cart-item > .cart-item-close-btn', function () {
+    $("#sale-sec .item-cart-wrapper").on('click', '.cart-item > .cart-item-close-btn', function () {
         let cartItemId = $(this).closest(".cart-item").data("cart-item-index");
         let cartItem = getSaleCartItem(cartItemId);
 
@@ -462,7 +462,7 @@ function loadItemCart(saleItemCartList, isHistoryView) {
                             <div class="qty-adjuster-wrapper">
                                 <span>${cartItem.qty}</span>
                             </div>
-                            <div class="price-all">${cartItem.priceSingle} LKR</div>
+                            <div class="price-all">${cartItem.priceTotal} LKR</div>
                         </div>
                     </div>
             `
@@ -1024,7 +1024,7 @@ $("#sale-history-btn").on('click', function () {
 
     } else {
         clearCustomer();
-        loadItemCart(saleItemCartList, true);
+        loadItemCart(saleItemCartList, false);
         calcTotal(saleItemCartList);
         isHistory = false;
 

@@ -5,7 +5,7 @@
 
 #refund-sec #refund-form > form {
     display: inline-block;
-    width: 50%;
+    width: 60%;
 
 }
 
@@ -15,7 +15,7 @@
 }
 
 .refund-item-card-wrapper {
-    width: 50%;
+    width: 40%;
     height: 70%;
     scroll-behavior: smooth;
 
