@@ -8,7 +8,7 @@ export class SaleModel {
         saleCartDTOList,
         customerId,
         employeeId,
-        totalPrice
+        totalPrice,
     ) {
         this.oId = oId;
         this.itemQty = itemQty;

@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="assets/css/employees_styles.css">
     <link rel="stylesheet" href="assets/css/resupply_styles.css">
     <link rel="stylesheet" href="assets/css/refund_styles.css">
+    <link rel="stylesheet" href="assets/css/login_page_styles.css">
 
 </head>
 <body>
@@ -90,6 +91,57 @@
 </header>
 
 <main>
+    <section id="login-sec" class="">
+        <h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="#">
+                    <h1>Create Account</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <span>or use your email for registration</span>
+                    <input type="text" placeholder="Name" />
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <button>Sign Up</button>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form action="#">
+                    <h1>Sign in</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <span>or use your account</span>
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <a href="#">Forgot your password?</a>
+                    <button>Sign In</button>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button class="ghost" id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Hello, Friend!</h1>
+                        <p>Enter your personal details and start journey with us</p>
+                        <button class="ghost" id="signUp">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
     <section id="sale-sec" class="section-styles">
         <div class="body-wrapper">
             <div id="body-header-wrapper" class="body-header-wrapper">
@@ -678,24 +730,24 @@
 
             <div id="side-bar-body" class="side-bar-body">
                 <div class="item-cart-wrapper">
-                    <div class="cart-item">
-                        <div class="cart-item-img"></div>
-                        <div class="cart-item-body-wrapper">
-                            <h4 class="cart-item-name">Nike X OFF-White</h4>
-                            <div class="size">10</div>
-                            <div class="colour">
-                                <div></div>
-                            </div>
-                            <div class="price-single">5850 LKR</div>
-                            <h4 class="cart-item-code">FSM00001</h4>
-                            <div class="qty-adjuster-wrapper">
-                                <i class="fi fi-rr-minus"></i>
-                                1
-                                <i class="fi fi-rr-plus"></i>
-                            </div>
-                            <div class="price-all">5850 LKR</div>
-                        </div>
-                    </div>
+<!--                    <div class="cart-item">-->
+<!--                        <div class="cart-item-img"></div>-->
+<!--                        <div class="cart-item-body-wrapper">-->
+<!--                            <h4 class="cart-item-name">Nike X OFF-White</h4>-->
+<!--                            <div class="size">10</div>-->
+<!--                            <div class="colour">-->
+<!--                                <div></div>-->
+<!--                            </div>-->
+<!--                            <div class="price-single">5850 LKR</div>-->
+<!--                            <h4 class="cart-item-code">FSM00001</h4>-->
+<!--                            <div class="qty-adjuster-wrapper">-->
+<!--                                <i class="fi fi-rr-minus"></i>-->
+<!--                                1-->
+<!--                                <i class="fi fi-rr-plus"></i>-->
+<!--                            </div>-->
+<!--                            <div class="price-all">5850 LKR</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
                     <!--                    <div class="cart-item">-->
                     <!--                        <div class="cart-item-img"></div>-->
@@ -3496,7 +3548,7 @@
             <div id="body-header-wrapper-restock" class="body-header-wrapper body-header-wrapper-no-filters">
                 <div id="search-bar-wrapper-restock" class="search-bar-wrapper row">
                     <i class="fi fi-rr-search"></i>
-                    <input type="text" id="restock-search-field" class="sale-search-field"
+                    <input type="text" id="refund-search-field" class="sale-search-field"
                            placeholder="Search Resupply Dates ...">
                 </div>
 
@@ -3508,7 +3560,7 @@
                     <tr>
                         <th scope="col">Date</th>
                         <th scope="col">Sale Id</th>
-                        <th scope="col">description</th>
+                        <th scope="col">Reason</th>
                         <th scope="col">Item Code</th>
                         <th scope="col">Value</th>
                     </tr>
@@ -3549,7 +3601,7 @@
             <div class="side-bar-wrapper">
                 <div class="side-bar-header-wrapper">
                     <span class="side-bar-header">Selected Refund</span>
-                    <span class="sale-order-id">2023-10-10</span>
+                    <span id="selected-refund-date" class="sale-order-id"></span>
                     <div class="sale-line"></div>
 
                 </div>
@@ -3561,11 +3613,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="refund-sales-id" class="form-label">Sale Id</label>
-                        <input type="text" class="form-control" id="refund-sales-id">
+                        <input type="text" class="form-control" id="refund-sales-id" readonly>
                     </div>
                     <div class="mb-3">
-                        <label for="refund-description" class="form-label">Description</label>
-                        <input type="text" class="form-control" id="refund-description" readonly>
+                        <label for="refund-reason" class="form-label">Reason</label>
+                        <input type="text" class="form-control" id="refund-reason" readonly>
                     </div>
 
                 </form>
@@ -3605,10 +3657,13 @@
                             <label for="refund-sales-id" class="form-label">Sale Id</label>
                             <input type="text" class="form-control" id="refund-sales-id-add">
                         </div>
+
                         <div class="mb-3">
-                            <label for="refund-description" class="form-label">Description</label>
-                            <input type="text" class="form-control" id="refund-description-add" readonly>
+                            <label for="refund-reason-add" class="form-label">Reason</label>
+                            <input type="text" class="form-control" id="refund-reason-add">
                         </div>
+
+
 <!--                        <div class="mb-3">-->
 <!--                            <label for="refund-qty-add" class="form-label">QTY</label>-->
 <!--                            <input type="number" class="form-control" id="refund-qty-add" readonly>-->
@@ -3736,6 +3791,7 @@
                     <button id="save-refund-btn" class="save-item-btn">
                         Make Refund
                     </button>
+
                 </div>
             </div>
 

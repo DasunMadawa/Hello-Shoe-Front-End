@@ -8,7 +8,8 @@ export class CartItemCardModel {
         priceSingle,
         priceTotal,
         image,
-        itemIndex
+        itemIndex,
+        itemSaleId
     ) {
         this.iCode = iCode;
         this.description = description;
@@ -19,6 +20,7 @@ export class CartItemCardModel {
         this.priceTotal = priceTotal;
         this.image = image;
         this.itemIndex = itemIndex;
+        this.itemSaleId = itemSaleId;
 
     }
 

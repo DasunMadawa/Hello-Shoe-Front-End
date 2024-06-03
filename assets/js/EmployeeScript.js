@@ -337,7 +337,7 @@ $("#save-employee-btn").click(function () {
                 loading_div.hide();
                 Swal.fire({
                     icon: 'error',
-                    title: 'Supplier save failed',
+                    title: 'Employee save failed',
                     text: 'Check duplicate emails !'
                 });
                 $('#response').text('Error: ' + error);

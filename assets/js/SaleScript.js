@@ -48,6 +48,8 @@ $(window).on('load', function () {
 });
 
 function init() {
+    $("#sale-sec .item-cart-wrapper").html("");
+
     getAllItemsSale();
     getAllSales();
     getAllCustomers();
@@ -188,8 +190,8 @@ $("#sale-search-field").on('input', function () {
 function loadItemCards(itemList) {
     let itemCardSetWrapper = $("#body-item-wrapper");
     itemCardSetWrapper.html("");
-    $("#sale-sec .item-cart-wrapper").html("");
-    saleItemCartList = [];
+    // $("#sale-sec .item-cart-wrapper").html("");
+    // saleItemCartList = [];
 
     let itemCardListHtml = "";
 
@@ -308,7 +310,8 @@ function loadItemCards(itemList) {
                 saleItem.price,
                 saleItem.price,
                 selectedImage,
-                Math.floor(Math.random() * (10000 - 1 + 1)) + 1 + Date.now()
+                Math.floor(Math.random() * (10000 - 1 + 1)) + 1 + Date.now(),
+                ""
             );
 
             saleItemCartList.push(cartItem);
@@ -337,9 +340,11 @@ function loadItemCards(itemList) {
         let cartItemId = $(this).closest(".cart-item").data("cart-item-index");
         let cartItem = getSaleCartItem(cartItemId);
 
-        // console.log(cartItemId);
-
         saleItemList.map(function (saleItem) {
+            if (!cartItem) {
+                return;
+            }
+
             if (saleItem.iCode !== cartItem.iCode) {
                 return;
             }
@@ -842,7 +847,7 @@ $("#place-order-btn").on('click', function () {
         $("#sale-payment-field-1").removeAttr("min", "max");
         $("#sale-payment-field-2").attr("readOnly", "");
 
-        console.log("hello")
+        // console.log("hello");
         validateOnKeyPressings([$("#sale-payment-field-1")], [price_reg]);
 
     } else {
@@ -867,6 +872,7 @@ $("#sale-payment-field-1").on('input', function () {
 
 });
 
+// purchase btn
 $("#purchase-btn").on('click', function () {
     if (!total) {
         Swal.fire({
@@ -907,6 +913,7 @@ $("#purchase-btn").on('click', function () {
 
 });
 
+// place sale
 function placeSale() {
     loading_div.show();
 

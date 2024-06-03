@@ -172,6 +172,7 @@ $("#refund-form > i:first-child").click(function () {
 });
 
 $("#refund-nav-btn").click();
+navigateSections($("#login-sec"));
 
 
 /////////////////////////////////////////////////////////////////////////////////
