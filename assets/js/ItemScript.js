@@ -3,7 +3,7 @@ import {SupplierModel} from "../models/SupplierModel.js";
 import {StockModel} from "../models/StockModel.js";
 import {ItemImageModel} from "../models/ItemImageModel.js";
 import {ImageHolderModel} from "../models/ImageHolderModel.js";
-import {toggleBtnClick, total_points_reg} from "./Script.js";
+import {toggleBtnClick, token, total_points_reg} from "./Script.js";
 import {getAllItemsSale} from "./SaleScript.js";
 
 import {
@@ -262,6 +262,9 @@ function fetchAllItems() {
         url: 'http://localhost:8080/hello-shoe/api/v1/item',
         method: 'GET',
         dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
             items_ar = data;
             loadAllItems(items_ar);
@@ -335,6 +338,9 @@ function fetchItem(iCode) {
         url: `http://localhost:8080/hello-shoe/api/v1/item/${iCode}`,
         method: 'GET',
         dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
             item = data;
 
@@ -688,6 +694,9 @@ function fetchAllSuppliers() {
         url: 'http://localhost:8080/hello-shoe/api/v1/supplier',
         method: 'GET',
         dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
             suppliers_ar = data;
             loadSuppliers();
@@ -785,6 +794,9 @@ $("#save-item-btn").click(function () {
                 method: 'POST',
                 dataType: 'json',
                 contentType: 'application/json',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
                 data: getAddPageFieldValues(),
                 success: function (data) {
                     // customer = data;
@@ -1129,6 +1141,9 @@ update_btn.on('click', function () {
                 method: 'PUT',
                 dataType: 'json',
                 contentType: 'application/json',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
                 data: getUpdatePageFieldValues(),
                 success: function (data) {
                     // item = data;
@@ -1210,6 +1225,9 @@ update_btn_2.on('click', function () {
             method: 'PUT',
             dataType: 'json',
             contentType: 'application/json',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
             data: getStockValues(),
             success: function (data) {
                 // item = data;

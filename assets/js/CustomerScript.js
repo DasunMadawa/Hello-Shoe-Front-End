@@ -13,7 +13,7 @@ import {
     email_reg,
     total_points_reg,
     postal_code_reg,
-    loading_div
+    loading_div, token
 } from "./Script.js";
 
 let customers_ar = null;
@@ -175,6 +175,9 @@ function fetchAllCustomers() {
         url: 'http://localhost:8080/hello-shoe/api/v1/customer',
         method: 'GET',
         dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
             customers_ar = data;
             loadAllCustomers(customers_ar);
@@ -247,6 +250,9 @@ function fetchCustomer(cId) {
         url: `http://localhost:8080/hello-shoe/api/v1/customer/${cId}`,
         method: 'GET',
         dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
             customer = data;
 
@@ -281,6 +287,9 @@ $("#save-customer-btn").click(function () {
             method: 'POST',
             dataType: 'json',
             contentType: 'application/json',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
             data: getAddPageFieldValues(),
             success: function (data) {
                 // customer = data;
@@ -346,6 +355,9 @@ $("#update-customer-btn").click(function () {
                 method: 'PUT',
                 dataType: 'json',
                 contentType: 'application/json',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
                 data: getUpdatePageFieldValues(),
                 success: function (data) {
                     customer = data;

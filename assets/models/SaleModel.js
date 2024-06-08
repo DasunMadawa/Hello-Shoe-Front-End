@@ -20,7 +20,7 @@ export class SaleModel {
         this.employeeId = employeeId;
         this.totalPrice = totalPrice;
 
-
+        console.log(oId);
     }
 
 }

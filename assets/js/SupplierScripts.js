@@ -11,7 +11,7 @@ import {
     mobile_no_reg,
     email_reg,
     total_points_reg,
-    postal_code_reg, loading_div
+    postal_code_reg, loading_div, token
 } from "./Script.js";
 
 let suppliers_ar = null;
@@ -146,6 +146,9 @@ function fetchAllSuppliers() {
         url: 'http://localhost:8080/hello-shoe/api/v1/supplier',
         method: 'GET',
         dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
             suppliers_ar = data;
             loadAllSuppliers(suppliers_ar);
@@ -198,6 +201,9 @@ function fetchCustomer(supplierId) {
         url: `http://localhost:8080/hello-shoe/api/v1/supplier/${supplierId}`,
         method: 'GET',
         dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
             supplier = data;
 
@@ -248,6 +254,9 @@ $("#save-supplier-btn").click(function () {
             method: 'POST',
             dataType: 'json',
             contentType: 'application/json',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
             data: getAddPageFieldValues(),
             success: function (data) {
                 // supplier = data;
@@ -309,6 +318,9 @@ $("#update-supplier-btn").click(function () {
                 method: 'PUT',
                 dataType: 'json',
                 contentType: 'application/json',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
                 data: getUpdatePageFieldValues(),
                 success: function (data) {
                     // supplier = data;

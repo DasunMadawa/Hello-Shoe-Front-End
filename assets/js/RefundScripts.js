@@ -1,8 +1,8 @@
 import {
     address_reg,
-    checkFields,
+    checkFields, employeeId,
     loading_div,
-    sale_id_reg,
+    sale_id_reg, token,
     total_points_reg,
     validateOnKeyPressings
 } from "./Script.js";
@@ -39,6 +39,9 @@ sale_id_add.on('keydown', function (e) {
             url: `http://localhost:8080/hello-shoe/api/v1/refund/${sale_id_add.val()}`,
             method: 'GET',
             dataType: 'json',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
             success: function (data) {
                 loading_div.hide();
                 const diffInMs = new Date(Date.now()) - new Date(data.date);
@@ -241,6 +244,9 @@ $("#save-refund-btn").on('click', function () {
             method: 'POST',
             dataType: 'json',
             contentType: 'application/json',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
             data: getRefundList(),
             success: function (data) {
                 // customer = data;
@@ -286,7 +292,7 @@ function getRefundList() {
                 Date.now(),
                 refund_reason_add.val(),
                 cartItem.qty,
-                "6d2d475f-4a5a-40f8-8af1-0265bf2e77b2",
+                employeeId,
                 selected_sale.oId,
                 cartItem.itemSaleId
             )
@@ -311,6 +317,9 @@ function getLoadAllRefunds() {
         url: `http://localhost:8080/hello-shoe/api/v1/refund`,
         method: 'GET',
         dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
             refund_list_ar = data;
             console.log(data.length);
@@ -392,6 +401,9 @@ function fetchRefund(rId) {
         url: `http://localhost:8080/hello-shoe/api/v1/refund/rid/${rId}`,
         method: 'GET',
         dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
             loading_div.hide();
 

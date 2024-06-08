@@ -13,7 +13,7 @@ import {
     total_points_reg,
     postal_code_reg,
     loading_div,
-    password_reg
+    password_reg, token
 } from "./Script.js";
 
 let employees_ar = null;
@@ -194,6 +194,9 @@ function fetchAllEmployees() {
         url: 'http://localhost:8080/hello-shoe/api/v1/employee',
         method: 'GET',
         dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
             employees_ar = data;
             loadAllSuppliers(employees_ar);
@@ -223,11 +226,14 @@ employee_table_tbody.on('click', 'tr', function () {
 
 });
 
-function fetchCustomer(employeeId) {
+function fetchEmployee(employeeId) {
     $.ajax({
         url: `http://localhost:8080/hello-shoe/api/v1/employee/${employeeId}`,
         method: 'GET',
         dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
             employee = data;
 
@@ -237,7 +243,7 @@ function fetchCustomer(employeeId) {
         error: function (xhr, status, error) {
             Swal.fire({
                 icon: 'error',
-                title: 'Supplier load failed',
+                title: 'Employee load failed',
                 text: 'Try again!'
             });
             $('#response').text('Error: ' + error);
@@ -263,7 +269,7 @@ function loadEmployeeDetails() {
     gender.val(employee.gender);
     birthday.val(employee.birthday);
     access_role.val(employee.accessRole);
-    password.val(atob(employee.password));
+    // password.val(atob(employee.password));
     join_date.val(employee.joinDate);
     branch.val(employee.branch);
     status.val(employee.status);
@@ -314,6 +320,9 @@ $("#save-employee-btn").click(function () {
             dataType: 'json',
             processData: false,
             contentType: false,
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
             data: getAddPageFieldValues(),
             success: function (data) {
                 // supplier = data;
@@ -382,6 +391,9 @@ $("#update-employee-btn").click(function () {
                 dataType: 'json',
                 processData: false,
                 contentType: false,
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
                 data: getUpdatePageFieldValues(),
                 success: function (data) {
                     // supplier = data;

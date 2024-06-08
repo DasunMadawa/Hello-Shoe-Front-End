@@ -1,3 +1,10 @@
+import {UserModel} from "../models/UserModel.js";
+import {init} from "./SaleScript.js";
+
+export let token = null;
+export let employeeId = null;
+export let accessRole = null;
+
 $(".toggle-btn-2").on("click", function () {
     $(this).parents("section").find(".side-bar-body").hide();
     $(this).parents("section").find(".side-bar-body-2").show();
@@ -24,6 +31,7 @@ $(".toggle-btn-1").on("click", function () {
 
 $(".toggle-btn-1").click();
 
+//
 export function toggleBtnClick(btn) {
     btn.click();
 }
@@ -107,6 +115,160 @@ $("#save-item-btn").click(function () {
 
 });
 
+$("#sign-in-btn").click(function () {
+    if (
+        $("#username-sign-in").val().trim() && $("#password-sign-in").val()
+    ) {
+
+        loading_div.show();
+        $.ajax({
+            url: `http://localhost:8080/hello-shoe/api/v1/auth/signIn`,
+            method: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: getSignInDetails(),
+            success: function (data) {
+                loading_div.hide();
+
+                // getEmployee(data.token.split(" ")[1]);
+                token = data.token.split(" ")[0];
+                accessRole = data.token.split(" ")[1];
+                employeeId = data.token.split(" ")[2];
+
+                hideFields();
+
+                init();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Password Matched'
+                });
+
+                navigateSections($("#sale-sec"));
+                $("header").show();
+
+            },
+            error: function (xhr, status, error) {
+                loading_div.hide();
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Username not found',
+                    text: 'Check your username and password!'
+                });
+                $('#response').text('Error: ' + error);
+            }
+        });
+
+
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Fill username and password',
+            text: 'Check your username and password!'
+        });
+    }
+
+});
+
+$("#sign-up-btn").click(function () {
+    if (
+        $("#username-sign-up").val().trim() && $("#password-sign-up").val() && $("#password-sign-up").val() === $("#confirm-password").val()
+    ) {
+
+        loading_div.show();
+        $.ajax({
+            url: `http://localhost:8080/hello-shoe/api/v1/auth/signUp`,
+            method: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: getSignUpDetails(),
+            success: function (data) {
+                loading_div.hide();
+
+                // getEmployee(data.token.split(" ")[1]);
+                token = data.token.split(" ")[0];
+                accessRole = data.token.split(" ")[1];
+                employeeId = data.token.split(" ")[2];
+
+                hideFields();
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Password Matched'
+                });
+
+                navigateSections($("#sale-sec"));
+                $("header").show();
+
+            },
+            error: function (xhr, status, error) {
+                loading_div.hide();
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Username not found',
+                    text: 'Check your username and password!'
+                });
+                $('#response').text('Error: ' + error);
+            }
+        });
+
+
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Fill username and password',
+            text: 'Check your username and password!'
+        });
+    }
+
+});
+
+$("#log-out-btn").click(function () {
+    navigateSections($("#login-sec"));
+    $("header").hide();
+});
+
+function getSignInDetails() {
+    return JSON.stringify(
+        new UserModel(
+            $("#username-sign-in").val(),
+            btoa($("#password-sign-in").val())
+        )
+    );
+
+}
+
+function getSignUpDetails() {
+    return JSON.stringify(
+        new UserModel(
+            $("#username-sign-up").val(),
+            btoa($("#password-sign-up").val())
+        )
+    );
+
+}
+
+function hideFields() {
+    if (accessRole === "USER") {
+        $("#update-item-btn").hide();
+        $("#add-new-item-btn").hide();
+        $("#update-item-btn-2").hide();
+        $("#update-customer-btn").hide();
+        $("#add-new-customer-btn").hide();
+        $("#update-supplier-btn").hide();
+        $("#add-new-supplier-btn").hide();
+        $("#update-employee-btn").hide();
+        $("#add-new-employee-btn").hide();
+        $("#add-new-refund-btn").hide();
+
+    }
+
+}
+
+// header hide
+$("header").hide();
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -171,7 +333,7 @@ $("#refund-form > i:first-child").click(function () {
 
 });
 
-$("#refund-nav-btn").click();
+// $("#refund-nav-btn").click();
 navigateSections($("#login-sec"));
 
 
@@ -217,7 +379,7 @@ navigateSections($("#login-sec"));
 export function validateOnKeyPressings(input_fields, reg_list) {
     for (let i = 0; i < input_fields.length; i++) {
         input_fields[i].on('input', function () {
-            if (reg_list[i].test(input_fields[i].val())) {
+            if (reg_list[i].test(input_fields[i].val().trim())) {
                 $(this).addClass("is-valid was-validated");
                 $(this).removeClass("is-invalid was-validated form-control:invalid");
             } else {
@@ -266,7 +428,7 @@ export function checkSelectFields(temp_select_list) {
 // check field validation
 export function checkFields(temp_reg_list, temp_field_list, temp_mg_list) {
     for (let i = 0; i < temp_field_list.length; i++) {
-        if (!temp_reg_list[i].test(temp_field_list[i].val())) {
+        if (!temp_reg_list[i].test(temp_field_list[i].val().trim())) {
             Swal.fire({
                 icon: 'error',
                 title: 'Invalid Input',
@@ -307,8 +469,8 @@ export function checkDateFields(temp_field_list) {
 
 }
 
-export const name_reg = /^[A-Za-z\s\-']{3,50}$/;
-export const address_reg = /^[A-Za-z0-9]{3,50}$/;
+export const name_reg = /^[ A-Za-z\s\-']{3,50}$/;
+export const address_reg = /^[A-Za-z0-9 ]{3,50}$/;
 export const price_reg = /^\d{1,7}(\.\d{2})?$/;
 export const mobile_no_reg = /^((\+94)|(0))+(\d{9})$/;
 export const email_reg = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;

@@ -1,8 +1,8 @@
 import {
     address_reg, checkDateFields, checkDateFieldsDifferences, checkFields, checkSelectFields,
-    credit_card_digit_reg,
+    credit_card_digit_reg, employeeId,
     loading_div,
-    toggleBtnColorChanger,
+    toggleBtnColorChanger, token,
     validateOnKeyPressings
 } from "./Script.js";
 import {CartItemCardModel} from "../models/CartItemCardModel.js";
@@ -43,11 +43,11 @@ $("#sales-nav-btn").on('click', function () {
 });
 
 $(window).on('load', function () {
-    init();
+    // init();
 
 });
 
-function init() {
+export function init() {
     $("#sale-sec .item-cart-wrapper").html("");
 
     getAllItemsSale();
@@ -63,6 +63,9 @@ export function getAllItemsSale() {
         url: 'http://localhost:8080/hello-shoe/api/v1/item/getAll',
         method: 'GET',
         dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
 
             saleItemList = data;
@@ -93,6 +96,9 @@ function getAllSales() {
         url: 'http://localhost:8080/hello-shoe/api/v1/sale',
         method: 'GET',
         dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
 
             saleList = data;
@@ -120,6 +126,9 @@ export function getAllCustomers() {
         url: 'http://localhost:8080/hello-shoe/api/v1/customer',
         method: 'GET',
         dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
             customerList = data;
 
@@ -922,6 +931,9 @@ function placeSale() {
         method: 'POST',
         dataType: 'json',
         contentType: 'application/json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         data: getSaleDetails(),
         success: function (data) {
             // customer = data;
@@ -1003,7 +1015,7 @@ function getSaleDetails() {
         points,
         saleItemCartList,
         tempCustomerId,
-        "3abe405a-331f-4737-86d4-3169b9231e26",
+        employeeId,
         total
     );
 
@@ -1076,6 +1088,9 @@ function fetchSale(saleId) {
         url: `http://localhost:8080/hello-shoe/api/v1/sale/${saleId}`,
         method: 'GET',
         dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
             selectedSale = data;
             saleItemListHistory = selectedSale.saleCartDTOList;
@@ -1124,6 +1139,9 @@ function fetchCustomer(cId) {
         url: `http://localhost:8080/hello-shoe/api/v1/customer/${cId}`,
         method: 'GET',
         dataType: 'json',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
         success: function (data) {
             let customer = data;
 

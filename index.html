@@ -92,48 +92,50 @@
 
 <main>
     <section id="login-sec" class="">
-        <h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
         <div class="container" id="container">
             <div class="form-container sign-up-container">
                 <form action="#">
                     <h1>Create Account</h1>
-                    <div class="social-container">
-                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+<!--                    <div class="social-container">-->
+<!--                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>-->
+<!--                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>-->
+<!--                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>-->
+<!--                    </div>-->
                     <span>or use your email for registration</span>
-                    <input type="text" placeholder="Name" />
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <button>Sign Up</button>
+                    <input id="username-sign-up" type="email" placeholder="Email"/>
+                    <input id="password-sign-up" type="password" placeholder="Password"/>
+                    <input id="confirm-password" type="password" placeholder="Confirm Password"/>
+                    <button id="sign-up-btn">Sign Up</button>
                 </form>
             </div>
             <div class="form-container sign-in-container">
                 <form action="#">
                     <h1>Sign in</h1>
-                    <div class="social-container">
-                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <span>or use your account</span>
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <a href="#">Forgot your password?</a>
-                    <button>Sign In</button>
+<!--                    <div class="social-container">-->
+<!--                        <a class="logo-wrapper">-->
+<!--                            <img class="logo-img" src="assets/images/icons/sneakers-converse-shoe-shoes-footwear.svg"-->
+<!--                                 alt="Hello Shoe Logo">-->
+<!--                            <span class="logo-name">Hello Shoe</span>-->
+<!--                        </a>-->
+<!--                    </div>-->
+                    <span class="sign-in-sub-header">with your registered account</span>
+                    <input id="username-sign-in" type="email" placeholder="Username"/>
+                    <input id="password-sign-in" type="password" placeholder="Password"/>
+
+<!--                    <a href="#">Forgot your password?</a>-->
+                    <button id="sign-in-btn">Sign In</button>
                 </form>
             </div>
             <div class="overlay-container">
                 <div class="overlay">
                     <div class="overlay-panel overlay-left">
-                        <h1>Welcome Back!</h1>
-                        <p>To keep connected with us please login with your personal info</p>
+                        <h1>Sign In!</h1>
+                        <p>Sign in with your username and password</p>
                         <button class="ghost" id="signIn">Sign In</button>
                     </div>
                     <div class="overlay-panel overlay-right">
-                        <h1>Hello, Friend!</h1>
-                        <p>Enter your personal details and start journey with us</p>
+                        <h1>Sign Up!</h1>
+                        <p>Sign up with your email you have given</p>
                         <button class="ghost" id="signUp">Sign Up</button>
                     </div>
                 </div>
@@ -730,24 +732,24 @@
 
             <div id="side-bar-body" class="side-bar-body">
                 <div class="item-cart-wrapper">
-<!--                    <div class="cart-item">-->
-<!--                        <div class="cart-item-img"></div>-->
-<!--                        <div class="cart-item-body-wrapper">-->
-<!--                            <h4 class="cart-item-name">Nike X OFF-White</h4>-->
-<!--                            <div class="size">10</div>-->
-<!--                            <div class="colour">-->
-<!--                                <div></div>-->
-<!--                            </div>-->
-<!--                            <div class="price-single">5850 LKR</div>-->
-<!--                            <h4 class="cart-item-code">FSM00001</h4>-->
-<!--                            <div class="qty-adjuster-wrapper">-->
-<!--                                <i class="fi fi-rr-minus"></i>-->
-<!--                                1-->
-<!--                                <i class="fi fi-rr-plus"></i>-->
-<!--                            </div>-->
-<!--                            <div class="price-all">5850 LKR</div>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <!--                    <div class="cart-item">-->
+                    <!--                        <div class="cart-item-img"></div>-->
+                    <!--                        <div class="cart-item-body-wrapper">-->
+                    <!--                            <h4 class="cart-item-name">Nike X OFF-White</h4>-->
+                    <!--                            <div class="size">10</div>-->
+                    <!--                            <div class="colour">-->
+                    <!--                                <div></div>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="price-single">5850 LKR</div>-->
+                    <!--                            <h4 class="cart-item-code">FSM00001</h4>-->
+                    <!--                            <div class="qty-adjuster-wrapper">-->
+                    <!--                                <i class="fi fi-rr-minus"></i>-->
+                    <!--                                1-->
+                    <!--                                <i class="fi fi-rr-plus"></i>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="price-all">5850 LKR</div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
 
                     <!--                    <div class="cart-item">-->
                     <!--                        <div class="cart-item-img"></div>-->
@@ -3664,127 +3666,127 @@
                         </div>
 
 
-<!--                        <div class="mb-3">-->
-<!--                            <label for="refund-qty-add" class="form-label">QTY</label>-->
-<!--                            <input type="number" class="form-control" id="refund-qty-add" readonly>-->
-<!--                        </div>-->
+                        <!--                        <div class="mb-3">-->
+                        <!--                            <label for="refund-qty-add" class="form-label">QTY</label>-->
+                        <!--                            <input type="number" class="form-control" id="refund-qty-add" readonly>-->
+                        <!--                        </div>-->
 
                     </form>
 
                     <div class="item-cart-wrapper refund-item-card-wrapper">
-<!--                        <div class="cart-item">-->
-<!--                            <div class="cart-item-img"></div>-->
-<!--                            <div class="cart-item-body-wrapper">-->
-<!--                                <h4 class="cart-item-name">Nike X OFF-White</h4>-->
-<!--                                <div class="size">10</div>-->
-<!--                                <div class="colour">-->
-<!--                                    <div></div>-->
-<!--                                </div>-->
-<!--                                <div class="price-single">5850 LKR</div>-->
-<!--                                <h4 class="cart-item-code">FSM00001</h4>-->
-<!--                                <div class="qty-adjuster-wrapper">-->
-<!--                                    <i class="fi fi-rr-minus"></i>-->
-<!--                                    1-->
-<!--                                    <i class="fi fi-rr-plus"></i>-->
-<!--                                </div>-->
-<!--                                <div class="price-all">5850 LKR</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <!--                        <div class="cart-item">-->
+                        <!--                            <div class="cart-item-img"></div>-->
+                        <!--                            <div class="cart-item-body-wrapper">-->
+                        <!--                                <h4 class="cart-item-name">Nike X OFF-White</h4>-->
+                        <!--                                <div class="size">10</div>-->
+                        <!--                                <div class="colour">-->
+                        <!--                                    <div></div>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="price-single">5850 LKR</div>-->
+                        <!--                                <h4 class="cart-item-code">FSM00001</h4>-->
+                        <!--                                <div class="qty-adjuster-wrapper">-->
+                        <!--                                    <i class="fi fi-rr-minus"></i>-->
+                        <!--                                    1-->
+                        <!--                                    <i class="fi fi-rr-plus"></i>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="price-all">5850 LKR</div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
 
-<!--                        <div class="cart-item">-->
-<!--                            <div class="cart-item-img"></div>-->
-<!--                            <div class="cart-item-body-wrapper">-->
-<!--                                <h4 class="cart-item-name">Nike X OFF-White</h4>-->
-<!--                                <div class="size">10</div>-->
-<!--                                <div class="colour">-->
-<!--                                    <div></div>-->
-<!--                                </div>-->
-<!--                                <div class="price-single">5850 LKR</div>-->
-<!--                                <h4 class="cart-item-code">FSM00001</h4>-->
-<!--                                <div class="qty-adjuster-wrapper">-->
-<!--                                    <i class="fi fi-rr-minus"></i>-->
-<!--                                    1-->
-<!--                                    <i class="fi fi-rr-plus"></i>-->
-<!--                                </div>-->
-<!--                                <div class="price-all">5850 LKR</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <!--                        <div class="cart-item">-->
+                        <!--                            <div class="cart-item-img"></div>-->
+                        <!--                            <div class="cart-item-body-wrapper">-->
+                        <!--                                <h4 class="cart-item-name">Nike X OFF-White</h4>-->
+                        <!--                                <div class="size">10</div>-->
+                        <!--                                <div class="colour">-->
+                        <!--                                    <div></div>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="price-single">5850 LKR</div>-->
+                        <!--                                <h4 class="cart-item-code">FSM00001</h4>-->
+                        <!--                                <div class="qty-adjuster-wrapper">-->
+                        <!--                                    <i class="fi fi-rr-minus"></i>-->
+                        <!--                                    1-->
+                        <!--                                    <i class="fi fi-rr-plus"></i>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="price-all">5850 LKR</div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
 
-<!--                        <div class="cart-item">-->
-<!--                            <div class="cart-item-img"></div>-->
-<!--                            <div class="cart-item-body-wrapper">-->
-<!--                                <h4 class="cart-item-name">Nike X OFF-White</h4>-->
-<!--                                <div class="size">10</div>-->
-<!--                                <div class="colour">-->
-<!--                                    <div></div>-->
-<!--                                </div>-->
-<!--                                <div class="price-single">5850 LKR</div>-->
-<!--                                <h4 class="cart-item-code">FSM00001</h4>-->
-<!--                                <div class="qty-adjuster-wrapper">-->
-<!--                                    <i class="fi fi-rr-minus"></i>-->
-<!--                                    1-->
-<!--                                    <i class="fi fi-rr-plus"></i>-->
-<!--                                </div>-->
-<!--                                <div class="price-all">5850 LKR</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <!--                        <div class="cart-item">-->
+                        <!--                            <div class="cart-item-img"></div>-->
+                        <!--                            <div class="cart-item-body-wrapper">-->
+                        <!--                                <h4 class="cart-item-name">Nike X OFF-White</h4>-->
+                        <!--                                <div class="size">10</div>-->
+                        <!--                                <div class="colour">-->
+                        <!--                                    <div></div>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="price-single">5850 LKR</div>-->
+                        <!--                                <h4 class="cart-item-code">FSM00001</h4>-->
+                        <!--                                <div class="qty-adjuster-wrapper">-->
+                        <!--                                    <i class="fi fi-rr-minus"></i>-->
+                        <!--                                    1-->
+                        <!--                                    <i class="fi fi-rr-plus"></i>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="price-all">5850 LKR</div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
 
-<!--                        <div class="cart-item">-->
-<!--                            <div class="cart-item-img"></div>-->
-<!--                            <div class="cart-item-body-wrapper">-->
-<!--                                <h4 class="cart-item-name">Nike X OFF-White</h4>-->
-<!--                                <div class="size">10</div>-->
-<!--                                <div class="colour">-->
-<!--                                    <div></div>-->
-<!--                                </div>-->
-<!--                                <div class="price-single">5850 LKR</div>-->
-<!--                                <h4 class="cart-item-code">FSM00001</h4>-->
-<!--                                <div class="qty-adjuster-wrapper">-->
-<!--                                    <i class="fi fi-rr-minus"></i>-->
-<!--                                    1-->
-<!--                                    <i class="fi fi-rr-plus"></i>-->
-<!--                                </div>-->
-<!--                                <div class="price-all">5850 LKR</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <!--                        <div class="cart-item">-->
+                        <!--                            <div class="cart-item-img"></div>-->
+                        <!--                            <div class="cart-item-body-wrapper">-->
+                        <!--                                <h4 class="cart-item-name">Nike X OFF-White</h4>-->
+                        <!--                                <div class="size">10</div>-->
+                        <!--                                <div class="colour">-->
+                        <!--                                    <div></div>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="price-single">5850 LKR</div>-->
+                        <!--                                <h4 class="cart-item-code">FSM00001</h4>-->
+                        <!--                                <div class="qty-adjuster-wrapper">-->
+                        <!--                                    <i class="fi fi-rr-minus"></i>-->
+                        <!--                                    1-->
+                        <!--                                    <i class="fi fi-rr-plus"></i>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="price-all">5850 LKR</div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
 
-<!--                        <div class="cart-item">-->
-<!--                            <div class="cart-item-img"></div>-->
-<!--                            <div class="cart-item-body-wrapper">-->
-<!--                                <h4 class="cart-item-name">Nike X OFF-White</h4>-->
-<!--                                <div class="size">10</div>-->
-<!--                                <div class="colour">-->
-<!--                                    <div></div>-->
-<!--                                </div>-->
-<!--                                <div class="price-single">5850 LKR</div>-->
-<!--                                <h4 class="cart-item-code">FSM00001</h4>-->
-<!--                                <div class="qty-adjuster-wrapper">-->
-<!--                                    <i class="fi fi-rr-minus"></i>-->
-<!--                                    1-->
-<!--                                    <i class="fi fi-rr-plus"></i>-->
-<!--                                </div>-->
-<!--                                <div class="price-all">5850 LKR</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <!--                        <div class="cart-item">-->
+                        <!--                            <div class="cart-item-img"></div>-->
+                        <!--                            <div class="cart-item-body-wrapper">-->
+                        <!--                                <h4 class="cart-item-name">Nike X OFF-White</h4>-->
+                        <!--                                <div class="size">10</div>-->
+                        <!--                                <div class="colour">-->
+                        <!--                                    <div></div>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="price-single">5850 LKR</div>-->
+                        <!--                                <h4 class="cart-item-code">FSM00001</h4>-->
+                        <!--                                <div class="qty-adjuster-wrapper">-->
+                        <!--                                    <i class="fi fi-rr-minus"></i>-->
+                        <!--                                    1-->
+                        <!--                                    <i class="fi fi-rr-plus"></i>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="price-all">5850 LKR</div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
 
-<!--                        <div class="cart-item">-->
-<!--                            <div class="cart-item-img"></div>-->
-<!--                            <div class="cart-item-body-wrapper">-->
-<!--                                <h4 class="cart-item-name">Nike X OFF-White</h4>-->
-<!--                                <div class="size">10</div>-->
-<!--                                <div class="colour">-->
-<!--                                    <div></div>-->
-<!--                                </div>-->
-<!--                                <div class="price-single">5850 LKR</div>-->
-<!--                                <h4 class="cart-item-code">FSM00001</h4>-->
-<!--                                <div class="qty-adjuster-wrapper">-->
-<!--                                    <i class="fi fi-rr-minus"></i>-->
-<!--                                    1-->
-<!--                                    <i class="fi fi-rr-plus"></i>-->
-<!--                                </div>-->
-<!--                                <div class="price-all">5850 LKR</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <!--                        <div class="cart-item">-->
+                        <!--                            <div class="cart-item-img"></div>-->
+                        <!--                            <div class="cart-item-body-wrapper">-->
+                        <!--                                <h4 class="cart-item-name">Nike X OFF-White</h4>-->
+                        <!--                                <div class="size">10</div>-->
+                        <!--                                <div class="colour">-->
+                        <!--                                    <div></div>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="price-single">5850 LKR</div>-->
+                        <!--                                <h4 class="cart-item-code">FSM00001</h4>-->
+                        <!--                                <div class="qty-adjuster-wrapper">-->
+                        <!--                                    <i class="fi fi-rr-minus"></i>-->
+                        <!--                                    1-->
+                        <!--                                    <i class="fi fi-rr-plus"></i>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="price-all">5850 LKR</div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
 
                     </div>
 
@@ -3832,6 +3834,7 @@
 <script src="assets/js/SaleScript.js" type="module"></script>
 <script src="assets/js/SaleScript.js" type="module"></script>
 <script src="assets/js/RefundScripts.js" type="module"></script>
+<script src="assets/js/LoginScript.js"></script>
 
 </body>
 </html>
