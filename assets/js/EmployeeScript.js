@@ -222,7 +222,7 @@ employee_table_tbody.on('click', 'tr', function () {
     fieldsSetEditable(false);
     clearFields(true);
 
-    fetchCustomer($(this).data("employee-id"));
+    fetchEmployee($(this).data("employee-id"));
 
 });
 
